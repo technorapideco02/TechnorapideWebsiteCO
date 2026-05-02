@@ -33,11 +33,11 @@ const CustomerStories = () => {
   if (stories.length === 0) return null;
 
   return (
-    <section style={{ backgroundColor: '#000', padding: '100px 0', color: '#fff' }}>
-      <div style={{ padding: '0 50px' }}>
-        <div className={styles.insightsHeader} style={{ marginBottom: '50px' }}>
+    <section className={styles.customerStoriesSection} style={{ backgroundColor: '#000', padding: '100px 0', color: '#fff', overflow: 'hidden' }}>
+      <div className={styles.fullWidthContainer}>
+        <div className={styles.insightsHeader} style={{ marginBottom: '50px', padding: '0 20px' }}>
           <div className={styles.insightsTitleArea}>
-            <h2 style={{ fontSize: '3rem', fontWeight: 700, color: '#fff', margin: 0 }}>Customer Stories</h2>
+            <h2 className={styles.sectionTitle} style={{ color: '#fff', margin: 0 }}>Customer Stories</h2>
           </div>
           <div className={styles.insightsNav}>
             <button 
@@ -60,19 +60,26 @@ const CustomerStories = () => {
         <div 
           className={styles.insightsGrid} 
           ref={scrollRef}
-          style={{ gap: '30px', overflowX: 'hidden' }}
+          style={{ 
+            gap: '30px', 
+            overflowX: 'auto', 
+            padding: '0 20px',
+            scrollSnapType: 'x mandatory',
+            WebkitOverflowScrolling: 'touch'
+          }}
         >
           {stories.map((story) => (
             <div 
               key={story._id} 
               className={styles.insightCard}
               style={{ 
-                minWidth: '450px', 
+                minWidth: 'min(450px, 85vw)', 
                 height: '600px', 
                 position: 'relative',
-                borderRadius: '0',
+                borderRadius: '16px',
                 border: 'none',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                scrollSnapAlign: 'start'
               }}
             >
               {/* Background Image */}
@@ -95,7 +102,7 @@ const CustomerStories = () => {
                   bottom: 0, 
                   left: 0, 
                   width: '100%', 
-                  height: '60%', 
+                  height: '70%', 
                   background: 'linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.4) 50%, transparent 100%)' 
                 }}></div>
               </div>
@@ -106,18 +113,29 @@ const CustomerStories = () => {
                 bottom: 0, 
                 left: 0, 
                 width: '100%', 
-                padding: '40px', 
+                padding: '30px', 
                 zIndex: 2,
                 display: 'flex',
                 flexDirection: 'column',
                 gap: '15px'
               }}>
-                <h3 style={{ fontSize: '2rem', fontWeight: 700, margin: 0, color: '#fff' }}>
+                <h3 style={{ fontSize: 'clamp(1.2rem, 5vw, 1.8rem)', fontWeight: 700, margin: 0, color: '#fff', lineHeight: 1.2 }}>
                   {story.role.split(',')[1]?.trim() || story.name}
                 </h3>
-                <p style={{ fontSize: '1.1rem', color: 'rgba(255,255,255,0.8)', lineHeight: '1.5', margin: 0, textAlign: 'justify' }}>
+                <p style={{ 
+                  fontSize: 'clamp(0.9rem, 4vw, 1.1rem)', 
+                  color: 'rgba(255,255,255,0.8)', 
+                  lineHeight: '1.5', 
+                  margin: 0, 
+                  textAlign: 'left' 
+                }}>
                   {story.message}
                 </p>
+                <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: '15px', marginTop: '5px' }}>
+                   <p style={{ fontSize: '0.8rem', fontWeight: 600, color: 'var(--primary)', textTransform: 'uppercase', letterSpacing: '1px' }}>
+                     {story.name}
+                   </p>
+                </div>
               </div>
             </div>
           ))}

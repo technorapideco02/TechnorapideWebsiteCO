@@ -140,3 +140,33 @@ html body[style*='top'] {
   top: 0 !important;
 }
 
+
+/* RESPONSIVE TYPOGRAPHY & OVERFLOW SAFETY */
+@media (max-width: 768px) {
+  h1 { font-size: clamp(1.8rem, 10vw, 2.5rem) !important; }
+  h2 { font-size: clamp(1.5rem, 8vw, 2rem) !important; }
+  h3 { font-size: 1.3rem !important; }
+  
+  .container, .fullWidthContainer {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  /* Force word break for very long titles that break layouts */
+  h1, h2, h3 {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+}
+
+/* Ensure images never cause overflow */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Fix for Customer Stories and other carousels */
+section {
+  overflow-x: hidden;
+}
