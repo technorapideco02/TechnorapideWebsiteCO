@@ -238,7 +238,10 @@ const Navbar = () => {
                 </div>
               </div>
             </li>
-            <li><a href="#">Our Career Option</a></li>
+            <li>
+              <Link href="/career-options">Our Career Option</Link>
+            </li>
+
             <li>
               <Link href="/news" className={isNewsPage ? styles.active : ''}>
                 News

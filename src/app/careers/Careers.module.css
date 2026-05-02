@@ -1,0 +1,229 @@
+/* ── Page Shell ─────────────────────────────────── */
+.page {
+  position: relative;
+  min-height: 100vh;
+  background: #000;
+  font-family: 'Figtree', sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Background Effect ──────────────────────────── */
+.bgContainer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url('https://res.cloudinary.com/dllstvdzz/image/upload/v1768427419/samples/people/smiling-man.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  /* Fades from 40% opacity (left) to 0% opacity (right) where form sits */
+  mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  -webkit-mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* ── Form Panel ─────────────────────────────────── */
+.formPanel {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 800px;
+  padding: 120px 60px 80px;
+  margin-left: auto; /* Aligns form to the right */
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  color: rgba(255,255,255,0.4);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-decoration: none;
+  margin-bottom: 50px;
+  transition: color 0.2s;
+}
+.backLink:hover { color: #fff; }
+
+.formHeader { margin-bottom: 50px; }
+
+.eyebrow {
+  font-size: 0.65rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--primary);
+  margin-bottom: 20px;
+}
+
+.heading {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.8rem);
+  font-weight: 700;
+  color: #fff;
+  line-height: 1.25;
+  max-width: 600px;
+}
+
+/* ── Form ───────────────────────────────────────── */
+.form { display: flex; flex-direction: column; gap: 0; }
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 36px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fieldFull {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 36px;
+  position: relative;
+}
+
+.field label,
+.fieldFull label {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 0.3px;
+}
+
+.field input,
+.field select,
+.fieldFull textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255,255,255,0.25);
+  color: #fff;
+  font-family: 'Figtree', sans-serif;
+  font-size: 1rem;
+  padding: 10px 0;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.field input::placeholder,
+.fieldFull textarea::placeholder {
+  color: rgba(255,255,255,0.15);
+}
+
+.field input:focus,
+.field select:focus,
+.fieldFull textarea:focus {
+  border-bottom-color: var(--primary);
+}
+
+/* ── Checkbox ───────────────────────────────────── */
+.checkboxGroup { margin-bottom: 40px; }
+
+.checkLabel {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.checkLabel input[type='checkbox'] {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  accent-color: var(--primary);
+  cursor: pointer;
+}
+
+/* ── Submit ─────────────────────────────────────── */
+.submitBtn {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 18px 48px;
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background: #005a8d;
+  transform: translateY(-2px);
+}
+
+.submitBtn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.errorMsg {
+  margin-top: 16px;
+  color: #ff4d4d;
+  font-size: 0.88rem;
+}
+
+/* ── Success ────────────────────────────────────── */
+.successBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 60px 0;
+}
+
+.successBox h2 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #fff;
+}
+
+.homeBtn {
+  margin-top: 20px;
+  display: inline-block;
+  padding: 16px 40px;
+  border: 1px solid rgba(255,255,255,0.3);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+
+.homeBtn:hover {
+  background: rgba(255,255,255,0.06);
+}
+
+/* ── Responsive ─────────────────────────────────── */
+@media (max-width: 850px) {
+  .formPanel { padding: 60px 28px; }
+  .row { grid-template-columns: 1fr; gap: 28px; }
+  .bgContainer { opacity: 0.2; mask-image: none; -webkit-mask-image: none; }
+}

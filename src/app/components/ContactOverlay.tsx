@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import styles from './ContactOverlay.module.css';
 
 const OPTIONS = [
@@ -9,7 +10,7 @@ const OPTIONS = [
     label: 'Request For Services',
     desc: 'Tell us about your project and we\'ll craft the perfect technical blueprint for your business.',
     icon: (
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="3" width="20" height="14" rx="2"/>
         <path d="M8 21h8M12 17v4"/>
         <path d="M7 8h10M7 12h6"/>
@@ -21,8 +22,8 @@ const OPTIONS = [
     label: 'Request For A Demo',
     desc: 'Experience our solutions first-hand. Book a live demonstration with our technical architects.',
     icon: (
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
-        <polygon points="5 3 19 12 5 21 5 3"/>
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
       </svg>
     ),
   },
@@ -31,7 +32,7 @@ const OPTIONS = [
     label: 'Career Forum',
     desc: 'Join the Technorapide ecosystem. Explore open roles across engineering, design, and strategy.',
     icon: (
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round">
+      <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
         <circle cx="9" cy="7" r="4"/>
         <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
@@ -44,6 +45,20 @@ const OPTIONS = [
 export default function ContactOverlay() {
   const [open, setOpen] = useState(false);
   const [hovered, setHovered] = useState<string | null>(null);
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const isContactActive = pathname === '/request-services' || pathname === '/request-demo' || pathname === '/careers';
+
+  const handleOption = (id: string) => {
+    setOpen(false);
+    if (id === 'services') router.push('/request-services');
+    if (id === 'career') router.push('/careers');
+    if (id === 'demo') {
+      const msg = encodeURIComponent('Hi, Technorapide.');
+      window.open(`https://wa.me/918918693332?text=${msg}`, '_blank');
+    }
+  };
 
   // Lock body scroll when overlay is open
   useEffect(() => {
@@ -61,7 +76,10 @@ export default function ContactOverlay() {
   return (
     <>
       {/* Trigger */}
-      <button className={styles.trigger} onClick={() => setOpen(true)}>
+      <button 
+        className={`${styles.trigger} ${isContactActive ? styles.active : ''}`} 
+        onClick={() => setOpen(true)}
+      >
         Contact Us
       </button>
 
@@ -77,28 +95,25 @@ export default function ContactOverlay() {
           </button>
 
           <div className={styles.inner}>
-            <p className={styles.eyebrow}>GET IN TOUCH</p>
-            <h2 className={styles.heading}>How can we help you?</h2>
+            {/* Header row */}
+            <div className={styles.headerRow}>
+              <h2 className={styles.heading}>What's on your mind?</h2>
+              <p className={styles.subheading}>
+                We're here to help! Tell us what you're looking for and we'll get you connected to the right people.
+              </p>
+            </div>
 
-            <div className={styles.options}>
+            {/* 3 Cards */}
+            <div className={styles.cards}>
               {OPTIONS.map((opt, i) => (
                 <button
                   key={opt.id}
-                  className={`${styles.option} ${hovered === opt.id ? styles.optionHovered : ''}`}
-                  onMouseEnter={() => setHovered(opt.id)}
-                  onMouseLeave={() => setHovered(null)}
-                  onClick={() => {
-                    // In future wire to actual routes/modals
-                    setOpen(false);
-                  }}
-                  style={{ animationDelay: `${i * 0.1 + 0.2}s` }}
+                  className={styles.card}
+                  onClick={() => handleOption(opt.id)}
+                  style={{ animationDelay: `${i * 0.1 + 0.15}s` }}
                 >
-                  <div className={styles.iconBox}>{opt.icon}</div>
-                  <div className={styles.optText}>
-                    <h3 className={styles.optTitle}>{opt.label}</h3>
-                    <p className={styles.optDesc}>{opt.desc}</p>
-                  </div>
-                  <div className={styles.arrow}>→</div>
+                  <div className={styles.cardIcon}>{opt.icon}</div>
+                  <span className={styles.cardLabel}>{opt.label}</span>
                 </button>
               ))}
             </div>
