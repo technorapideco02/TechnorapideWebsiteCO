@@ -24,6 +24,7 @@ const Navbar = () => {
   const isNewsPage = pathname.startsWith('/news');
   const isInsightsPage = pathname.startsWith('/insights');
   const isServicePage = pathname.startsWith('/services');
+  const isCareerPage = pathname.startsWith('/career-options');
   const isAnyDetailPage = isNewsPage || isInsightsPage || isServicePage;
 
   const [categories, setCategories] = useState<Category[]>([]);
@@ -239,7 +240,9 @@ const Navbar = () => {
               </div>
             </li>
             <li>
-              <Link href="/career-options">Our Career Option</Link>
+              <Link href="/career-options" className={isCareerPage ? styles.active : ''}>
+                Our Career Option
+              </Link>
             </li>
 
             <li>

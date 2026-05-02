@@ -29,12 +29,12 @@ body {
   margin: 0 auto;
 }
 
-h1, h3, .newsMainTitle, .blogHeroTitle {
-  font-family: 'Outfit', sans-serif;
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
-h2, .newsTitle, .compactTitle {
-  font-family: 'Figtree', sans-serif;
+.newsMainTitle, .blogHeroTitle, .newsTitle, .compactTitle, .title {
+  font-family: 'Raleway', sans-serif;
 }
 
 a {

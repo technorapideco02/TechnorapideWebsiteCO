@@ -1,4 +1,5 @@
 import React from 'react';
+import Link from 'next/link';
 import styles from './Hero.module.css';
 
 async function getHeroAsset() {
@@ -51,8 +52,8 @@ const Hero = async () => {
           Empowering startups and enterprises with cutting-edge technology and human-centric design.
         </p>
         <div className={styles.ctaContainer}>
-          <button className={styles.primaryBtn}>Get Started</button>
-          <button className={styles.secondaryBtn}>Learn More</button>
+          <Link href="/request-services" className={styles.primaryBtn}>Get Started</Link>
+          <Link href="/insights" className={styles.secondaryBtn}>Learn More</Link>
         </div>
       </div>
     </section>

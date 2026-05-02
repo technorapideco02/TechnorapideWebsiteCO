@@ -1,0 +1,37 @@
+name: Deploy Next.js to GCP VM
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to VM via SSH
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.VM_HOST }}
+          username: ${{ secrets.VM_USER }}
+          key: ${{ secrets.VM_SSH_KEY }}
+          script: |
+            # Go to project folder
+            cd ~/TechnorapideWebsiteCO
+
+            # Pull latest code
+            git fetch --all
+            git reset --hard origin/main
+
+            # Install dependencies
+            npm install
+
+            # Build Next.js app
+            npm run build
+
+            # Restart existing PM2 app (nextjs-app)
+            pm2 restart nextjs-app || pm2 start npm --name "nextjs-app" -- start
+
+            # Save PM2 process
+            pm2 save
