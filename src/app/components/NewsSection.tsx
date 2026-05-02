@@ -15,6 +15,17 @@ interface NewsSectionProps {
   blogs: Blog[];
 }
 
+function slugify(text: string) {
+  if (!text) return "";
+  return text
+    .toString()
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, '-')
+    .replace(/[^\w-]+/g, '')
+    .replace(/--+/g, '-');
+}
+
 const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [greeting, setGreeting] = useState("Good Day");
@@ -65,7 +76,7 @@ const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
       <div className={styles.insightsGrid} ref={scrollRef}>
         {blogs.map((blog) => (
           <div key={blog._id} className={styles.insightCardWhite}>
-            <Link href={`/news/${blog._id}`} className={styles.insightImageWrapper}>
+            <Link href={`/news/${slugify(blog.title)}--${blog._id}`} className={styles.insightImageWrapper}>
               <img src={blog.image} alt={blog.title} className={styles.insightImage} />
             </Link>
             <div className={styles.insightContent}>
@@ -74,9 +85,8 @@ const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
                 <h3 className={styles.insightTitle}>{blog.title}</h3>
                 <p className={styles.insightDescription}>{blog.description}</p>
               </div>
-              {/* Removed blue circular button, added Read More link below text */}
               <div className={styles.newsReadMoreContainer}>
-                <Link href={`/news/${blog._id}`} className={styles.newsReadMoreBtn}>
+                <Link href={`/news/${slugify(blog.title)}--${blog._id}`} className={styles.newsReadMoreBtn}>
                   Read More
                   <span className={styles.newsReadMoreArrow}>→</span>
                 </Link>

@@ -7,8 +7,10 @@ import heroStyles from '../../components/Hero.module.css';
 
 async function getIndustry(id: string | undefined) {
   if (!id) return null;
+  const actualId = id.split('--').pop() || id;
+  const cleanId = actualId.trim();
   try {
-    const res = await fetch(`https://apifinal.technorapide.com/api/industries/${id}`, { cache: 'no-store' });
+    const res = await fetch(`https://apifinal.technorapide.com/api/industries/${cleanId}`, { cache: 'no-store' });
     if (res.ok) {
       return res.json();
     }

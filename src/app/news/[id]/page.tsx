@@ -6,7 +6,8 @@ import styles from '../../page.module.css';
 
 async function getBlog(id: string | undefined) {
   if (!id) return null;
-  const cleanId = id.trim();
+  const actualId = id.split('--').pop() || id;
+  const cleanId = actualId.trim();
   try {
     const res = await fetch(`https://apifinal.technorapide.com/api/blogs/${cleanId}`, { cache: 'no-store' });
     if (res.ok) {

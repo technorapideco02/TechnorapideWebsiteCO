@@ -8,7 +8,9 @@ import heroStyles from '../../components/Hero.module.css';
 
 async function getService(id: string | undefined) {
   if (!id) return null;
-  const cleanId = id.trim();
+  // Handle SEO-friendly slug--ID pattern
+  const actualId = id.split('--').pop() || id;
+  const cleanId = actualId.trim();
   try {
     const res = await fetch(`https://apifinal.technorapide.com/api/services/${cleanId}`, { cache: 'no-store' });
     if (res.ok) {
