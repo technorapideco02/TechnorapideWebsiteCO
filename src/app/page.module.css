@@ -1025,3 +1025,61 @@
     width: calc(100% - 4px) !important;
   }
 }
+
+/* INDUSTRY SECTION RESPONSIVE REPAIR */
+.industrySectionMain {
+  background-color: #fff;
+  border-top: 1px solid #eee;
+  padding: 100px 0;
+}
+
+.sectionContainer {
+  padding: 0 5%;
+}
+
+.insightTitleResponsive {
+  color: #000;
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.insightDescResponsive {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 25px;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMoreResponsive {
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .industrySectionMain {
+    padding: 60px 0;
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+  }
+  
+  .sectionContainer {
+    padding: 0 10px !important; /* Minimal internal padding for mobile */
+  }
+
+  .insightTitleResponsive {
+    font-size: 1.4rem !important;
+  }
+
+  .insightCardWhite {
+    min-width: 280px !important;
+    flex: 0 0 280px !important;
+    margin-right: 15px !important;
+  }
+}

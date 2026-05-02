@@ -33,8 +33,8 @@ const IndustrySection = () => {
   if (industries.length === 0) return null;
 
   return (
-    <section className={styles.insightsSection} style={{ backgroundColor: '#fff', borderTop: '1px solid #eee' }}>
-      <div style={{ padding: '0 50px' }}>
+    <section className={styles.industrySectionMain}>
+      <div className={styles.sectionContainer}>
         <div className={styles.insightsHeader}>
           <div className={styles.insightsTitleArea}>
             <p className={styles.capLabel} style={{ color: 'var(--primary)' }}>OUR REACH</p>
@@ -65,8 +65,7 @@ const IndustrySection = () => {
             <Link 
               href={`/industries/${industry._id}`} 
               key={industry._id} 
-              className={styles.insightCard}
-              style={{ minWidth: '400px', backgroundColor: '#fdfdfd', border: '1px solid #eee' }}
+              className={styles.insightCardWhite}
             >
               <div className={styles.insightImageWrapper}>
                 <img 
@@ -75,13 +74,13 @@ const IndustrySection = () => {
                   className={styles.insightImage} 
                 />
               </div>
-              <div className={styles.insightContent} style={{ padding: '40px' }}>
+              <div className={styles.insightContent}>
                 <div className={styles.insightTag} style={{ backgroundColor: 'var(--primary)', color: '#fff' }}>INDUSTRY</div>
-                <h3 className={styles.insightTitle} style={{ color: '#000', fontSize: '1.8rem' }}>{industry.name}</h3>
-                <p className={styles.insightDesc} style={{ color: '#666', textAlign: 'justify' }}>
+                <h3 className={styles.insightTitleResponsive}>{industry.name}</h3>
+                <p className={styles.insightDescResponsive}>
                   {industry.description}
                 </p>
-                <div className={styles.readMore} style={{ color: 'var(--primary)' }}>
+                <div className={styles.readMoreResponsive}>
                   Explore Solutions →
                 </div>
               </div>
