@@ -1,0 +1,107 @@
+.minimalSection {
+  background-color: #000;
+  padding: 60px 0;
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 40px;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.googleBrand svg {
+  background: #fff;
+  padding: 5px;
+  border-radius: 50%;
+  display: block;
+}
+
+.divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.ratingInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.scoreRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.score {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.verified {
+  font-family: 'Figtree', sans-serif;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: rgba(255, 255, 255, 0.4);
+  font-weight: 700;
+}
+
+.mapLink {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.mapLink:hover {
+  background: #fff;
+  color: #000;
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  .left {
+    flex-direction: column;
+    gap: 15px;
+  }
+  .divider {
+    display: none;
+  }
+}
