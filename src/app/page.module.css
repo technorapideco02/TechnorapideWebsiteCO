@@ -972,3 +972,56 @@
 .richTextContent .cta {
   display: none;
 }
+
+/* MOBILE OPTIMIZATIONS: SMALL BOXES & 2PX MARGIN */
+@media (max-width: 768px) {
+  .scrollContent > section,
+  .scrollContent > div,
+  .footer,
+  .capAboutSection {
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+    width: calc(100% - 4px) !important; /* Ensure it stays within bounds with the 2px margins */
+  }
+
+  /* Make Boxes Smaller */
+  .newsCard {
+    flex: 0 0 260px !important; /* Smaller blog boxes */
+    min-width: 260px !important;
+  }
+
+  .insightCard {
+    flex: 0 0 260px !important; /* Smaller insight/industry boxes */
+    min-width: 260px !important;
+    margin-right: 15px !important;
+  }
+
+  .newsImageWrapper, 
+  .insightImageWrapper {
+    height: 180px !important; /* Smaller images for smaller boxes */
+  }
+
+  .newsTitle, 
+  .insightTitle {
+    font-size: 1.3rem !important; /* Scale down titles in smaller boxes */
+  }
+
+  .newsHeader, 
+  .insightsHeader {
+    padding: 0 10px !important; /* Tighten headers */
+    margin-bottom: 30px !important;
+  }
+
+  .capTextBoxWide, 
+  .capTextBoxSquare {
+    padding: 20px !important; /* Smaller text boxes in editorial section */
+  }
+}
+@media (max-width: 768px) {
+  /* Ensure Google Trust Section also respects the 2px margin */
+  .fullSection {
+    margin-left: 2px !important;
+    margin-right: 2px !important;
+    width: calc(100% - 4px) !important;
+  }
+}
