@@ -1,0 +1,47 @@
+{
+  "navbar": {
+    "whatWeDo": "What We Do",
+    "ourServices": "Our Services",
+    "careers": "Our Career Option",
+    "news": "News",
+    "companyInsights": "Company Insights",
+    "langEN": "EN",
+    "langHI": "HI",
+    "langBN": "BN"
+  },
+  "footer": {
+    "description": "Technorapide is a global technical powerhouse delivering high-density digital solutions. We specialize in adaptive enterprise architectures, custom technical blueprints, and immersive digital transformations that scale with absolute precision.",
+    "serviceCategories": "We do provide service",
+    "technicalServices": "Our Technical Services",
+    "industries": "Industries We Serve",
+    "contactLine": "DIRECT ARCHITECTURE LINE",
+    "copyright": "© 2026 Technorapide. All rights reserved. Transforming sectors through technical mastery.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service"
+  },
+  "home": {
+    "researchInsights": "Research & Insights",
+    "originStoryLabel": "OUR ORIGIN STORY",
+    "originStoryTitle": "From a Vision to a Global Enterprise Driven by Innovation",
+    "originStoryDesc": "TechnoRapide was founded in 2018 with a simple yet ambitious goal: to bridge the gap between high-level engineering and intuitive user experiences.",
+    "philosophyLabel": "Our Core Philosophy",
+    "philosophyTitle": "World-Class Robust Web Architectures & Solutions. \"Dream Big, Build Bigger.\"",
+    "statsLabel": "Growth Metrics",
+    "statsTitle": "Transforming Digital Presence for Global Clients",
+    "years": "Years",
+    "projects": "Projects",
+    "clients": "Clients",
+    "developers": "Developers",
+    "customerStoriesTitle": "Customer Stories",
+    "ourReachLabel": "OUR REACH",
+    "exploreSolutions": "Explore Solutions →",
+    "industryTag": "INDUSTRY",
+    "brandMark": "© 2026 Technorapide. All rights reserved."
+  },
+  "hero": {
+    "title": "Innovating Your Digital Future",
+    "subtitle": "Empowering startups and enterprises with cutting-edge technology and human-centric design.",
+    "getStarted": "Get Started",
+    "learnMore": "Learn More"
+  }
+}

@@ -1,0 +1,974 @@
+.main {
+  min-height: 100vh;
+}
+
+.scrollContent {
+  position: relative;
+  z-index: 10; /* Above the fixed hero */
+  margin-top: 100vh; /* Start after hero height */
+  background-color: var(--bg-light);
+  box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.newsSection {
+  padding: 120px 5%; /* Large side margins as per image */
+  background-color: #ffffff;
+}
+
+.newsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 60px;
+}
+
+.newsMainTitle {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  color: #1a1a1a;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.newsNav {
+  display: flex;
+  gap: 20px;
+}
+
+.navBtn {
+  background: transparent;
+  border: none;
+  color: #000;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.navBtn:hover {
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
+/* Dark variant for nav buttons in dark sections */
+.insightsSection .navBtn {
+  color: #fff;
+}
+
+.insightsSection .navBtn:hover {
+  color: var(--primary);
+}
+
+.newsGrid {
+  display: flex;
+  overflow-x: auto;
+  gap: 40px;
+  padding-bottom: 50px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+.newsGrid::-webkit-scrollbar {
+  display: none;
+}
+
+.newsCard {
+  flex: 0 0 calc((100% - 80px) / 3); /* Exactly 3 blogs per line */
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  background: transparent;
+  scroll-snap-align: start;
+}
+
+.newsImageWrapper {
+  width: 100%;
+  height: 280px;
+  margin-bottom: 30px;
+  overflow: hidden;
+}
+
+.newsImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.newsCard:hover .newsImage {
+  transform: scale(1.03);
+}
+
+.newsContent {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* Allow content to grow and push readMore down */
+}
+
+.newsTitle {
+  font-size: 2.2rem;
+  font-weight: 400;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  line-height: 1.2;
+  font-family: 'Figtree', sans-serif;
+}
+
+.newsDescription {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #444;
+  margin: 0 0 30px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.readMoreContainer {
+  margin-top: auto;
+  padding-top: 40px; /* Increased space from description */
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 15px;
+}
+
+.readMoreLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #000;
+  text-decoration: none;
+  font-family: 'Figtree', sans-serif;
+}
+
+.readMoreArrow {
+  font-size: 1.8rem;
+  font-weight: 300;
+}
+
+.newsFooter {
+  margin-top: auto;
+}
+
+.newsArrowBtn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+.newsCard:hover .newsArrowBtn {
+  background-color: white;
+  color: var(--primary);
+  transform: translateX(5px);
+}
+
+.insightsSection {
+  padding: 80px 0 120px 0;
+  background-color: #0b0e14; /* Match Capgemini Section */
+}
+
+.newsSectionWhite {
+  padding: 80px 0 120px 0;
+  background-color: #ffffff;
+}
+
+.insightsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 0 5%;
+  margin-bottom: 40px;
+}
+
+.insightsMainTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #ffffff; /* White title for dark background */
+  max-width: 800px;
+  line-height: 1.1;
+  font-family: 'Figtree', sans-serif;
+}
+
+.insightsNav {
+  display: flex;
+  gap: 15px;
+}
+
+.insightsGrid {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding: 0 5%;
+  scroll-behavior: smooth;
+  scrollbar-width: none; /* Hide scrollbar for Firefox */
+}
+
+.insightsGrid::-webkit-scrollbar {
+  display: none; /* Hide scrollbar for Chrome, Safari, Opera */
+}
+
+.insightCard {
+  flex: 0 0 calc(33.333% - 20px);
+  min-width: 400px;
+  background-color: #2b2d2f;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  margin-right: 30px;
+}
+
+.insightCard:last-child {
+  margin-right: 5%;
+}
+
+.insightImageWrapper {
+  width: 100%;
+  height: 280px;
+  overflow: hidden;
+}
+
+.insightImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.insightCard:hover .insightImage {
+  transform: scale(1.05);
+}
+
+.insightContent {
+  padding: 40px 30px 50px 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+}
+
+.insightCardWhite {
+  flex: 0 0 calc(33.333% - 20px);
+  min-width: 400px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  margin-right: 30px;
+  border: none;
+}
+
+.insightCardWhite .insightTitle {
+  color: #1a1a1a;
+}
+
+.insightCardWhite .insightDescription {
+  color: #666;
+}
+
+.newsReadMoreContainer {
+  margin-top: auto;
+  padding-top: 20px;
+}
+
+.newsReadMoreBtn {
+  color: #1a1a1a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Text left, arrow right */
+  width: 100%;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  padding-top: 20px;
+  border-top: none;
+}
+
+.newsReadMoreBtn:hover {
+  color: var(--primary);
+}
+
+.newsReadMoreArrow {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+.insightTag {
+  display: inline-block;
+  background-color: #0070ad; /* Precise Technorapide Blue */
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  width: fit-content;
+}
+
+.insightTitle {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.1;
+  font-family: 'Outfit', sans-serif;
+}
+
+.insightDescription {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.6;
+  margin-bottom: 40px;
+  max-width: 85%;
+}
+
+.insightArrowBtn {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #0070ad;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.insightArrowBtn:hover {
+  background-color: #005a8c;
+  transform: scale(1.1);
+}
+
+@media (max-width: 1024px) {
+  .insightCard {
+    flex: 0 0 calc(50% - 15px);
+  }
+}
+
+@media (max-width: 768px) {
+  .insightCard {
+    flex: 0 0 100%;
+    min-width: 300px;
+  }
+}
+
+.section {
+  padding: 100px 20px;
+}
+
+.sectionAlt {
+  padding: 100px 20px;
+  background-color: #f8f9fa;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background-color: rgba(0, 112, 173, 0.1);
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 20px;
+  margin-bottom: 16px;
+}
+
+.sectionTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 40px;
+  color: #1a1a1a;
+}
+
+.sectionText {
+  font-size: 1.15rem;
+  line-height: 1.8;
+  color: #444;
+  max-width: 800px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.card {
+  padding: 40px;
+  background-color: white;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+  border-color: var(--primary);
+}
+
+.card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: var(--primary);
+}
+
+.card p {
+  color: #666;
+  line-height: 1.6;
+}
+
+.insights {
+  display: flex;
+  gap: 60px;
+}
+
+.insightItem h4 {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+
+.insightItem p {
+  color: #666;
+  font-weight: 500;
+}
+
+.capAboutSection {
+  background-color: #0b0e14; /* Deep Capgemini Navy */
+  padding: 120px 5%;
+  color: #ffffff;
+}
+
+.capContainer {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.capMainSubtitle {
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #ffffff;
+  margin-bottom: 60px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.capBlockWide {
+  position: relative;
+  margin-bottom: 80px;
+  display: flex;
+}
+
+.capImageWrapperWide {
+  width: 75%;
+  height: 450px;
+  overflow: hidden;
+}
+
+.capTextBoxWide {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38%;
+  background-color: #1c212a;
+  padding: 50px;
+  z-index: 2;
+}
+
+.capBottomRow {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 60px;
+  align-items: stretch;
+}
+
+.capBlockSquareText {
+  background-color: #1a2c47; /* Dark blue block */
+  padding: 50px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.capBlockSquareImage {
+  position: relative;
+  height: 550px;
+}
+
+.capImageWrapperSquare {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.capTextBoxSquare {
+  position: absolute;
+  left: -120px;
+  bottom: 40px;
+  width: 380px;
+  background-color: #1c212a;
+  padding: 50px 40px;
+  z-index: 2;
+}
+
+.capQuoteBlue {
+  font-size: 3.2rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  margin-top: 30px;
+}
+
+.capImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.capLabel {
+  font-size: 0.8rem;
+  color: #ccc;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.capLabel::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 1px;
+  background-color: #ccc;
+}
+
+.capTitle {
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 30px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.capTitleMedium {
+  font-size: 2.2rem;
+  font-weight: 500;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 25px;
+  font-family: 'Outfit', sans-serif;
+}
+
+.capDesc {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #ccc;
+  margin-bottom: 40px;
+}
+
+.capStatsList {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.capStatItem {
+  font-size: 0.9rem;
+  color: #ccc;
+}
+
+.capStatItem span {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.capBlockSquareText {
+  background-color: #213b5e; /* Premium Capgemini Blue */
+  padding: 60px 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 550px;
+}
+
+.capFooterLabel {
+  font-family: 'Playwrite BR', cursive;
+  font-weight: 400;
+  font-size: 1.1rem;
+  color: #fff;
+  margin-top: auto;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 1200px) {
+  .capTextBoxWide {
+    width: 50%;
+    padding: 40px;
+  }
+  .capTextBoxSquare {
+    left: 0;
+    width: 90%;
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 900px) {
+  .capBlockWide {
+    flex-direction: column;
+  }
+  .capImageWrapperWide {
+    width: 100%;
+  }
+  .capTextBoxWide {
+    position: relative;
+    top: -50px;
+    width: 90%;
+    margin: 0 auto;
+  }
+  .capBottomRow {
+    grid-template-columns: 1fr;
+  }
+}
+
+.footer {
+  background-color: #ffffff;
+  border-top: 1px solid #eee;
+  padding: 60px 5%;
+}
+
+.footerContent {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 768px) {
+  .insights {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+/* Blog Details Hero Style */
+.blogHero {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.blogHeroOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 2;
+}
+
+.blogHeroContent {
+  position: relative;
+  z-index: 3;
+  max-width: 1000px;
+}
+
+.blogHeroTitle {
+  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-weight: 800;
+  color: white;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.blogHeroDate {
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.blogScrollContent {
+  position: relative;
+  z-index: 10;
+  margin-top: 100vh;
+  box-shadow: 0 -20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.blogBlackSection {
+  background-color: #000000;
+  color: white;
+  padding: 120px 0;
+}
+
+.blogWhiteSection {
+  background-color: #ffffff;
+  padding: 100px 0;
+}
+
+.blogDetailsContainer {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.blogContentArea {
+  font-size: 1.25rem;
+  line-height: 1.8;
+  color: #e0e0e0;
+}
+
+.blogContentArea h2 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  margin: 50px 0 25px;
+  color: white;
+}
+
+.blogContentArea p {
+  margin-bottom: 30px;
+}
+
+.blogExtraContent {
+  margin-top: 80px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 80px;
+}
+
+.contentItem {
+  margin-bottom: 100px;
+}
+
+.contentItemImageWrapper {
+  width: 100%;
+  margin-bottom: 40px;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.contentItemImage {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  display: block;
+}
+
+.contentItemTitle {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 25px;
+  line-height: 1.2;
+}
+
+.contentItemDesc {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: #ccc;
+  margin: 0;
+}
+
+.allBlogsTitle {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin-bottom: 50px;
+  text-align: center;
+}
+
+.compactBlogGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 25px;
+}
+
+.compactBlogCard {
+  aspect-ratio: 1 / 1;
+  background-color: #f8f8f8;
+  border-radius: 0; /* Sharp corners */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #eee;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.compactBlogCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.compactImageWrapper {
+  width: 100%;
+  height: 60%;
+  overflow: hidden;
+}
+
+.compactImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.compactBlogCard:hover .compactImage {
+  transform: scale(1.05);
+}
+
+.compactContent {
+  padding: 15px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.compactTitle {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+  line-height: 1.3;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.compactLink {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.3s ease;
+}
+
+.compactLink:hover {
+  gap: 8px;
+}
+
+@media (max-width: 1200px) {
+  .compactBlogGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .compactBlogGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.fullWidthContainer {
+  width: 100%;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.pricingGridFour {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 1200px) {
+  .pricingGridFour {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .pricingGridFour {
+    grid-template-columns: 1fr;
+  }
+}
+
+.richTextContent h1 {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 20px;
+  color: #111;
+  line-height: 1.1;
+}
+
+.richTextContent h2 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-top: 60px;
+  margin-bottom: 20px;
+  color: #111;
+}
+
+.richTextContent p {
+  font-size: 1.2rem;
+  color: #444;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.richTextContent ul {
+  margin-bottom: 30px;
+  padding-left: 20px;
+}
+
+.richTextContent li {
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+.richTextContent .highlight {
+  background: #f9f9f9;
+  padding: 40px;
+  border-left: 6px solid var(--primary);
+  margin: 40px 0;
+  font-style: italic;
+}
+
+.richTextContent .cta {
+  display: none;
+}
