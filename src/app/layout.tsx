@@ -7,8 +7,48 @@ import NextTopLoader from 'nextjs-toploader';
 import ContactWidget from "./components/ContactWidget";
 
 export const metadata: Metadata = {
-  title: "Technorapide | Digital Innovation & Solutions",
-  description: "Technorapide provides cutting-edge digital solutions for startups and enterprises.",
+  metadataBase: new URL('https://technorapide.com'),
+  title: {
+    default: "Technorapide | Digital Innovation & Solutions",
+    template: "%s | Technorapide"
+  },
+  description: "Technorapide provides cutting-edge digital solutions for startups and enterprises globally. Specialized in AI, Cloud, and Custom Software.",
+  keywords: ["Digital Innovation", "Software Solutions", "AI Automation", "Enterprise Architecture", "Technorapide"],
+  openGraph: {
+    title: "Technorapide | Digital Innovation & Solutions",
+    description: "Empowering startups and enterprises with cutting-edge technology.",
+    url: 'https://technorapide.com',
+    siteName: 'Technorapide',
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Technorapide | Digital Innovation & Solutions',
+    description: 'Empowering startups and enterprises with cutting-edge technology.',
+    images: ['/og-image.png'],
+  },
+  alternates: {
+    canonical: '/',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
