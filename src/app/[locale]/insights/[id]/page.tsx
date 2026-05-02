@@ -1,8 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '../../components/Navbar';
-import styles from '../../page.module.css';
+import Navbar from '../../../components/Navbar';
+import styles from '../../../page.module.css';
 
 async function getInsight(id: string | undefined) {
   if (!id) return null;

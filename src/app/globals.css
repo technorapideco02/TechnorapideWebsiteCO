@@ -111,5 +111,32 @@ img {
 /* Custom TopLoader Alignment */
 #nprogress .bar {
   top: var(--navbar-height) !important;
-  z-index: 1031 !important; /* Ensure it stays above the navbar border */
+  z-index: 1031 !important;
 }
+
+/* ── Hide ALL Google Translate UI ─────────────── */
+.goog-te-banner-frame.skiptranslate,
+.goog-te-banner-frame,
+.skiptranslate > iframe,
+#goog-gt-tt,
+.goog-te-balloon-frame,
+.goog-tooltip,
+.goog-tooltip:hover,
+.goog-te-gadget,
+.goog-te-gadget-icon,
+.goog-te-menu-value,
+.goog-te-menu2 {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* Prevent Google from pushing the page down */
+body {
+  top: 0 !important;
+  position: static !important;
+}
+
+html body[style*='top'] {
+  top: 0 !important;
+}
+

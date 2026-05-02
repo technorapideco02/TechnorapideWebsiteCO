@@ -1,18 +1,18 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Navbar from '../components/Navbar';
+import Navbar from '../../components/Navbar';
 import styles from '../page.module.css';
-import heroStyles from '../components/Hero.module.css';
+import heroStyles from '../../components/Hero.module.css';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Company Insights & Strategic Thinking | Technorapide',
-  description: 'Explore deep-dives into digital strategy, technical innovation, and company perspectives from the Technorapide team.',
+  title: 'Latest News & Digital Trends | Technorapide',
+  description: 'Stay updated with the latest digital transformations, technical breakthroughs, and industry news from Technorapide.',
 };
 
-async function getInsights() {
+async function getBlogs() {
   try {
-    const res = await fetch('https://apifinal.technorapide.com/api/insights', { cache: 'no-store' });
+    const res = await fetch('https://apifinal.technorapide.com/api/blogs', { cache: 'no-store' });
     if (res.ok) return res.json();
     return [];
   } catch (e) {
@@ -20,21 +20,21 @@ async function getInsights() {
   }
 }
 
-export default async function InsightsListingPage() {
-  const insights = await getInsights();
-  const heroInsight = insights[0];
-  const remainingInsights = insights.slice(1);
+export default async function NewsListingPage() {
+  const blogs = await getBlogs();
+  const heroBlog = blogs[0];
+  const remainingBlogs = blogs.slice(1);
 
   return (
     <div className={styles.main} style={{ backgroundColor: '#000', minHeight: '100vh' }}>
       <Navbar />
       
       {/* FIXED FEATURED HERO */}
-      {heroInsight && (
+      {heroBlog && (
         <section 
           className={heroStyles.hero} 
           style={{ 
-            backgroundImage: `url(${heroInsight.image})`,
+            backgroundImage: `url(${heroBlog.image})`,
             position: 'fixed',
             top: 0,
             left: 0,
@@ -46,13 +46,13 @@ export default async function InsightsListingPage() {
           <div className={heroStyles.overlay}></div>
           <div className={heroStyles.content}>
             <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px' }}>
-              FEATURED PERSPECTIVE
+              FEATURED STORY
             </p>
             <h1 className={heroStyles.title} style={{ fontSize: '5rem', lineHeight: '1', letterSpacing: '-3px' }}>
-              {heroInsight.title}
+              {heroBlog.title}
             </h1>
-            <Link href={`/insights/${heroInsight._id}`} style={{ marginTop: '40px', display: 'inline-block', padding: '15px 40px', border: '1px solid #fff', color: '#fff', textDecoration: 'none', fontWeight: 700, letterSpacing: '2px' }}>
-              EXPLORE FEATURED INSIGHT
+            <Link href={`/news/${heroBlog._id}`} style={{ marginTop: '40px', display: 'inline-block', padding: '15px 40px', border: '1px solid #fff', color: '#fff', textDecoration: 'none', fontWeight: 700, letterSpacing: '2px' }}>
+              READ FEATURED STORY
             </Link>
           </div>
         </section>
@@ -68,9 +68,9 @@ export default async function InsightsListingPage() {
         boxShadow: '0 -40px 100px rgba(0,0,0,0.8)'
       }}>
         <div style={{ marginBottom: '80px' }}>
-          <p className={styles.capLabel} style={{ letterSpacing: '4px', color: 'var(--primary)' }}>PERSPECTIVES</p>
+          <p className={styles.capLabel} style={{ letterSpacing: '4px', color: 'var(--primary)' }}>LATEST UPDATES</p>
           <h2 style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', letterSpacing: '-2px', marginTop: '10px' }}>
-            Insights Archive
+            News Archive
           </h2>
         </div>
 
@@ -80,8 +80,8 @@ export default async function InsightsListingPage() {
           gap: '20px',
           width: '100%'
         }}>
-          {remainingInsights.map((insight: any) => (
-            <Link key={insight._id} href={`/insights/${insight._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+          {remainingBlogs.map((blog: any) => (
+            <Link key={blog._id} href={`/news/${blog._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <div style={{ 
                 backgroundColor: '#0a0a0a', 
                 border: '1px solid rgba(255,255,255,0.1)', 
@@ -91,18 +91,18 @@ export default async function InsightsListingPage() {
                 flexDirection: 'column'
               }}>
                 <div style={{ height: '250px', overflow: 'hidden' }}>
-                  <img src={insight.image} alt={insight.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
+                  <img src={blog.image} alt={blog.title} style={{ width: '100%', height: '100%', objectFit: 'cover', opacity: 0.8 }} />
                 </div>
                 <div style={{ padding: '30px' }}>
                   <p style={{ color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 800, marginBottom: '15px', letterSpacing: '2px' }}>
-                    STRATEGIC INSIGHT
+                    {new Date(blog.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase()}
                   </p>
-                  <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: '20px', lineHeight: '1.2' }}>{insight.title}</h2>
+                  <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: '20px', lineHeight: '1.2' }}>{blog.title}</h2>
                   <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6', textAlign: 'justify', margin: 0 }}>
-                    {insight.description}
+                    {blog.description}
                   </p>
                   <div style={{ marginTop: '25px', display: 'flex', alignItems: 'center', gap: '10px', color: 'var(--primary)', fontWeight: 700 }}>
-                    EXPLORE INSIGHT <span>&rarr;</span>
+                    READ FULL STORY <span>&rarr;</span>
                   </div>
                 </div>
               </div>

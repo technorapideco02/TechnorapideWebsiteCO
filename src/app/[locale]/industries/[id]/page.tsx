@@ -1,9 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Navbar from '../../components/Navbar';
-import HtmlRenderer from '../../components/HtmlRenderer';
-import styles from '../../page.module.css';
-import heroStyles from '../../components/Hero.module.css';
+import Navbar from '../../../components/Navbar';
+import HtmlRenderer from '../../../components/HtmlRenderer';
+import styles from '../../../page.module.css';
+import heroStyles from '../../../components/Hero.module.css';
 
 async function getIndustry(id: string | undefined) {
   if (!id) return null;

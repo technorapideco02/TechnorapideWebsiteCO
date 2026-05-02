@@ -1,9 +1,9 @@
-import Hero from "./components/Hero";
-import NewsSection from "./components/NewsSection";
-import InsightsSection from "./components/InsightsSection";
-import IndustrySection from "./components/IndustrySection";
-import CustomerStories from "./components/CustomerStories";
-import styles from "./page.module.css";
+import Hero from "../components/Hero";
+import NewsSection from "../components/NewsSection";
+import InsightsSection from "../components/InsightsSection";
+import IndustrySection from "../components/IndustrySection";
+import CustomerStories from "../components/CustomerStories";
+import styles from "../page.module.css";
 
 async function getBlogs() {
   try {
