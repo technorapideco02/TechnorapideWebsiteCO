@@ -51,18 +51,43 @@
 }
 
 .navLinks li a {
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
-  padding: 20px 0;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 15px 0;
   display: flex;
   align-items: center;
   gap: 8px;
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.navLinks li a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  opacity: 0;
 }
 
 .navLinks li a:hover,
-.navLinks li a.active {
+.navLinks li a.active,
+.navLinks li a.menuOpen {
   color: #ffffff;
+}
+
+.navLinks li a:hover::after,
+.navLinks li a.active::after,
+.navLinks li a.menuOpen::after {
+  width: 100%;
+  opacity: 1;
 }
 
 .arrow {
@@ -139,14 +164,35 @@
   align-items: center;
   padding: 20px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  position: relative;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.megaMenuItem::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+  opacity: 0;
 }
 
 .megaMenuItem:hover {
-  color: var(--primary);
+  color: #ffffff;
   padding-left: 10px;
+}
+
+.megaMenuItem:hover::after {
+  width: 100%;
+  opacity: 1;
 }
 
 .rightSide {
@@ -162,6 +208,29 @@
   text-decoration: none;
   display: flex;
   align-items: center;
+  position: relative;
+  transition: color 0.3s ease;
+  padding: 15px 0;
+}
+
+.phone::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+  border-radius: 2px;
+  opacity: 0;
+}
+
+.phone:hover::after {
+  width: 100%;
+  opacity: 1;
 }
 
 .navbarControls {
@@ -351,4 +420,44 @@
 .tabActive {
   color: var(--primary) !important;
   background: rgba(0, 112, 173, 0.1) !important;
+}
+
+.megaMenuAction,
+.megaMenuBack {
+  display: inline-block;
+  margin-top: 20px;
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 5px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.megaMenuAction::after,
+.megaMenuBack::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--primary);
+  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 2px;
+  opacity: 0;
+}
+
+.megaMenuAction:hover,
+.megaMenuBack:hover {
+  color: #ffffff;
+}
+
+.megaMenuAction:hover::after,
+.megaMenuBack:hover::after {
+  width: 100%;
+  opacity: 1;
 }

@@ -332,7 +332,7 @@ const Navbar = () => {
                         <span className={styles.itemArrow}>→</span>
                       </li>
                       <li className={styles.megaMenuItem}>
-                        <Link href="/about-us#team" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                        <Link href="/team" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
                           Our Team
                         </Link>
                         <span className={styles.itemArrow}>→</span>
