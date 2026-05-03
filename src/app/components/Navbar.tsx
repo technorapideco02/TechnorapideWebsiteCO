@@ -30,6 +30,7 @@ const Navbar = () => {
   const isInsightsPage = pathname.startsWith('/insights');
   const isServicePage = pathname.startsWith('/services');
   const isCareerPage = pathname.startsWith('/career-options');
+  const isAboutPage = pathname.startsWith('/about-us');
   const isNewsroomPage = isNewsPage || isInsightsPage;
 
   const [categories, setCategories] = useState<Category[]>([]);
@@ -43,12 +44,14 @@ const Navbar = () => {
   const [newsroomView, setNewsroomView] = useState<'news' | 'insights'>('news');
   const [loading, setLoading] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
+  const [isWhoWeAreDropdownOpen, setIsWhoWeAreDropdownOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isCareersDropdownOpen, setIsCareersDropdownOpen] = useState(false);
   const [isNewsroomDropdownOpen, setIsNewsroomDropdownOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   
   const megaMenuRef = useRef<HTMLLIElement>(null);
+  const whoWeAreDropdownRef = useRef<HTMLLIElement>(null);
   const servicesDropdownRef = useRef<HTMLLIElement>(null);
   const careersDropdownRef = useRef<HTMLLIElement>(null);
   const newsroomDropdownRef = useRef<HTMLLIElement>(null);
@@ -64,6 +67,9 @@ const Navbar = () => {
       if (megaMenuRef.current && !megaMenuRef.current.contains(event.target as Node)) {
         setIsMegaMenuOpen(false);
         resetDropdown();
+      }
+      if (whoWeAreDropdownRef.current && !whoWeAreDropdownRef.current.contains(event.target as Node)) {
+        setIsWhoWeAreDropdownOpen(false);
       }
       if (servicesDropdownRef.current && !servicesDropdownRef.current.contains(event.target as Node)) {
         setIsServicesDropdownOpen(false);
@@ -182,6 +188,18 @@ const Navbar = () => {
       resetDropdown();
     }
     setIsServicesDropdownOpen(false);
+    setIsCareersDropdownOpen(false);
+    setIsNewsroomDropdownOpen(false);
+    setIsWhoWeAreDropdownOpen(false);
+  };
+
+  const toggleWhoWeAreDropdown = (e: React.MouseEvent) => {
+    e.preventDefault();
+    setIsWhoWeAreDropdownOpen(!isWhoWeAreDropdownOpen);
+    setIsMegaMenuOpen(false);
+    setIsServicesDropdownOpen(false);
+    setIsCareersDropdownOpen(false);
+    setIsNewsroomDropdownOpen(false);
   };
 
   const toggleServicesDropdown = (e: React.MouseEvent) => {
@@ -190,6 +208,7 @@ const Navbar = () => {
     setIsMegaMenuOpen(false);
     setIsCareersDropdownOpen(false);
     setIsNewsroomDropdownOpen(false);
+    setIsWhoWeAreDropdownOpen(false);
   };
 
   const toggleCareersDropdown = (e: React.MouseEvent) => {
@@ -198,6 +217,7 @@ const Navbar = () => {
     setIsMegaMenuOpen(false);
     setIsServicesDropdownOpen(false);
     setIsNewsroomDropdownOpen(false);
+    setIsWhoWeAreDropdownOpen(false);
   };
 
   const toggleNewsroomDropdown = (e: React.MouseEvent) => {
@@ -206,6 +226,7 @@ const Navbar = () => {
     setIsMegaMenuOpen(false);
     setIsServicesDropdownOpen(false);
     setIsCareersDropdownOpen(false);
+    setIsWhoWeAreDropdownOpen(false);
   };
 
   const toggleMobileMenu = () => {
@@ -283,6 +304,46 @@ const Navbar = () => {
                         </ul>
                       </>
                     )}
+                  </div>
+                </div>
+              </div>
+            </li>
+
+            <li className={styles.dropdown} ref={whoWeAreDropdownRef}>
+              <a href="#" onClick={toggleWhoWeAreDropdown} className={`${isAboutPage ? styles.active : ''} ${isWhoWeAreDropdownOpen ? styles.menuOpen : ''}`}>
+                Who We Are <span className={`${styles.arrow} ${isWhoWeAreDropdownOpen ? styles.arrowUp : ''}`}></span>
+              </a>
+              
+              <div className={`${styles.megaMenu} ${isWhoWeAreDropdownOpen ? styles.megaMenuVisible : ''}`}>
+                <div className={styles.megaMenuContent}>
+                  <div className={styles.megaMenuLeft}>
+                    <h2 className={styles.megaMenuTitle}>Discover Technorapide</h2>
+                    <p className={styles.megaMenuDesc}>
+                      Learn about our mission, meet our talented team, and see the clients we empower.
+                    </p>
+                  </div>
+
+                  <div className={styles.megaMenuRight}>
+                    <ul className={styles.megaMenuList}>
+                      <li className={styles.megaMenuItem}>
+                        <Link href="/about-us" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                          Who We Are?
+                        </Link>
+                        <span className={styles.itemArrow}>→</span>
+                      </li>
+                      <li className={styles.megaMenuItem}>
+                        <Link href="/about-us#team" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                          Our Team
+                        </Link>
+                        <span className={styles.itemArrow}>→</span>
+                      </li>
+                      <li className={styles.megaMenuItem}>
+                        <Link href="/clients" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                          Our Clients
+                        </Link>
+                        <span className={styles.itemArrow}>→</span>
+                      </li>
+                    </ul>
                   </div>
                 </div>
               </div>

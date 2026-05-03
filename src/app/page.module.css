@@ -376,7 +376,7 @@
 
 @media (max-width: 768px) {
   .insightsSection {
-    padding: 60px 0 80px 0;
+    padding: 30px 0 80px 0;
   }
 
   .insightsHeader {
@@ -558,9 +558,23 @@
 }
 
 .capImageWrapperWide {
-  width: 65%;
+  width: 62%;
   height: 400px;
   overflow: hidden;
+}
+
+.capImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.capImageWrapperWide:hover .capImage,
+.capImageWrapperOverlap:hover .capImage {
+  transform: scale(1.05);
 }
 
 .capTextBoxOverlap {
@@ -583,7 +597,7 @@
 }
 
 .capBlockSquareText {
-  background-color: #213b5e;
+  background-color: #1c212a;
   padding: 50px 40px;
   display: flex;
   flex-direction: column;
@@ -614,10 +628,34 @@
   overflow: hidden;
   margin-left: -150px;
   /* Behind center box */
-  margin-top: 50px;
-  /* Shifted up slightly */
+  margin-top: 10px;
+  /* Shifted up for better overlap */
   z-index: 1;
   flex: 1;
+}
+
+.capLabel {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.capLabel::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 1px;
+  background-color: var(--primary);
+}
+
+.capFullWidth {
+  width: 100%;
 }
 
 .capFooterLabel {
@@ -625,7 +663,7 @@
   font-weight: 400;
   font-size: 1.1rem;
   color: #fff;
-  margin-top: auto;
+  margin-top: 30px;
   letter-spacing: 1px;
 }
 
@@ -649,9 +687,22 @@
   margin-bottom: 5px;
 }
 
+.capImageWrapperMobile {
+  display: none;
+}
+
 @media (max-width: 1200px) {
+  .capAboutSection {
+    padding: 30px 5% 0 5%; /* Standardized 30px gap */
+  }
+
+  .capMainSubtitle {
+    margin-bottom: 30px; 
+  }
+
   .capBlockOverlapTop {
     flex-direction: column;
+    margin-bottom: 0;
   }
 
   .capImageWrapperWide {
@@ -662,31 +713,59 @@
   .capTextBoxOverlap {
     position: relative;
     right: 0;
-    top: -60px;
-    /* Stronger overlap as per Image 2 */
-    width: 92%;
-    margin: 0 auto;
+    top: 0; 
+    width: 100%;
+    margin: -1px 0 30px 0; 
     padding: 40px 30px;
   }
 
   .capBlockOverlapBottom {
+    display: flex;
     flex-direction: column;
-    margin-top: -20px;
+    margin-top: 0;
     padding-left: 0;
     align-items: center;
   }
 
-  .capBlockSquareText,
-  .capBlockSquareTextCenter {
-    width: 92%;
-    height: auto;
-    min-height: 350px;
-    margin-left: 0;
-    margin-bottom: 20px;
+  .capImageWrapperMobile {
+    display: block;
+    width: 100%;
+    height: 300px;
+    margin-bottom: 0;
+    order: 0;
+  }
+
+  .capBlockSquareText {
+    width: 100%;
+    height: auto !important;
+    min-height: unset;
+    margin: -1px 0 30px 0;
+    position: relative;
+    z-index: 5;
+    padding: 40px 30px 60px;
+    order: 1;
   }
 
   .capImageWrapperOverlap {
-    display: none;
+    display: block;
+    width: 100%;
+    height: 300px;
+    margin-left: 0;
+    margin-top: 0;
+    order: 2;
+  }
+
+  .capBlockSquareTextCenter {
+    position: relative;
+    margin: -1px 0 0 0;
+    width: 100%;
+    height: auto !important;
+    min-height: unset;
+    z-index: 5;
+    padding: 40px 30px 60px;
+    background-color: #1c212a;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    order: 3;
   }
 }
 

@@ -1,0 +1,153 @@
+.main {
+  background-color: #0b111a;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.scrollContent {
+  position: relative;
+  z-index: 10;
+  background-color: #0b111a;
+  padding-bottom: 120px;
+}
+
+/* ── Intro Section ── */
+.introSection {
+  padding: 100px 5% 80px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.introContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.introText {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  line-height: 1.8;
+  color: #111;
+  font-weight: 400;
+  font-family: 'Figtree', sans-serif;
+}
+
+/* ── High-Fidelity Client Grid (Vertical Scroll) ── */
+.clientsSection {
+  padding: 80px 5%;
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+  gap: 60px 40px;
+}
+
+.clientCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  overflow: visible; /* To allow text box overlap */
+}
+
+.imageContainer {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 4px;
+  background-color: #1a222d;
+  position: relative;
+}
+
+.clientLogo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.clientCard:hover .clientLogo {
+  transform: scale(1.08);
+}
+
+/* ── Overlapping Text Box (Image 3 Style) ── */
+.textBox {
+  background-color: #1a222d;
+  padding: 40px 30px;
+  width: 85%;
+  margin-top: -80px; /* Overlap image */
+  margin-left: 20px;
+  position: relative;
+  z-index: 2;
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.4);
+  border-left: 4px solid var(--primary);
+  transition: all 0.3s ease;
+}
+
+.clientCard:hover .textBox {
+  transform: translateX(10px);
+  background-color: #232c39;
+}
+
+.clientTitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+
+.clientDesc {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.6);
+  margin-bottom: 24px;
+}
+
+.visitBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.visitBtn span {
+  transition: transform 0.3s ease;
+  color: var(--primary);
+}
+
+.clientCard:hover .visitBtn span {
+  transform: translateX(8px);
+}
+
+/* ── Mobile Layout ── */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 100px; /* More space for overlapping effect */
+  }
+  
+  .textBox {
+    width: 90%;
+    margin-left: 0;
+    margin-top: -60px;
+    padding: 30px 20px;
+  }
+  
+  .clientTitle {
+    font-size: 1.5rem;
+  }
+}

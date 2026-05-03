@@ -1,0 +1,179 @@
+.main {
+  background-color: #000;
+  color: #fff;
+  min-height: 100vh;
+}
+
+.scrollContent {
+  position: relative;
+  z-index: 10;
+  background-color: #000;
+  padding-bottom: 100px;
+}
+
+/* ── Description Section ── */
+.descSection {
+  padding: 100px 5%;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.descContainer {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.descText {
+  font-size: clamp(1.2rem, 3vw, 1.6rem);
+  line-height: 1.8;
+  color: #111;
+  font-weight: 400;
+  font-family: 'Figtree', sans-serif;
+}
+
+/* ── Content Blocks (Overlapping CSS Grid) ── */
+.blocksSection {
+  padding: 80px 5%;
+  background-color: #000;
+}
+
+.blockContainer {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 120px;
+}
+
+.block {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  align-items: center;
+  position: relative;
+}
+
+/* Odd Layout: Image Left, Card Right */
+.imageOdd {
+  grid-column: 1 / 10;
+  grid-row: 1;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cardOdd {
+  grid-column: 8 / 13;
+  grid-row: 1;
+  background-color: #111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 50px 40px;
+  z-index: 2;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Even Layout: Image Right, Card Left */
+.imageEven {
+  grid-column: 4 / 13;
+  grid-row: 1;
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.cardEven {
+  grid-column: 1 / 6;
+  grid-row: 1;
+  background-color: #111;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 50px 40px;
+  z-index: 2;
+  border-radius: 4px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.blockImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.block:hover .blockImage {
+  transform: scale(1.03);
+}
+
+.cardOdd:hover, .cardEven:hover {
+  border-color: var(--primary);
+  transform: translateY(-5px);
+}
+
+.cardTitle {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.cardDesc {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  line-height: 1.6;
+}
+
+.contentLine {
+  width: 40px;
+  height: 2px;
+  background-color: var(--primary);
+  margin-bottom: 20px;
+}
+
+/* ── Mobile Layout ── */
+@media (max-width: 1024px) {
+  .imageOdd, .imageEven {
+    grid-column: 1 / 13;
+  }
+  
+  .cardOdd, .cardEven {
+    grid-column: 2 / 12;
+  }
+}
+
+@media (max-width: 768px) {
+  .blockContainer {
+    gap: 80px;
+  }
+
+  .block {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .imageOdd, .imageEven {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .cardOdd, .cardEven {
+    width: 90%;
+    margin: -40px auto 0 auto; /* Negative margin to pull it over the image */
+    padding: 30px 20px;
+    border-radius: 4px;
+  }
+
+  .cardTitle {
+    font-size: 1.5rem;
+  }
+
+  .cardDesc {
+    font-size: 1rem;
+  }
+}
