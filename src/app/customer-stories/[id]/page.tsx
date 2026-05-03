@@ -34,25 +34,18 @@ export default async function CustomerStoryDetail({ params }: { params: Promise<
       <Navbar />
       
       {/* Customer Success Hero: Left Dark Fade */}
-      <div 
-        className={styles.blogHero} 
-        style={{ 
-          backgroundImage: `url(${story.imageLink})`,
-          backgroundAttachment: 'fixed',
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100vh',
-          zIndex: 1
-        }}
-      >
-        <div style={{ 
-          position: 'absolute', 
-          inset: 0, 
-          background: 'linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)',
-          zIndex: 2
-        }}></div>
+      <div className={styles.blogHero}>
+        <div 
+          className={styles.blogHeroBackground} 
+          style={{ backgroundImage: `url(${story.imageLink})` }}
+        >
+          <div style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            background: 'linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)',
+            zIndex: 2
+          }}></div>
+        </div>
         
         <div className={styles.blogHeroContent} style={{ textAlign: 'left', marginLeft: '5%', maxWidth: '600px' }}>
           <p style={{ color: 'var(--primary)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '20px' }}>Customer Success Story</p>
@@ -64,7 +57,7 @@ export default async function CustomerStoryDetail({ params }: { params: Promise<
       </div>
 
       {/* Scrollable Content */}
-      <div className={styles.scrollContent} style={{ position: 'relative', zIndex: 10, marginTop: '100vh' }}>
+      <div className={styles.scrollContent} style={{ position: 'relative', zIndex: 10 }}>
         
         {/* Main Content Section */}
         <section style={{ backgroundColor: '#000', color: '#fff', padding: '100px 5%' }}>

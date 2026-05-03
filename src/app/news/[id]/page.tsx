@@ -71,11 +71,14 @@ export default async function BlogDetails({ params }: { params: Promise<{ id: st
       <Navbar />
       
       {/* Blog Hero: Fixed Background */}
-      <div 
-        className={styles.blogHero} 
-        style={{ backgroundImage: `url(${blog.image})` }}
-      >
-        <div className={styles.blogHeroOverlay}></div>
+      <div className={styles.blogHero}>
+        <div 
+          className={styles.blogHeroBackground} 
+          style={{ backgroundImage: `url(${blog.image})` }}
+        >
+          <div className={styles.blogHeroOverlay}></div>
+        </div>
+        
         <div className={styles.blogHeroContent}>
           <h1 className={styles.blogHeroTitle}>{blog.title}</h1>
           <p className={styles.blogHeroDate}>

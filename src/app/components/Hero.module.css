@@ -1,18 +1,33 @@
 .hero {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: #000;
+  z-index: 1;
+  overflow: visible; /* Allow content to scroll out */
+}
+
+.heroBackground {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   background-size: cover;
   background-position: center;
   z-index: 1;
-  will-change: transform;
-  overflow: hidden;
+}
+
+.heroVideo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .overlay {

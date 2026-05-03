@@ -53,11 +53,13 @@ export default function CareerDetailPage() {
   return (
     <main className={styles.container}>
       {/* Hero Section */}
-      <section 
-        className={styles.hero} 
-        style={{ backgroundImage: `url(${career.herolink})` }}
-      >
-        <div className={styles.heroOverlay} />
+      <section className={styles.hero}>
+        <div 
+          className={styles.heroBackground} 
+          style={{ backgroundImage: `url(${career.herolink})` }}
+        >
+          <div className={styles.heroOverlay} />
+        </div>
         
         <div className={styles.heroContent}>
           <h1 className={styles.heroTitle}>{career.title}</h1>

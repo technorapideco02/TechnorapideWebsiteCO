@@ -58,8 +58,13 @@ export default async function ServiceDetails({ params }: { params: Promise<{ id:
       <Navbar />
       
       {/* 1. FIXED HERO */}
-      <section className={heroStyles.hero} style={{ backgroundImage: `url(${service.imageLinks && service.imageLinks[0]})` }}>
-        <div className={heroStyles.overlay}></div>
+      <section className={heroStyles.hero}>
+        <div 
+          className={heroStyles.heroBackground} 
+          style={{ backgroundImage: `url(${service.imageLinks && service.imageLinks[0]})` }}
+        >
+          <div className={heroStyles.overlay}></div>
+        </div>
         <div className={heroStyles.content}>
           <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px' }}>
             {service.categoryId?.name || 'OFFERING'}

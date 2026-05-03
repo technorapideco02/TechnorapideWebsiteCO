@@ -20,30 +20,25 @@ const Hero = async () => {
   const isVideo = assetUrl?.match(/\.(mp4|webm|ogg)$/i);
 
   return (
-    <section className={styles.hero} style={!isVideo && assetUrl ? { backgroundImage: `url(${assetUrl})` } : {}}>
-      
-      {isVideo && (
-        <video 
-          autoPlay 
-          muted 
-          loop 
-          playsInline 
-          className={styles.heroVideo}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            zIndex: 1
-          }}
-        >
-          <source src={assetUrl} type={`video/${isVideo[1]}`} />
-        </video>
-      )}
+    <section className={styles.hero}>
+      <div 
+        className={styles.heroBackground} 
+        style={!isVideo && assetUrl ? { backgroundImage: `url(${assetUrl})` } : {}}
+      >
+        {isVideo && (
+          <video 
+            autoPlay 
+            muted 
+            loop 
+            playsInline 
+            className={styles.heroVideo}
+          >
+            <source src={assetUrl} type={`video/${isVideo[1]}`} />
+          </video>
+        )}
+        <div className={styles.overlay}></div>
+      </div>
 
-      <div className={styles.overlay}></div>
       <div className={styles.content}>
         <h1 className={styles.title}>
           Innovating Your Digital Future

@@ -56,8 +56,13 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
       <Navbar />
       
       {/* HERO SECTION */}
-      <section className={heroStyles.hero} style={{ backgroundImage: `url(${industry.image})` }}>
-        <div className={heroStyles.overlay}></div>
+      <section className={heroStyles.hero}>
+        <div 
+          className={heroStyles.heroBackground} 
+          style={{ backgroundImage: `url(${industry.image})` }}
+        >
+          <div className={heroStyles.overlay}></div>
+        </div>
         <div className={heroStyles.content}>
           <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px' }}>
             INDUSTRY SOLUTIONS

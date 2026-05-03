@@ -71,11 +71,14 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
       <Navbar />
       
       {/* Insight Hero: Fixed Background */}
-      <div 
-        className={styles.blogHero} 
-        style={{ backgroundImage: `url(${insight.image})` }}
-      >
-        <div className={styles.blogHeroOverlay}></div>
+      <div className={styles.blogHero}>
+        <div 
+          className={styles.blogHeroBackground} 
+          style={{ backgroundImage: `url(${insight.image})` }}
+        >
+          <div className={styles.blogHeroOverlay}></div>
+        </div>
+        
         <div className={styles.blogHeroContent}>
           <p className={styles.blogLabel}>Company Insights</p>
           <h1 className={styles.blogHeroTitle}>{insight.title}</h1>
