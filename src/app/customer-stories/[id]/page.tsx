@@ -1,0 +1,97 @@
+import React from 'react';
+import Navbar from '../../components/Navbar';
+import CustomerStories from '../../components/CustomerStories';
+import styles from '../../page.module.css';
+
+async function getStory(id: string) {
+  try {
+    const res = await fetch('https://apifinal.technorapide.com/api/customer-stories', { cache: 'no-store' });
+    if (!res.ok) return null;
+    const stories = await res.json();
+    return stories.find((s: any) => s._id === id) || null;
+  } catch (e) {
+    return null;
+  }
+}
+
+export default async function CustomerStoryDetail({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  const story = await getStory(id);
+
+  if (!story) {
+    return (
+      <div className={styles.main}>
+        <Navbar />
+        <div className={styles.container} style={{ padding: '200px 20px', textAlign: 'center' }}>
+          <h1>Story not found</h1>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.main}>
+      <Navbar />
+      
+      {/* Customer Success Hero: Left Dark Fade */}
+      <div 
+        className={styles.blogHero} 
+        style={{ 
+          backgroundImage: `url(${story.imageLink})`,
+          backgroundAttachment: 'fixed',
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100vh',
+          zIndex: 1
+        }}
+      >
+        <div style={{ 
+          position: 'absolute', 
+          inset: 0, 
+          background: 'linear-gradient(to right, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, transparent 100%)',
+          zIndex: 2
+        }}></div>
+        
+        <div className={styles.blogHeroContent} style={{ textAlign: 'left', marginLeft: '5%', maxWidth: '600px' }}>
+          <p style={{ color: 'var(--primary)', fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', marginBottom: '20px' }}>Customer Success Story</p>
+          <h1 className={styles.blogHeroTitle} style={{ fontSize: 'clamp(2.5rem, 6vw, 4.5rem)' }}>{story.name}</h1>
+          <p className={styles.blogHeroDate} style={{ color: 'rgba(255,255,255,0.7)', fontSize: '1.2rem' }}>
+            {story.role}
+          </p>
+        </div>
+      </div>
+
+      {/* Scrollable Content */}
+      <div className={styles.scrollContent} style={{ position: 'relative', zIndex: 10, marginTop: '100vh' }}>
+        
+        {/* Main Content Section */}
+        <section style={{ backgroundColor: '#000', color: '#fff', padding: '100px 5%' }}>
+          <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+            <h2 style={{ fontSize: '2.5rem', fontWeight: 600, marginBottom: '40px', color: '#fff' }}>The Challenge & Solution</h2>
+            <div style={{ fontSize: '1.25rem', lineHeight: '1.8', color: 'rgba(255,255,255,0.8)' }}>
+              {story.message}
+            </div>
+            
+            <div style={{ marginTop: '80px', padding: '40px', backgroundColor: 'rgba(255,255,255,0.05)', borderRadius: '16px', borderLeft: '4px solid var(--primary)' }}>
+              <p style={{ fontSize: '1.5rem', fontStyle: 'italic', color: '#fff', marginBottom: '20px' }}>
+                "The impact on our business has been phenomenal. Technorapide didn't just build a tool; they transformed how we operate."
+              </p>
+              <p style={{ fontWeight: 700, color: 'var(--primary)' }}>— {story.name}</p>
+            </div>
+          </div>
+        </section>
+
+        {/* Other Stories Section */}
+        <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)' }}>
+          <CustomerStories />
+        </div>
+
+        <footer style={{ backgroundColor: '#000', padding: '60px 5%', textAlign: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem' }}>
+          <p>&copy; 2026 Technorapide. All rights reserved.</p>
+        </footer>
+      </div>
+    </div>
+  );
+}

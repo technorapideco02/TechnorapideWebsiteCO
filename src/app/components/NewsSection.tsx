@@ -29,6 +29,7 @@ function slugify(text: string) {
 const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
   const [greeting, setGreeting] = useState("Good Day");
+  const [currentIndex, setCurrentIndex] = useState(1);
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -40,6 +41,16 @@ const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
       setGreeting("Good Evening");
     }
   }, []);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, offsetWidth } = scrollRef.current;
+      const index = Math.round(scrollLeft / offsetWidth) + 1;
+      if (index !== currentIndex && index > 0 && index <= blogs.length) {
+        setCurrentIndex(index);
+      }
+    }
+  };
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
@@ -54,10 +65,16 @@ const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
   };
 
   return (
-    <section id="news" className={styles.newsSectionWhite}>
-      <div className={styles.insightsHeader}>
-        <h2 className={styles.insightsMainTitle} style={{ color: '#1a1a1a' }}>{greeting}. Here's what's new</h2>
-        <div className={styles.insightsNav}>
+    <section id="news" className={styles.blogSection}>
+      <div className={styles.blogHeader}>
+        <div className={styles.blogTitleContainer}>
+          <h2 className={styles.blogMainTitle}>{greeting}. Here's what's new</h2>
+          <div className={styles.blogPagination}>
+            {currentIndex.toString().padStart(2, '0')} — {blogs.length.toString().padStart(2, '0')}
+          </div>
+        </div>
+        
+        <div className={styles.blogNav}>
           <button onClick={() => scroll('left')} className={styles.navBtn} aria-label="Previous">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <line x1="19" y1="12" x2="5" y2="12"></line>
@@ -73,24 +90,19 @@ const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
         </div>
       </div>
       
-      <div className={styles.insightsGrid} ref={scrollRef}>
+      <div className={styles.blogGrid} ref={scrollRef} onScroll={handleScroll}>
         {blogs.map((blog) => (
-          <div key={blog._id} className={styles.insightCardWhite}>
-            <Link href={`/news/${slugify(blog.title)}--${blog._id}`} className={styles.insightImageWrapper}>
-              <img src={blog.image} alt={blog.title} className={styles.insightImage} />
+          <div key={blog._id} className={styles.blogCard}>
+            <Link href={`/news/${slugify(blog.title)}--${blog._id}`} className={styles.blogImageWrapper}>
+              <img src={blog.image} alt={blog.title} className={styles.blogImage} />
             </Link>
-            <div className={styles.insightContent}>
-              <div className={styles.insightTag}>NEWS</div>
-              <div className={styles.insightText}>
-                <h3 className={styles.insightTitle}>{blog.title}</h3>
-                <p className={styles.insightDescription}>{blog.description}</p>
-              </div>
-              <div className={styles.newsReadMoreContainer}>
-                <Link href={`/news/${slugify(blog.title)}--${blog._id}`} className={styles.newsReadMoreBtn}>
-                  Read More
-                  <span className={styles.newsReadMoreArrow}>→</span>
-                </Link>
-              </div>
+            <div className={styles.blogContent}>
+              <h3 className={styles.blogItemTitle}>{blog.title}</h3>
+              <p className={styles.blogItemDesc}>{blog.description}</p>
+              <Link href={`/news/${slugify(blog.title)}--${blog._id}`} className={styles.blogReadMore}>
+                Read more
+                <span>→</span>
+              </Link>
             </div>
           </div>
         ))}

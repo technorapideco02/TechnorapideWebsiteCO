@@ -4,6 +4,7 @@ import InsightsSection from "./components/InsightsSection";
 import IndustrySection from "./components/IndustrySection";
 import CustomerStories from "./components/CustomerStories";
 import GoogleMapsBadge from "./components/GoogleMapsBadge";
+import Counter from "./components/Counter";
 import styles from "./page.module.css";
 
 async function getBlogs() {
@@ -43,12 +44,12 @@ export default async function Home() {
           <div className={styles.capContainer}>
             <p className={styles.capMainSubtitle}>Research & Insights</p>
             
-            {/* Block 1: Main Story (Wide) */}
-            <div className={styles.capBlockWide}>
+            {/* Block 1: Main Story (Wide with Overlap) */}
+            <div className={styles.capBlockOverlapTop}>
               <div className={styles.capImageWrapperWide}>
                 <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200" alt="Blue Glass Pattern" className={styles.capImage} />
               </div>
-              <div className={styles.capTextBoxWide}>
+              <div className={styles.capTextBoxOverlap}>
                 <p className={styles.capLabel}>OUR ORIGIN STORY</p>
                 <h2 className={styles.capTitle}>From a Vision to a Global Enterprise Driven by Innovation</h2>
                 <div className={styles.capDesc}>
@@ -58,10 +59,10 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Bottom Row */}
-            <div className={styles.capBottomRow}>
+            {/* Bottom Row: 3 cards with overlapping image on right */}
+            <div className={styles.capBlockOverlapBottom}>
               
-              {/* Block 2: Philosophy (Text Only - Blue/White) */}
+              {/* Block 2: Philosophy (Square Text - Blue) */}
               <div className={styles.capBlockSquareText}>
                 <div>
                   <p className={styles.capLabel}>Our Core Philosophy</p>
@@ -70,22 +71,23 @@ export default async function Home() {
                 <p className={styles.capFooterLabel}>Technorapide</p>
               </div>
 
-              {/* Block 3: Stats (Abstract Image + Overlay) */}
-              <div className={styles.capBlockSquareImage}>
-                <div className={styles.capImageWrapperSquare}>
-                  <img src="https://images.unsplash.com/photo-1558591710-4b4a1ae0f04d?auto=format&fit=crop&q=80&w=1200" alt="Light Burst Pattern" className={styles.capImage} />
-                </div>
-                <div className={styles.capTextBoxSquare}>
-                  <p className={styles.capLabel}>Growth Metrics</p>
-                  <h3 className={styles.capTitleMedium}>Transforming Digital Presence for Global Clients</h3>
+              {/* Block 3: Stats (Square Text - Dark) */}
+              <div className={styles.capBlockSquareTextCenter}>
+                <div style={{ width: '100%' }}>
+                  <p className={styles.capLabel} style={{ marginBottom: '30px' }}>Growth Metrics</p>
                   <div className={styles.capStatsList}>
-                    <div className={styles.capStatItem}><span>6+</span> Years</div>
-                    <div className={styles.capStatItem}><span>250+</span> Projects</div>
-                    <div className={styles.capStatItem}><span>50+</span> Clients</div>
-                    <div className={styles.capStatItem}><span>30+</span> Developers</div>
+                    <Counter end={6} suffix="+" label="Years of Excellence" />
+                    <Counter end={300} suffix="+" label="Successful Projects" />
+                    <Counter end={200} suffix="+" label="Global Clients" />
+                    <Counter end={35} suffix="+" label="Tech Experts" />
                   </div>
-                  <p className={styles.capFooterLabel}>Technorapide</p>
                 </div>
+                <p className={styles.capFooterLabel}>Technorapide</p>
+              </div>
+
+              {/* Block 4: Image (Behind Stats) */}
+              <div className={styles.capImageWrapperOverlap}>
+                <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200" alt="Cosmic Pattern" className={styles.capImage} />
               </div>
 
             </div>

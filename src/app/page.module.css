@@ -365,9 +365,67 @@
 }
 
 @media (max-width: 768px) {
+  .insightsSection {
+    padding: 60px 0 80px 0;
+  }
+
+  .insightsHeader {
+    margin-bottom: 30px;
+  }
+
+  .insightsGrid {
+    padding: 0 20px;
+    gap: 15px;
+  }
+
   .insightCard {
-    flex: 0 0 100%;
-    min-width: 300px;
+    flex: 0 0 75%; /* Larger cards, shows 1.3 cards to indicate scroll */
+    min-width: 240px;
+    aspect-ratio: 1 / 1;
+    margin-right: 0; /* Handled by gap */
+  }
+
+  .insightCard:last-child {
+    margin-right: 20px;
+  }
+
+  .insightImageWrapper {
+    height: 45%;
+  }
+
+  .insightContent {
+    padding: 20px;
+  }
+
+  .insightTag {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+  }
+
+  .insightTitle {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .insightDescription {
+    display: none; /* Hide description on mobile square cards */
+  }
+
+  .insightArrowBtn {
+    width: 30px;
+    height: 30px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .insightArrowBtn svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
@@ -478,147 +536,71 @@
   font-family: 'Outfit', sans-serif;
 }
 
-.capBlockWide {
+.capBlockOverlapTop {
   position: relative;
   margin-bottom: 80px;
   display: flex;
+  align-items: flex-start;
 }
 
 .capImageWrapperWide {
-  width: 75%;
-  height: 450px;
+  width: 65%;
+  height: 400px;
   overflow: hidden;
 }
 
-.capTextBoxWide {
+.capTextBoxOverlap {
   position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 38%;
+  right: 5%;
+  top: 60px;
+  width: 40%;
   background-color: #1c212a;
   padding: 50px;
-  z-index: 2;
+  z-index: 5;
+  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.3);
 }
 
-.capBottomRow {
-  display: grid;
-  grid-template-columns: 350px 1fr;
-  gap: 60px;
-  align-items: stretch;
-}
-
-.capBlockSquareText {
-  background-color: #1a2c47; /* Dark blue block */
-  padding: 50px 40px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-.capBlockSquareImage {
-  position: relative;
-  height: 550px;
-}
-
-.capImageWrapperSquare {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.capTextBoxSquare {
-  position: absolute;
-  left: -120px;
-  bottom: 40px;
-  width: 380px;
-  background-color: #1c212a;
-  padding: 50px 40px;
-  z-index: 2;
-}
-
-.capQuoteBlue {
-  font-size: 3.2rem;
-  font-weight: 700;
-  color: #ffffff;
-  line-height: 1.1;
-  margin-top: 30px;
-}
-
-.capImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.capLabel {
-  font-size: 0.8rem;
-  color: #ccc;
-  margin-bottom: 20px;
+.capBlockOverlapBottom {
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.capLabel::before {
-  content: "";
-  display: block;
-  width: 20px;
-  height: 1px;
-  background-color: #ccc;
-}
-
-.capTitle {
-  font-size: 2.2rem;
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 30px;
-  font-family: 'Outfit', sans-serif;
-}
-
-.capTitleMedium {
-  font-size: 2.2rem;
-  font-weight: 500;
-  line-height: 1.2;
-  color: #ffffff;
-  margin-bottom: 25px;
-  font-family: 'Outfit', sans-serif;
-}
-
-.capDesc {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #ccc;
-  margin-bottom: 40px;
-}
-
-.capStatsList {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 30px;
-}
-
-.capStatItem {
-  font-size: 0.9rem;
-  color: #ccc;
-}
-
-.capStatItem span {
-  display: block;
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: #fff;
+  position: relative;
+  margin-top: 20px;
+  padding-left: 5%;
 }
 
 .capBlockSquareText {
-  background-color: #213b5e; /* Premium Capgemini Blue */
-  padding: 60px 40px;
+  background-color: #213b5e;
+  padding: 50px 40px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  min-height: 550px;
+  width: 380px;
+  height: 520px;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.capBlockSquareTextCenter {
+  background-color: #1c212a;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 340px;
+  height: 400px;
+  z-index: 4;
+  margin-left: -40px; /* Overlap left box */
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+}
+
+.capImageWrapperOverlap {
+  height: 520px;
+  overflow: hidden;
+  margin-left: -150px; /* Behind center box */
+  margin-top: 50px; /* Shifted up slightly */
+  z-index: 1;
+  flex: 1;
 }
 
 .capFooterLabel {
@@ -630,33 +612,68 @@
   letter-spacing: 1px;
 }
 
-@media (max-width: 1200px) {
-  .capTextBoxWide {
-    width: 50%;
-    padding: 40px;
-  }
-  .capTextBoxSquare {
-    left: 0;
-    width: 90%;
-    bottom: 20px;
-  }
+.capStatsList {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  width: 100%;
 }
 
-@media (max-width: 900px) {
-  .capBlockWide {
+.capStatItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.capStatItem span {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: var(--primary);
+  line-height: 1;
+  margin-bottom: 5px;
+}
+
+@media (max-width: 1200px) {
+  .capBlockOverlapTop {
     flex-direction: column;
   }
   .capImageWrapperWide {
     width: 100%;
+    height: 300px;
   }
-  .capTextBoxWide {
+  .capTextBoxOverlap {
     position: relative;
-    top: -50px;
-    width: 90%;
+    right: 0;
+    top: -60px; /* Stronger overlap as per Image 2 */
+    width: 92%;
     margin: 0 auto;
+    padding: 40px 30px;
   }
-  .capBottomRow {
+  .capBlockOverlapBottom {
+    flex-direction: column;
+    margin-top: -20px;
+    padding-left: 0;
+    align-items: center;
+  }
+  .capBlockSquareText,
+  .capBlockSquareTextCenter {
+    width: 92%;
+    height: auto;
+    min-height: 350px;
+    margin-left: 0;
+    margin-bottom: 20px;
+  }
+  .capImageWrapperOverlap {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .capBlockOverlapBottom {
     grid-template-columns: 1fr;
+  }
+  .capBlockSquareText,
+  .capBlockSquareTextCenter {
+    min-height: unset;
   }
 }
 
@@ -973,56 +990,18 @@
   display: none;
 }
 
-/* MOBILE OPTIMIZATIONS: SMALL BOXES & 2PX MARGIN */
+/* MOBILE OPTIMIZATIONS: SMALL BOXES */
 @media (max-width: 768px) {
-  .scrollContent > section,
-  .scrollContent > div,
-  .footer,
-  .capAboutSection {
-    margin-left: 2px !important;
-    margin-right: 2px !important;
-    width: calc(100% - 4px) !important; /* Ensure it stays within bounds with the 2px margins */
-  }
-
-  /* Make Boxes Smaller */
-  .newsCard {
-    flex: 0 0 260px !important; /* Smaller blog boxes */
-    min-width: 260px !important;
-  }
-
-  .insightCard {
-    flex: 0 0 260px !important; /* Smaller insight/industry boxes */
-    min-width: 260px !important;
-    margin-right: 15px !important;
-  }
-
-  .newsImageWrapper, 
-  .insightImageWrapper {
-    height: 180px !important; /* Smaller images for smaller boxes */
-  }
-
-  .newsTitle, 
-  .insightTitle {
-    font-size: 1.3rem !important; /* Scale down titles in smaller boxes */
-  }
-
+  /* Tighten headers */
   .newsHeader, 
   .insightsHeader {
-    padding: 0 10px !important; /* Tighten headers */
+    padding: 0 10px !important;
     margin-bottom: 30px !important;
   }
 
   .capTextBoxWide, 
   .capTextBoxSquare {
     padding: 20px !important; /* Smaller text boxes in editorial section */
-  }
-}
-@media (max-width: 768px) {
-  /* Ensure Google Trust Section also respects the 2px margin */
-  .fullSection {
-    margin-left: 2px !important;
-    margin-right: 2px !important;
-    width: calc(100% - 4px) !important;
   }
 }
 
@@ -1065,8 +1044,6 @@
 @media (max-width: 768px) {
   .industrySectionMain {
     padding: 60px 0;
-    margin-left: 2px !important;
-    margin-right: 2px !important;
   }
   
   .sectionContainer {
@@ -1081,5 +1058,185 @@
     min-width: 280px !important;
     flex: 0 0 280px !important;
     margin-right: 15px !important;
+  }
+}
+
+/* BLOG SECTION (NEWS) REDESIGN */
+.blogSection {
+  padding: 80px 0 100px 0;
+  background-color: #ffffff;
+}
+
+.blogHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 40px;
+  padding: 0 5%;
+}
+
+.blogTitleContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  max-width: 800px;
+}
+
+.blogMainTitle {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 10px;
+  line-height: 1.1;
+  font-family: 'Figtree', sans-serif;
+}
+
+.blogPagination {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Figtree', sans-serif;
+  letter-spacing: 2px;
+}
+
+.blogNav {
+  display: flex;
+  gap: 15px;
+}
+
+.blogGrid {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding: 0 5%;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+
+.blogGrid::-webkit-scrollbar {
+  display: none;
+}
+
+.blogCard {
+  flex: 0 0 calc(33.333% - 20px);
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  scroll-snap-align: start;
+  margin-right: 30px;
+}
+
+.blogCard:last-child {
+  margin-right: 5%;
+}
+
+.blogImageWrapper {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.blogImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+
+.blogCard:hover .blogImage {
+  transform: scale(1.05);
+}
+
+.blogContent {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.blogItemTitle {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 15px;
+  line-height: 1.2;
+}
+
+.blogItemDesc {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 30px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blogReadMore {
+  margin-top: auto;
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.blogReadMore span {
+  font-size: 1.4rem;
+  font-weight: 300;
+}
+
+@media (max-width: 1024px) {
+  .blogCard {
+    flex: 0 0 calc((100% - 30px) / 2);
+  }
+}
+
+@media (max-width: 768px) {
+  .blogHeader {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    text-align: left;
+    margin-bottom: 40px;
+  }
+
+  .blogTitleContainer {
+    align-items: flex-start;
+    flex: 1;
+  }
+
+  .blogNav {
+    position: static;
+    transform: none;
+    margin-top: 5px;
+    gap: 15px;
+  }
+
+  .blogGrid {
+    padding: 0 20px;
+    gap: 20px;
+    scroll-snap-type: x mandatory;
+  }
+
+  .blogCard {
+    flex: 0 0 calc(100% - 40px);
+    scroll-snap-align: center;
+    margin-right: 0;
+  }
+
+  .blogItemTitle {
+    font-size: 1.5rem;
+  }
+
+  .blogItemDesc {
+    display: block; /* Show description on mobile as per Image 2 */
+    -webkit-line-clamp: unset;
   }
 }

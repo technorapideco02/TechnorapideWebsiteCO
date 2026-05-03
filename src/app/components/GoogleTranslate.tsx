@@ -33,19 +33,34 @@ declare global {
   }
 }
 
-export default function GoogleTranslate() {
+export default function GoogleTranslate({ 
+  id = 'google_translate_element', 
+  iconOnly = false 
+}: { 
+  id?: string, 
+  iconOnly?: boolean 
+}) {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState(LANGUAGES[0]);
   const dropRef = useRef<HTMLDivElement>(null);
 
   // Inject Google Translate script once
   useEffect(() => {
-    if (document.getElementById('google-translate-script')) return;
+    if (document.getElementById('google-translate-script')) {
+      // If script exists, we still need to initialize the new element if it's not done
+      if (window.google && window.google.translate && window.google.translate.TranslateElement) {
+        new window.google.translate.TranslateElement(
+          { pageLanguage: 'en', autoDisplay: false },
+          id
+        );
+      }
+      return;
+    }
 
     window.googleTranslateElementInit = () => {
       new window.google.translate.TranslateElement(
         { pageLanguage: 'en', autoDisplay: false },
-        'google_translate_element'
+        id
       );
     };
 
@@ -82,7 +97,7 @@ export default function GoogleTranslate() {
   return (
     <div className={styles.wrapper} ref={dropRef}>
       {/* Hidden Google Translate mount point */}
-      <div id="google_translate_element" style={{ display: 'none' }} />
+      <div id={id} style={{ display: 'none' }} />
 
       {/* Trigger Button */}
       <button
@@ -96,10 +111,14 @@ export default function GoogleTranslate() {
           <line x1="2" y1="12" x2="22" y2="12" />
           <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
         </svg>
-        <span className={styles.currentLabel}>{current.label}</span>
-        <svg className={`${styles.chevron} ${open ? styles.chevronOpen : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-          <polyline points="6 9 12 15 18 9" />
-        </svg>
+        {!iconOnly && (
+          <>
+            <span className={styles.currentLabel}>{current.label}</span>
+            <svg className={`${styles.chevron} ${open ? styles.chevronOpen : ''}`} width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="6 9 12 15 18 9" />
+            </svg>
+          </>
+        )}
       </button>
 
       {/* Dropdown */}

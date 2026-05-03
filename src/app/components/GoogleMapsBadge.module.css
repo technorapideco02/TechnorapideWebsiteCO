@@ -99,9 +99,13 @@
   }
   .left {
     flex-direction: column;
+    align-items: center;
     gap: 15px;
   }
   .divider {
     display: none;
+  }
+  .scoreRow {
+    justify-content: center;
   }
 }
