@@ -1204,7 +1204,11 @@
     justify-content: space-between;
     align-items: flex-start;
     text-align: left;
-    margin-bottom: 40px;
+    margin-bottom: 30px;
+  }
+
+  .blogMainTitle {
+    font-size: 1.6rem !important; /* Smaller main title */
   }
 
   .blogTitleContainer {
@@ -1226,17 +1230,32 @@
   }
 
   .blogCard {
-    flex: 0 0 calc(100% - 40px);
+    flex: 0 0 calc(100% - 60px); /* Slightly smaller width to show more of next card */
     scroll-snap-align: center;
     margin-right: 0;
   }
 
+  .blogImageWrapper {
+    aspect-ratio: 4 / 3; /* More compact image on mobile */
+    margin-bottom: 20px;
+  }
+
   .blogItemTitle {
-    font-size: 1.5rem;
+    font-size: 1.25rem; /* Smaller item title */
+    margin-bottom: 10px;
   }
 
   .blogItemDesc {
-    display: block; /* Show description on mobile as per Image 2 */
-    -webkit-line-clamp: unset;
+    font-size: 0.9rem; /* Smaller description */
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2; /* Limit description lines on mobile */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .blogReadMore {
+    padding: 15px 0;
+    font-size: 0.95rem;
   }
 }
