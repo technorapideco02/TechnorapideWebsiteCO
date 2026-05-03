@@ -1,7 +1,7 @@
 import { NextResponse, NextRequest } from 'next/server'
 
-export function middleware(request: NextRequest) {
-  // Simple middleware to ensure requests are passing through Next.js
+export function proxy(request: NextRequest) {
+  // Simple proxy to ensure requests are passing through Next.js
   // This helps identify if the 404 is coming from Next.js or the external server (Nginx)
   return NextResponse.next()
 }
