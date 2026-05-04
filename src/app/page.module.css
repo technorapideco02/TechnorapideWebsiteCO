@@ -1179,6 +1179,8 @@
 .blogSection {
   padding: 80px 0 100px 0;
   background-color: #ffffff;
+  width: 100%;
+  overflow: hidden;
 }
 
 .blogHeader {
@@ -1316,14 +1318,15 @@
   .blogHeader {
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: flex-end; /* Align title and nav better */
     text-align: left;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
+    padding: 0 20px; /* Match grid padding */
   }
 
   .blogMainTitle {
-    font-size: 1.25rem !important;
-    /* Micro main title */
+    font-size: 1.5rem !important;
+    /* Improved mobile main title size */
   }
 
   .blogTitleContainer {
@@ -1346,8 +1349,8 @@
   }
 
   .blogCard {
-    flex: 0 0 calc(100% - 160px); /* Ultra-compact width */
-    min-width: 0 !important; /* Critical fix for mobile overrides */
+    flex: 0 0 calc(100% - 40px); /* Much better width on mobile */
+    min-width: 0 !important;
     scroll-snap-align: center;
     margin-right: 0;
   }
