@@ -43,7 +43,7 @@ export default function ContactWidget() {
   const router = useRouter();
   const pathname = usePathname();
 
-  if (pathname && (pathname === '/contact-us' || pathname.startsWith('/contact-us/'))) return null;
+  if (pathname && pathname.includes('contact-us')) return null;
 
   return (
     <div className={styles.widgetContainer} onClick={() => router.push('/contact-us')}>
