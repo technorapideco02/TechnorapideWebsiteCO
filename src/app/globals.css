@@ -109,9 +109,17 @@ img {
 }
 
 /* Custom TopLoader Alignment */
+/* ── Top Loader (nprogress) Reset ── */
 #nprogress .bar {
-  top: var(--navbar-height) !important;
-  z-index: 1031 !important;
+  top: 0 !important;
+  background: var(--primary) !important;
+  box-shadow: none !important;
+  height: 3px !important;
+  z-index: 10001 !important;
+}
+
+#nprogress .peg {
+  box-shadow: none !important;
 }
 
 /* ── Hide ALL Google Translate UI ─────────────── */

@@ -70,7 +70,6 @@
   width: 0;
   height: 2px;
   background-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
   border-radius: 2px;
@@ -179,7 +178,6 @@
   width: 0;
   height: 2px;
   background-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 2px;
   opacity: 0;
@@ -228,7 +226,6 @@
   width: 0;
   height: 2px;
   background-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
   border-radius: 2px;
@@ -266,7 +263,6 @@
   width: 0;
   height: 2px;
   background-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
   border-radius: 2px;
@@ -490,7 +486,6 @@
   width: 0;
   height: 2px;
   background-color: var(--primary);
-  box-shadow: 0 0 15px var(--primary), 0 0 5px var(--primary);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 2px;
   opacity: 0;
