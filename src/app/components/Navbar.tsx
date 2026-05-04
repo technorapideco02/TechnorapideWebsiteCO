@@ -42,6 +42,7 @@ const Navbar = () => {
   const [contactNumber, setContactNumber] = useState<string>('');
   const [view, setView] = useState<'categories' | 'services'>('categories');
   const [newsroomView, setNewsroomView] = useState<'news' | 'insights'>('news');
+  const [hasTeam, setHasTeam] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isWhoWeAreDropdownOpen, setIsWhoWeAreDropdownOpen] = useState(false);
@@ -62,6 +63,7 @@ const Navbar = () => {
     fetchCareers();
     fetchNewsAndInsights();
     fetchContactNumber();
+    fetchTeamStatus();
     
     const handleClickOutside = (event: MouseEvent) => {
       if (megaMenuRef.current && !megaMenuRef.current.contains(event.target as Node)) {
@@ -155,6 +157,18 @@ const Navbar = () => {
       if (insightsRes.ok) setInsights(await insightsRes.json());
     } catch (e) {
       console.error("Failed to fetch news/insights");
+    }
+  };
+
+  const fetchTeamStatus = async () => {
+    try {
+      const res = await fetch('https://apifinal.technorapide.com/api/team');
+      if (res.ok) {
+        const data = await res.json();
+        setHasTeam(data && data.length > 0);
+      }
+    } catch (e) {
+      setHasTeam(false);
     }
   };
 
@@ -331,12 +345,14 @@ const Navbar = () => {
                         </Link>
                         <span className={styles.itemArrow}>→</span>
                       </li>
-                      <li className={styles.megaMenuItem}>
-                        <Link href="/team" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
-                          Our Team
-                        </Link>
-                        <span className={styles.itemArrow}>→</span>
-                      </li>
+                      {hasTeam && (
+                        <li className={styles.megaMenuItem}>
+                          <Link href="/team" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                            Our Team
+                          </Link>
+                          <span className={styles.itemArrow}>→</span>
+                        </li>
+                      )}
                       <li className={styles.megaMenuItem}>
                         <Link href="/clients" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
                           Our Clients
