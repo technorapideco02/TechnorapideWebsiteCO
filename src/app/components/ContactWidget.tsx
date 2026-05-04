@@ -40,69 +40,20 @@ const OPTIONS = [
 ];
 
 export default function ContactWidget() {
-  const [open, setOpen] = useState(false);
   const router = useRouter();
 
-  const handleOption = (id: string) => {
-    setOpen(false);
-    if (id === 'services') router.push('/request-services');
-    if (id === 'career') router.push('/careers');
-    if (id === 'demo') {
-      const msg = encodeURIComponent('Hi, Technorapide.');
-      window.open(`https://wa.me/918918693332?text=${msg}`, '_blank');
-    }
-  };
-
-  useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
-  }, [open]);
-
-  useEffect(() => {
-    const handler = (e: KeyboardEvent) => { if (e.key === 'Escape') setOpen(false); };
-    window.addEventListener('keydown', handler);
-    return () => window.removeEventListener('keydown', handler);
-  }, []);
-
   return (
-    <>
-      <div className={styles.widgetContainer} onClick={() => setOpen(true)}>
-        <div className={styles.widget}>
-          <div className={styles.iconBox}>
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              <path d="M8 7h8"/>
-              <path d="M8 11h8"/>
-            </svg>
-          </div>
-          <span className={styles.labelText}>Contact</span>
+    <div className={styles.widgetContainer} onClick={() => router.push('/contact-us')}>
+      <div className={styles.widget}>
+        <div className={styles.iconBox}>
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+            <path d="M8 7h8"/>
+            <path d="M8 11h8"/>
+          </svg>
         </div>
+        <span className={styles.labelText}>Contact</span>
       </div>
-
-      {open && (
-        <div className={styles.overlay}>
-          <button className={styles.close} onClick={() => setOpen(false)} aria-label="Close">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
-            </svg>
-          </button>
-
-          <div className={styles.inner}>
-            <div className={styles.headerRow}>
-              <h2 className={styles.heading}>What's on your mind?</h2>
-              <p className={styles.subheading}>We're here to help! Tell us what you're looking for.</p>
-            </div>
-            <div className={styles.cards}>
-              {OPTIONS.map((opt, i) => (
-                <button key={opt.id} className={styles.card} onClick={() => handleOption(opt.id)} style={{ animationDelay: `${i * 0.1 + 0.15}s` }}>
-                  <div className={styles.cardIcon}>{opt.icon}</div>
-                  <span className={styles.cardLabel}>{opt.label}</span>
-                </button>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
-    </>
+    </div>
   );
 }

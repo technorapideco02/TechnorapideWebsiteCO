@@ -1,0 +1,137 @@
+.main {
+  min-height: 100vh;
+  background-color: #0b0e14;
+  padding-top: var(--navbar-height);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 20px;
+  text-align: center;
+}
+
+.headerRow {
+  margin-bottom: 60px;
+}
+
+.heading {
+  font-family: 'Outfit', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  margin-bottom: 20px;
+}
+
+.subheading {
+  font-family: 'Figtree', sans-serif;
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.card {
+  background: #1c212a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 50px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-decoration: none;
+  color: white;
+}
+
+.card:hover {
+  border-color: var(--primary);
+  background: #232a35;
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cardIcon {
+  width: 80px;
+  height: 80px;
+  background: rgba(0, 112, 173, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary);
+  transition: all 0.3s ease;
+}
+
+.card:hover .cardIcon {
+  background: var(--primary);
+  color: white;
+  transform: scale(1.1);
+}
+
+.cardLabel {
+  font-size: 1.4rem;
+  font-weight: 700;
+  font-family: 'Outfit', sans-serif;
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .cardsGrid {
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    justify-content: flex-start;
+    padding-top: calc(var(--navbar-height) + 40px);
+  }
+
+  .container {
+    padding: 20px;
+  }
+
+  .headerRow {
+    margin-bottom: 40px;
+  }
+
+  .cardsGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0;
+  }
+
+  .card {
+    width: 100%;
+    min-width: unset;
+    padding: 30px 20px;
+    text-align: center;
+    align-items: center;
+  }
+}
