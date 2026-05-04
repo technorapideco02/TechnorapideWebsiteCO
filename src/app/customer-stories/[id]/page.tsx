@@ -37,7 +37,7 @@ export default async function CustomerStoryDetail({ params }: { params: Promise<
       <div className={styles.blogHero}>
         <div 
           className={styles.blogHeroBackground} 
-          style={{ backgroundImage: `url(${story.imageLink})` }}
+          style={{ backgroundImage: `url(${story.imageLink})`, backgroundPosition: 'center 20%' }}
         >
           <div style={{ 
             position: 'absolute', 
@@ -81,9 +81,7 @@ export default async function CustomerStoryDetail({ params }: { params: Promise<
           <CustomerStories />
         </div>
 
-        <footer style={{ backgroundColor: '#000', padding: '60px 5%', textAlign: 'center', color: 'rgba(255,255,255,0.4)', fontSize: '0.9rem' }}>
-          <p>&copy; 2026 Technorapide. All rights reserved.</p>
-        </footer>
+
       </div>
     </div>
   );

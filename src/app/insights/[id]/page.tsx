@@ -101,19 +101,96 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
             />
 
             {/* Dynamic Content List */}
+            {/* ─── NEW CAPGEMINI-STYLE CONTENT LIST ─── */}
             {insight.contentList && insight.contentList.length > 0 && (
-              <div className={styles.blogExtraContent}>
-                {insight.contentList.map((item: any, index: number) => (
-                  <div key={item._id || index} className={styles.contentItem}>
-                    {item.imageLink && (
-                      <div className={styles.contentItemImageWrapper}>
-                        <img src={item.imageLink} alt={item.title} className={styles.contentItemImage} />
-                      </div>
-                    )}
-                    <h2 className={styles.contentItemTitle}>{item.title}</h2>
-                    <p className={styles.contentItemDesc}>{item.description}</p>
+              <div className={styles.capgeminiContainer} style={{ marginTop: '80px', width: '100vw', marginLeft: 'calc(-50vw + 50%)', padding: '0 5%' }}>
+                {/* Block 1: Wide Image + Overlapping Text (Top) */}
+                <div className={styles.capBlockOverlapTop}>
+                  <div className={styles.capImageWrapperWide}>
+                    <img 
+                      src={insight.contentList[0]?.imageLink || insight.image} 
+                      alt={insight.contentList[0]?.title} 
+                      className={styles.capImage} 
+                    />
                   </div>
-                ))}
+                  <div className={styles.capTextBoxOverlap}>
+                    <p className={styles.capLabel}>
+                      <span className={styles.capLabelLine}></span>
+                      {insight.title}
+                    </p>
+                    <h2 className={styles.capTitleLarge}>{insight.contentList[0]?.title}</h2>
+                    <p className={styles.capDesc}>{insight.contentList[0]?.description}</p>
+                    <p className={styles.capFooterLabel} style={{ marginTop: '40px' }}>Technorapide</p>
+                  </div>
+                </div>
+
+                {/* Bottom Row: 3 blocks (Text, Text, Image) */}
+                <div className={styles.capBlockOverlapBottom}>
+                  {/* Mobile-Only Image for the first square block */}
+                  <div className={styles.capImageWrapperMobile}>
+                    <img 
+                      src={insight.contentList[1]?.imageLink || insight.image} 
+                      alt="Mobile View Visual" 
+                      className={styles.capImage} 
+                    />
+                  </div>
+
+                  {/* Block 2: Blue Square Block */}
+                  <div className={styles.capBlockSquareText} style={{ backgroundColor: 'rgba(0, 112, 173, 0.9)' }}>
+                    <div>
+                      <p className={styles.capLabel}>
+                        <span className={styles.capLabelLine}></span>
+                        Insight Depth
+                      </p>
+                      <h3 className={styles.capTitleMedium}>{insight.contentList[1]?.title}</h3>
+                      <p className={styles.capDesc} style={{ color: 'rgba(255,255,255,0.8)', marginTop: '20px' }}>
+                        {insight.contentList[1]?.description}
+                      </p>
+                    </div>
+                    <p className={styles.capFooterLabel}>Technorapide</p>
+                  </div>
+
+                  {/* Block 3: Dark Square Block */}
+                  <div className={styles.capBlockSquareTextCenter}>
+                    <div>
+                      <p className={styles.capLabel}>
+                        <span className={styles.capLabelLine}></span>
+                        Strategic Outcome
+                      </p>
+                      <h3 className={styles.capTitleMedium}>{insight.contentList[2]?.title}</h3>
+                      <p className={styles.capDesc} style={{ color: 'rgba(255,255,255,0.6)', marginTop: '20px' }}>
+                        {insight.contentList[2]?.description}
+                      </p>
+                    </div>
+                    <p className={styles.capFooterLabel}>Technorapide</p>
+                  </div>
+
+                  {/* Block 4: Overlapping Image behind Block 3 */}
+                  <div className={styles.capImageWrapperOverlap}>
+                    <img 
+                      src={insight.contentList[2]?.imageLink || insight.image} 
+                      alt="Strategic Visual" 
+                      className={styles.capImage} 
+                    />
+                  </div>
+                </div>
+
+                {/* Remaining Items (if any) as standard cards below */}
+                {insight.contentList.length > 3 && (
+                  <div className={styles.blogExtraContent} style={{ marginTop: '100px' }}>
+                    {insight.contentList.slice(3).map((item: any, index: number) => (
+                      <div key={item._id || index} className={styles.contentItem}>
+                        {item.imageLink && (
+                          <div className={styles.contentItemImageWrapper}>
+                            <img src={item.imageLink} alt={item.title} className={styles.contentItemImage} />
+                          </div>
+                        )}
+                        <h2 className={styles.contentItemTitle}>{item.title}</h2>
+                        <p className={styles.contentItemDesc}>{item.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -148,11 +225,7 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
           </div>
         </section>
 
-        <footer className={styles.footer} style={{ backgroundColor: '#fff', color: '#000', borderTop: '1px solid #eee' }}>
-          <div className={styles.footerContent}>
-            <p>&copy; 2026 Technorapide. All rights reserved.</p>
-          </div>
-        </footer>
+
       </div>
     </div>
   );

@@ -41,12 +41,18 @@ const Hero = async () => {
       </div>
 
       <div className={styles.content}>
-        <h1 className={styles.title}>
-          {heroData?.heading || 'Innovating Your Digital Future'}
-        </h1>
-        <p className={styles.subtitle}>
-          {heroData?.title || 'Empowering startups and enterprises with cutting-edge technology and human-centric design.'}
-        </p>
+        <div className={styles.textWrapper}>
+          {heroData?.heading && (
+            <h1 className={styles.title}>
+              {heroData.heading}
+            </h1>
+          )}
+          {heroData?.title && (
+            <p className={styles.subtitle}>
+              {heroData.title}
+            </p>
+          )}
+        </div>
         <div className={styles.ctaContainer}>
           <Link href="/request-services" className={styles.primaryBtn}>Get Started</Link>
           <Link href="/insights" className={styles.secondaryBtn}>Learn More</Link>

@@ -57,23 +57,33 @@ export default async function ServiceDetails({ params }: { params: Promise<{ id:
     <div className={styles.main}>
       <Navbar />
       
-      {/* 1. FIXED HERO */}
+      {/* 1. FIXED HERO (RE-DESIGNED) */}
       <section className={heroStyles.hero}>
         <div 
           className={heroStyles.heroBackground} 
-          style={{ backgroundImage: `url(${service.imageLinks && service.imageLinks[0]})` }}
+          style={{ 
+            backgroundImage: `url(${service.imageLinks && service.imageLinks[0]})`,
+            backgroundPosition: 'center 20%'
+          }}
         >
-          <div className={heroStyles.overlay}></div>
+          {/* Left-focused gradient for readability */}
+          <div style={{ 
+            position: 'absolute', 
+            inset: 0, 
+            background: 'linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%)',
+            zIndex: 2
+          }}></div>
         </div>
-        <div className={heroStyles.content}>
-          <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px' }}>
+        <div className={heroStyles.content} style={{ textAlign: 'left', alignItems: 'flex-start', marginLeft: '5%', maxWidth: '1000px', width: '90%' }}>
+          <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px', textAlign: 'left', justifyContent: 'flex-start' }}>
+            <span className={styles.capLabelLine}></span>
             {service.categoryId?.name || 'OFFERING'}
           </p>
-          <h1 className={heroStyles.title}>
+          <h1 className={heroStyles.title} style={{ textAlign: 'left', marginBottom: '24px', fontSize: 'clamp(3rem, 8vw, 5rem)', width: '100%' }}>
             {service.title}
           </h1>
-          <p className={heroStyles.subtitle}>
-            {service.name}
+          <p className={heroStyles.subtitle} style={{ textAlign: 'left', maxWidth: '800px', fontSize: '1.5rem', color: 'rgba(255,255,255,0.9)', fontWeight: 400, lineHeight: '1.6' }}>
+            {service.description}
           </p>
         </div>
       </section>
@@ -81,25 +91,7 @@ export default async function ServiceDetails({ params }: { params: Promise<{ id:
       {/* 2. SCROLLABLE CONTENT */}
       <div className={styles.scrollContent}>
         
-        {/* SHORT DESCRIPTION (PURE BLACK BACKGROUND) */}
-        <section style={{ padding: '100px 0', backgroundColor: '#000', color: '#fff' }}>
-          <div className={styles.fullWidthContainer}>
-            <div style={{ maxWidth: '900px', margin: '0 auto', textAlign: 'center' }}>
-              <p className={styles.capLabel} style={{ color: 'var(--primary)', justifyContent: 'center' }}>OVERVIEW</p>
-              <h2 style={{ fontSize: '2.5rem', fontWeight: 700, marginBottom: '30px', color: '#fff' }}>Strategic Intent</h2>
-              <div style={{ 
-                fontSize: '1.4rem', 
-                color: '#ccc', 
-                lineHeight: '1.8', 
-                whiteSpace: 'pre-wrap',
-                textAlign: 'justify',
-                textJustify: 'inter-word'
-              }}>
-                {service.description}
-              </div>
-            </div>
-          </div>
-        </section>
+
 
         {/* LONG DESCRIPTION (HTML/CSS/JS RENDERING - FULL ISOLATION) */}
         <section style={{ padding: '0', backgroundColor: '#fff' }}>
@@ -121,11 +113,7 @@ export default async function ServiceDetails({ params }: { params: Promise<{ id:
           <PricingSection priceChart={service.priceChart} />
         )}
 
-        <footer className={styles.footer} style={{ backgroundColor: '#fff', color: '#000', borderTop: '1px solid #eee' }}>
-          <div className={styles.footerContent}>
-            <p>&copy; 2026 Technorapide. All rights reserved.</p>
-          </div>
-        </footer>
+
       </div>
     </div>
   );

@@ -32,7 +32,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ priceChart }) => {
   };
 
   return (
-    <section id="pricing" className={styles.newsSectionWhite} style={{ backgroundColor: '#fff', padding: '120px 0' }}>
+    <section id="pricing" className={styles.newsSectionWhite} style={{ backgroundColor: '#fff', padding: '60px 0 100px' }}>
       <div className={styles.fullWidthContainer}>
         <div className={styles.insightsHeader}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
