@@ -103,7 +103,7 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
             {/* Dynamic Content List */}
             {/* ─── NEW CAPGEMINI-STYLE CONTENT LIST ─── */}
             {insight.contentList && insight.contentList.length > 0 && (
-              <div className={styles.capgeminiContainer} style={{ marginTop: '80px', width: '100vw', marginLeft: 'calc(-50vw + 50%)', padding: '0 5%' }}>
+              <div className={styles.capgeminiContainer} style={{ marginTop: '80px', width: '100%', padding: '0 20px' }}>
                 {/* Block 1: Wide Image + Overlapping Text (Top) */}
                 <div className={styles.capBlockOverlapTop}>
                   <div className={styles.capImageWrapperWide}>

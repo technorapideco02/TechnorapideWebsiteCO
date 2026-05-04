@@ -9,9 +9,16 @@
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+html, body {
+  width: 100%;
   margin: 0;
   padding: 0;
+  overflow-x: hidden;
+  position: relative;
+  max-width: 100%;
+}
+
+* {
   box-sizing: border-box;
 }
 
@@ -19,14 +26,16 @@ body {
   font-family: 'Figtree', sans-serif; /* Using Figtree as base for a modern feel */
   background-color: var(--bg-light);
   color: #1a1a1a;
-  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .container {
   width: 100%;
-  padding-left: 10px;
-  padding-right: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
   margin: 0 auto;
+  max-width: 1400px; /* Standardized max width */
 }
 
 h1, h2, h3, h4, h5, h6 {
