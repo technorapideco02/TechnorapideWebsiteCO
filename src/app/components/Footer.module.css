@@ -200,6 +200,13 @@
   .contactNumber {
     font-size: 1.3rem;
   }
+  .socialIcon {
+    width: 32px;
+    height: 32px;
+  }
+  .socials {
+    gap: 15px;
+  }
 }
 
 @media (max-width: 480px) {
