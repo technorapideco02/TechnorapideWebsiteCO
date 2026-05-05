@@ -80,15 +80,15 @@ export default async function ServiceDetails({ params }: { params: Promise<{ id:
             zIndex: 2
           }}></div>
         </div>
-        <div className={heroStyles.content} style={{ textAlign: 'left', alignItems: 'flex-start', marginLeft: '5%', maxWidth: '1000px', width: '90%' }}>
+        <div className={`${heroStyles.content} ${styles.serviceHeroContent}`}>
           <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px', textAlign: 'left', justifyContent: 'flex-start' }}>
             <span className={styles.capLabelLine}></span>
             {service.categoryId?.name || 'OFFERING'}
           </p>
-          <h1 className={heroStyles.title} style={{ textAlign: 'left', marginBottom: '24px', fontSize: 'clamp(3rem, 8vw, 5rem)', width: '100%' }}>
+          <h1 className={`${heroStyles.title} ${styles.serviceHeroTitle}`}>
             {service.title}
           </h1>
-          <p className={heroStyles.subtitle} style={{ textAlign: 'left', maxWidth: '800px', fontSize: '1.5rem', color: 'rgba(255,255,255,0.9)', fontWeight: 400, lineHeight: '1.6' }}>
+          <p className={`${heroStyles.subtitle} ${styles.serviceHeroSubtitle}`}>
             {service.description}
           </p>
         </div>

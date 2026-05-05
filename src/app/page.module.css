@@ -843,6 +843,107 @@
 }
 
 /* Blog Details Hero Style */
+.serviceHeroContent {
+  text-align: left;
+  align-items: flex-start;
+  margin-left: 5%;
+  max-width: 1000px;
+  width: 90%;
+}
+
+.serviceHeroTitle {
+  text-align: left;
+  margin-bottom: 24px;
+  font-size: clamp(3rem, 8vw, 5rem);
+  width: 100%;
+}
+
+.serviceHeroSubtitle {
+  text-align: left;
+  max-width: 800px;
+  font-size: 1.5rem;
+  color: rgba(255,255,255,0.9);
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .serviceHeroContent {
+    margin-left: 0;
+    padding: 0 30px;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+  }
+  .serviceHeroTitle {
+    text-align: center;
+    font-size: 2.5rem;
+  }
+  .serviceHeroSubtitle {
+    text-align: center;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .serviceHeroTitle {
+    font-size: 2rem;
+  }
+  .serviceHeroSubtitle {
+    font-size: 1.1rem;
+  }
+}
+
+.customerStoryHeroContent {
+  text-align: left;
+  margin-left: 5%;
+  max-width: 600px;
+}
+
+.customerStoryMainSection {
+  background-color: #000;
+  color: #fff;
+  padding: 100px 5%;
+}
+
+.customerStoryQuote {
+  margin-top: 80px;
+  padding: 40px;
+  background-color: rgba(255,255,255,0.05);
+  border-radius: 16px;
+  border-left: 4px solid var(--primary);
+}
+
+@media (max-width: 1024px) {
+  .customerStoryHeroContent {
+    margin-left: 0;
+    padding: 0 30px;
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .customerStoryMainSection {
+    padding: 60px 20px;
+  }
+  .customerStoryMainSection h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+  .customerStoryMainSection div {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .customerStoryQuote {
+    margin-top: 50px;
+    padding: 25px;
+  }
+  .customerStoryQuote p {
+    font-size: 1.2rem;
+  }
+}
+
 .blogHero {
   position: relative;
   width: 100%;
@@ -884,18 +985,66 @@
 }
 
 .blogHeroTitle {
-  font-size: clamp(2.5rem, 6vw, 4.5rem);
+  font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 800;
   margin-bottom: 20px;
   max-width: 1000px;
 }
 
-.blogHeroDate {
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
-  letter-spacing: 2px;
-  text-transform: uppercase;
+@media (max-width: 768px) {
+  .blogHero {
+    height: 70vh;
+    padding: 0 15px;
+  }
+  .blogHeroTitle {
+    font-size: 2.2rem;
+  }
+  .blogHeroDate {
+    font-size: 0.9rem;
+  }
+  .blogBlackSection {
+    padding: 60px 0;
+  }
+  .blogWhiteSection {
+    padding: 60px 0;
+  }
+  .blogDetailsContainer {
+    padding: 0 20px;
+  }
+  .blogContentArea {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  .blogContentArea h2 {
+    font-size: 1.6rem;
+    margin: 40px 0 15px;
+  }
+  .blogExtraContent {
+    margin-top: 40px;
+    padding-top: 40px;
+  }
+  .contentItem {
+    margin-bottom: 60px;
+  }
+  .contentItemTitle {
+    font-size: 1.6rem;
+    margin-bottom: 15px;
+  }
+  .contentItemDesc {
+    font-size: 1rem;
+  }
+  .allBlogsTitle {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+  .compactBlogGrid {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  .compactBlogCard {
+    aspect-ratio: auto;
+    min-height: 350px;
+  }
 }
 
 .blogScrollContent {
@@ -1160,6 +1309,59 @@
   }
 }
 
+.industryDetailSection {
+  padding: 100px 0 0 0;
+  background-color: #fff;
+  color: #1b1b1b;
+}
+
+.industryDetailContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.industryMainDesc {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #000;
+  line-height: 1.6;
+  margin-bottom: 50px;
+  text-align: justify;
+}
+
+.industryFeaturesSection {
+  padding: 100px 0;
+  background-color: #f9f9f9;
+  border-top: 1px solid #eee;
+}
+
+.industryFeaturesTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  color: #000;
+}
+
+@media (max-width: 768px) {
+  .industryDetailSection {
+    padding: 60px 0 0 0;
+  }
+  .industryMainDesc {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    padding: 0 20px;
+    text-align: left;
+  }
+  .industryFeaturesSection {
+    padding: 60px 0;
+  }
+  .industryFeaturesTitle {
+    font-size: 1.8rem;
+  }
+  .industryFeaturesHeader {
+    margin-bottom: 40px !important;
+  }
+}
+
 /* INDUSTRY SECTION RESPONSIVE REPAIR */
 .industrySectionMain {
   background-color: #fff;
@@ -1218,6 +1420,69 @@
 }
 
 /* BLOG SECTION (NEWS) REDESIGN */
+.capgeminiContainer {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.capTitleLarge {
+  font-size: 3rem;
+  font-weight: 800;
+  color: white;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 1024px) {
+  .capBlockOverlapTop {
+    flex-direction: column;
+  }
+  .capImageWrapperWide {
+    width: 100%;
+    height: 300px;
+  }
+  .capTextBoxOverlap {
+    width: 100%;
+    position: relative;
+    right: 0;
+    top: 0;
+    padding: 30px;
+    margin-top: -30px;
+  }
+  .capTitleLarge {
+    font-size: 2rem;
+  }
+  .capBlockOverlapBottom {
+    flex-direction: column;
+    padding-left: 0;
+  }
+  .capBlockSquareText, .capBlockSquareTextCenter {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+    min-height: auto;
+    padding: 30px;
+  }
+  .capImageWrapperOverlap {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 20px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .capTitleLarge {
+    font-size: 1.8rem;
+  }
+  .capTitleMedium {
+    font-size: 1.5rem;
+  }
+  .capDesc {
+    font-size: 1rem;
+  }
+}
+
 .blogSection {
   padding: 80px 0 100px 0;
   background-color: #ffffff;

@@ -87,18 +87,10 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
       <div className={styles.scrollContent}>
         
         {/* DESCRIPTION (WHITE BG) */}
-        <section style={{ padding: '100px 0 0 0', backgroundColor: '#fff', color: '#1b1b1b' }}>
+        <section className={styles.industryDetailSection}>
           <div className={styles.container}>
-            <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-              <div style={{ 
-                fontSize: '1.6rem', 
-                fontWeight: 600,
-                color: '#000', 
-                lineHeight: '1.6', 
-                marginBottom: '50px',
-                textAlign: 'justify',
-                textJustify: 'inter-word'
-              }}>
+            <div className={styles.industryDetailContainer}>
+              <div className={styles.industryMainDesc}>
                 {industry.description}
               </div>
             </div>
@@ -114,14 +106,14 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
 
         {/* CONTENT LIST (CARDS SECTION - WHITE BG) */}
         {industry.contentList && industry.contentList.length > 0 && (
-          <section style={{ padding: '100px 0', backgroundColor: '#f9f9f9', borderTop: '1px solid #eee' }}>
+          <section className={styles.industryFeaturesSection}>
             <div className={styles.container}>
-              <div style={{ textAlign: 'center', marginBottom: '70px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '70px' }} className={styles.industryFeaturesHeader}>
                 <p className={styles.capLabel} style={{ justifyContent: 'center' }}>KEY FEATURES</p>
-                <h2 style={{ fontSize: '3rem', fontWeight: 800, color: '#000' }}>Domain Expertise</h2>
+                <h2 className={styles.industryFeaturesTitle}>Domain Expertise</h2>
               </div>
 
-              <div className={styles.insightsGrid} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', display: 'grid', gap: '30px' }}>
+              <div className={styles.insightsGrid} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', display: 'grid', gap: '30px' }}>
                 {industry.contentList.map((item: any) => (
                   <div key={item._id} className={styles.insightCard} style={{ backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '0' }}>
                     <div className={styles.insightImageWrapper} style={{ height: '250px' }}>
