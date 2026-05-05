@@ -3,19 +3,29 @@ import { Metadata } from 'next';
 import HtmlRenderer from '../../components/HtmlRenderer';
 import styles from '../../page.module.css';
 import heroStyles from '../../components/Hero.module.css';
+import { extractId, createSlug } from '../../utils/slug';
 
-async function getIndustry(id: string | undefined) {
-  if (!id) return null;
-  const actualId = id.split('--').pop() || id;
-  const cleanId = actualId.trim();
+async function getIndustry(slug: string | undefined) {
+  if (!slug) return null;
+  
   try {
+    // 1. Try matching by slug from all industries
+    const allRes = await fetch('https://apifinal.technorapide.com/api/industries', { cache: 'no-store' });
+    if (allRes.ok) {
+      const allIndustries = await allRes.json();
+      const matched = allIndustries.find((ind: any) => createSlug(ind.name) === slug);
+      if (matched) return matched;
+    }
+
+    // 2. Fallback: match by ID
+    const cleanId = extractId(slug);
     const res = await fetch(`https://apifinal.technorapide.com/api/industries/${cleanId}`, { cache: 'no-store' });
     if (res.ok) {
       return res.json();
     }
     return null;
   } catch (e) {
-    console.error(`Error fetching industry ${id}:`, e);
+    console.error(`Error fetching industry ${slug}:`, e);
     return null;
   }
 }

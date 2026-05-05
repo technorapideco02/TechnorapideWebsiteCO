@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../page.module.css';
+import { createSlug } from '../utils/slug';
 
 interface Insight {
   _id: string;
@@ -101,25 +102,24 @@ const InsightsSection: React.FC<InsightsSectionProps> = ({ insights }) => {
           }
         `}} />
         {insights.map((insight) => (
-          <div key={insight._id} className={`${styles.insightCard} insight-card-custom`}>
-            <Link href={`/insights/${insight._id}`} className={styles.insightImageWrapper}>
-              <img src={insight.image} alt={insight.title} className={styles.insightImage} />
-            </Link>
-            <div className={styles.insightContent}>
-              <div className={styles.insightTag}>INSIGHT</div>
-              <div className={styles.insightText}>
-                <h3 className={styles.insightTitle}>{insight.title}</h3>
-                <p className={styles.insightDescription}>{insight.description}</p>
-              </div>
-              <Link href={`/insights/${insight._id}`} className={styles.insightArrowBtn}>
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <line x1="5" y1="12" x2="19" y2="12"></line>
-                  <polyline points="12 5 19 12 12 19"></polyline>
-                </svg>
+            <div key={insight._id} className={`${styles.insightCard} insight-card-custom`}>
+              <Link href={`/insights/${createSlug(insight.title)}`} className={styles.insightImageWrapper}>
+                <img src={insight.image} alt={insight.title} className={styles.insightImage} />
               </Link>
+              <div className={styles.insightContent}>
+                <div className={styles.insightText}>
+                  <h3 className={styles.insightTitle}>{insight.title}</h3>
+                  <p className={styles.insightDescription}>{insight.description}</p>
+                </div>
+                <Link href={`/insights/${createSlug(insight.title)}`} className={styles.insightArrowBtn}>
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </Link>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
       </div>
     </section>
   );

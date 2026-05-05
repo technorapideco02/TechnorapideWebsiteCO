@@ -4,20 +4,29 @@ import PricingSection from '../../components/PricingSection';
 import HtmlRenderer from '../../components/HtmlRenderer';
 import styles from '../../page.module.css';
 import heroStyles from '../../components/Hero.module.css';
+import { extractId, createSlug } from '../../utils/slug';
 
-async function getService(id: string | undefined) {
-  if (!id) return null;
-  // Handle SEO-friendly slug--ID pattern
-  const actualId = id.split('--').pop() || id;
-  const cleanId = actualId.trim();
+async function getService(slug: string | undefined) {
+  if (!slug) return null;
+  
   try {
+    // 1. Try fetching all and matching by slug (preferred for clean URLs)
+    const allRes = await fetch('https://apifinal.technorapide.com/api/services', { cache: 'no-store' });
+    if (allRes.ok) {
+      const allServices = await allRes.json();
+      const matched = allServices.find((s: any) => createSlug(s.name) === slug);
+      if (matched) return matched;
+    }
+
+    // 2. Fallback: handle old slug--ID or direct ID links
+    const cleanId = extractId(slug);
     const res = await fetch(`https://apifinal.technorapide.com/api/services/${cleanId}`, { cache: 'no-store' });
     if (res.ok) {
       return res.json();
     }
     return null;
   } catch (e) {
-    console.error(`Error fetching service ${cleanId}:`, e);
+    console.error(`Error fetching service ${slug}:`, e);
     return null;
   }
 }

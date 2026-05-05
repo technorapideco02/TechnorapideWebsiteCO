@@ -2,24 +2,29 @@ import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import styles from '../../page.module.css';
+import { createSlug, extractId } from '../../utils/slug';
 
-async function getBlog(id: string | undefined) {
-  if (!id) return null;
-  const actualId = id.split('--').pop() || id;
-  const cleanId = actualId.trim();
+async function getBlog(slug: string | undefined) {
+  if (!slug) return null;
+  
   try {
+    // 1. Try matching by slug from all blogs
+    const allRes = await fetch('https://apifinal.technorapide.com/api/blogs', { cache: 'no-store' });
+    if (allRes.ok) {
+      const allBlogs = await allRes.json();
+      const matched = allBlogs.find((b: any) => createSlug(b.title) === slug);
+      if (matched) return matched;
+    }
+
+    // 2. Fallback: match by ID
+    const cleanId = extractId(slug);
     const res = await fetch(`https://apifinal.technorapide.com/api/blogs/${cleanId}`, { cache: 'no-store' });
     if (res.ok) {
       return res.json();
     }
-    
-    // Fallback: fetch all and find
-    const allRes = await fetch('https://apifinal.technorapide.com/api/blogs', { cache: 'no-store' });
-    if (!allRes.ok) return null;
-    const allBlogs = await allRes.json();
-    return allBlogs.find((b: any) => b._id === cleanId) || null;
+    return null;
   } catch (e) {
-    console.error(`Error fetching blog ${cleanId}:`, e);
+    console.error(`Error fetching blog ${slug}:`, e);
     return null;
   }
 }
@@ -127,7 +132,7 @@ export default async function BlogDetails({ params }: { params: Promise<{ id: st
                   </div>
                   <div className={styles.compactContent}>
                     <h3 className={styles.compactTitle}>{b.title}</h3>
-                    <Link href={`/news/${b._id}`} className={styles.compactLink}>
+                    <Link href={`/news/${createSlug(b.title)}`} className={styles.compactLink}>
                       Read Detail
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
                     </Link>

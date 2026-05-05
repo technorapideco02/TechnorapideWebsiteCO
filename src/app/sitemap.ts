@@ -1,17 +1,7 @@
 import { MetadataRoute } from 'next';
+import { createSlug } from './utils/slug';
 
 const BASE_URL = 'https://technorapide.com';
-
-function slugify(text: string) {
-  if (!text) return "";
-  return text
-    .toString()
-    .toLowerCase()
-    .trim()
-    .replace(/\s+/g, '-')     // Replace spaces with -
-    .replace(/[^\w-]+/g, '')  // Remove all non-word chars
-    .replace(/--+/g, '-');    // Replace multiple - with single -
-}
 
 async function getServices() {
   const res = await fetch('https://apifinal.technorapide.com/api/services', { cache: 'no-store' });
@@ -25,6 +15,11 @@ async function getIndustries() {
 
 async function getBlogs() {
   const res = await fetch('https://apifinal.technorapide.com/api/blogs', { cache: 'no-store' });
+  return res.ok ? res.json() : [];
+}
+
+async function getInsights() {
+  const res = await fetch('https://apifinal.technorapide.com/api/insights', { cache: 'no-store' });
   return res.ok ? res.json() : [];
 }
 
@@ -48,36 +43,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   }));
 
   // 2. Dynamic Routes
-  const [services, industries, blogs] = await Promise.all([
+  const [services, industries, blogs, insights] = await Promise.all([
     getServices(),
     getIndustries(),
     getBlogs(),
+    getInsights(),
   ]);
 
   const serviceRoutes = services.map((s: any) => ({
-    url: `${BASE_URL}/services/${slugify(s.title)}--${s._id}`,
+    url: `${BASE_URL}/services/${createSlug(s.name || s.title)}`,
     lastModified: new Date(s.updatedAt || new Date()),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }));
 
   const industryRoutes = industries.map((i: any) => ({
-    url: `${BASE_URL}/industries/${slugify(i.name)}--${i._id}`,
+    url: `${BASE_URL}/industries/${createSlug(i.name)}`,
     lastModified: new Date(i.updatedAt || new Date()),
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }));
 
   const newsRoutes = blogs.map((b: any) => ({
-    url: `${BASE_URL}/news/${slugify(b.title)}--${b._id}`,
+    url: `${BASE_URL}/news/${createSlug(b.title)}`,
     lastModified: new Date(b.updatedAt || new Date()),
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }));
 
-  const insightRoutes = blogs.map((b: any) => ({
-    url: `${BASE_URL}/insights/${slugify(b.title)}--${b._id}`,
-    lastModified: new Date(b.updatedAt || new Date()),
+  const insightRoutes = insights.map((i: any) => ({
+    url: `${BASE_URL}/insights/${createSlug(i.title)}`,
+    lastModified: new Date(i.updatedAt || new Date()),
     changeFrequency: 'weekly' as const,
     priority: 0.6,
   }));

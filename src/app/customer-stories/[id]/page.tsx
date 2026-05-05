@@ -1,13 +1,26 @@
 import React from 'react';
 import CustomerStories from '../../components/CustomerStories';
 import styles from '../../page.module.css';
+import { extractId, createSlug } from '../../utils/slug';
 
-async function getStory(id: string) {
+async function getStory(slug: string) {
   try {
+    // 1. Try matching by slug from all stories
     const res = await fetch('https://apifinal.technorapide.com/api/customer-stories', { cache: 'no-store' });
-    if (!res.ok) return null;
-    const stories = await res.json();
-    return stories.find((s: any) => s._id === id) || null;
+    if (res.ok) {
+      const stories = await res.json();
+      const matched = stories.find((s: any) => createSlug(s.name) === slug);
+      if (matched) return matched;
+    }
+
+    // 2. Fallback: match by ID
+    const cleanId = extractId(slug);
+    const storiesRes = await fetch('https://apifinal.technorapide.com/api/customer-stories', { cache: 'no-store' });
+    if (storiesRes.ok) {
+      const stories = await storiesRes.json();
+      return stories.find((s: any) => s._id === cleanId) || null;
+    }
+    return null;
   } catch (e) {
     return null;
   }

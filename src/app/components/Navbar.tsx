@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 import GoogleTranslate from './GoogleTranslate';
 import ContactOverlay from './ContactOverlay';
+import { createSlug } from '../utils/slug';
 
 interface Category {
   _id: string;
@@ -367,7 +368,7 @@ const Navbar = () => {
                         <ul className={styles.megaMenuList}>
                           {activeServices.map((service) => (
                             <li key={service._id} className={styles.megaMenuItem}>
-                              <Link href={`/services/${service._id}`} onClick={() => {setIsMegaMenuOpen(false); setIsMobileMenuOpen(false);}}>
+                              <Link href={`/services/${createSlug(service.name)}`} onClick={() => {setIsMegaMenuOpen(false); setIsMobileMenuOpen(false);}}>
                                 {service.name}
                               </Link>
                               <span className={styles.itemArrow}>→</span>
@@ -399,7 +400,7 @@ const Navbar = () => {
                     <ul className={styles.megaMenuList} style={{ maxHeight: '60vh', overflowY: 'auto' }}>
                       {allServices.map((service) => (
                         <li key={service._id} className={styles.megaMenuItem}>
-                          <Link href={`/services/${service._id}`} onClick={() => {setIsServicesDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                          <Link href={`/services/${createSlug(service.name)}`} onClick={() => {setIsServicesDropdownOpen(false); setIsMobileMenuOpen(false);}}>
                             {service.name}
                           </Link>
                           <span className={styles.itemArrow}>→</span>
@@ -431,7 +432,7 @@ const Navbar = () => {
                     <ul className={styles.megaMenuList} style={{ maxHeight: '60vh', overflowY: 'auto' }}>
                       {careers.map((career) => (
                         <li key={career._id} className={styles.megaMenuItem}>
-                          <Link href={`/career-options/${career._id}`} onClick={() => {setIsCareersDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                          <Link href={`/career-options/${createSlug(career.title)}`} onClick={() => {setIsCareersDropdownOpen(false); setIsMobileMenuOpen(false);}}>
                             {career.title}
                           </Link>
                           <span className={styles.itemArrow}>→</span>

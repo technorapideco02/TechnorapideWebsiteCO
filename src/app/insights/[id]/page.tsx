@@ -1,25 +1,30 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '../../components/Navbar';
 import styles from '../../page.module.css';
+import { createSlug, extractId } from '../../utils/slug';
 
-async function getInsight(id: string | undefined) {
-  if (!id) return null;
-  const cleanId = id.trim();
+async function getInsight(slug: string | undefined) {
+  if (!slug) return null;
+  
   try {
+    // 1. Try matching by slug from all insights
+    const allRes = await fetch('https://apifinal.technorapide.com/api/insights', { cache: 'no-store' });
+    if (allRes.ok) {
+      const allInsights = await allRes.json();
+      const matched = allInsights.find((i: any) => createSlug(i.title) === slug);
+      if (matched) return matched;
+    }
+
+    // 2. Fallback: match by ID
+    const cleanId = extractId(slug);
     const res = await fetch(`https://apifinal.technorapide.com/api/insights/${cleanId}`, { cache: 'no-store' });
     if (res.ok) {
       return res.json();
     }
-    
-    // Fallback: fetch all and find
-    const allRes = await fetch('https://apifinal.technorapide.com/api/insights', { cache: 'no-store' });
-    if (!allRes.ok) return null;
-    const allInsights = await allRes.json();
-    return allInsights.find((i: any) => i._id === cleanId) || null;
+    return null;
   } catch (e) {
-    console.error(`Error fetching insight ${cleanId}:`, e);
+    console.error(`Error fetching insight ${slug}:`, e);
     return null;
   }
 }
@@ -57,7 +62,6 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
   if (!insight) {
     return (
       <div className={styles.main}>
-        <Navbar />
         <div className={styles.container} style={{ padding: '200px 20px', textAlign: 'center' }}>
           <h1 style={{ color: '#fff' }}>Insight not found</h1>
           <Link href="/" className={styles.homeLink} style={{ color: '#0070ad', marginTop: '20px', display: 'inline-block' }}>Go back home</Link>
@@ -68,7 +72,6 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
 
   return (
     <div className={styles.main} style={{ backgroundColor: '#000' }}>
-      <Navbar />
       
       {/* Insight Hero: Fixed Background */}
       <div className={styles.blogHero}>
@@ -209,13 +212,13 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
             <div className={styles.compactBlogGrid}>
               {allInsights.filter((i: any) => i._id !== insight._id).slice(0, 3).map((i: any) => (
                 <div key={i._id} className={styles.compactBlogCard}>
-                  <Link href={`/insights/${i._id}`} className={styles.compactImageWrapper}>
+                  <Link href={`/insights/${createSlug(i.title)}`} className={styles.compactImageWrapper}>
                     <img src={i.image} alt={i.title} className={styles.compactImage} />
                   </Link>
                   <div className={styles.compactContent}>
                     <p className={styles.blogLabel} style={{ color: '#0070ad', fontSize: '0.7rem', marginBottom: '10px' }}>Insights</p>
                     <h3 className={styles.compactTitle} style={{ color: '#000' }}>{i.title}</h3>
-                    <Link href={`/insights/${i._id}`} className={styles.compactLink}>
+                    <Link href={`/insights/${createSlug(i.title)}`} className={styles.compactLink}>
                       Read Detail →
                     </Link>
                   </div>

@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import styles from '../page.module.css';
+import { createSlug } from '../utils/slug';
 
 interface CustomerStory {
   _id: string;
@@ -210,7 +211,7 @@ const CustomerStories = () => {
                   {story.message}
                 </p>
                 <Link 
-                  href={`/customer-stories/${story._id}`} 
+                  href={`/customer-stories/${createSlug(story.name)}`} 
                   style={{ marginTop: '10px', display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}
                 >
                   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

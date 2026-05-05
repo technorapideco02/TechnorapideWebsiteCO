@@ -3,6 +3,7 @@ import { Metadata } from 'next';
 import styles from '../page.module.css';
 import heroStyles from '../components/Hero.module.css';
 import Link from 'next/link';
+import { createSlug } from '../utils/slug';
 
 export const metadata: Metadata = {
   title: 'Company Insights & Strategic Thinking | Technorapide',
@@ -49,8 +50,8 @@ export default async function InsightsListingPage() {
             <h1 className={heroStyles.title} style={{ fontSize: '5rem', lineHeight: '1', letterSpacing: '-3px' }}>
               {heroInsight.title}
             </h1>
-            <Link href={`/insights/${heroInsight._id}`} style={{ marginTop: '40px', display: 'inline-block', padding: '15px 40px', border: '1px solid #fff', color: '#fff', textDecoration: 'none', fontWeight: 700, letterSpacing: '2px' }}>
-              EXPLORE FEATURED INSIGHT
+            <Link href={`/insights/${createSlug(heroInsight.title)}`} style={{ marginTop: '40px', display: 'inline-block', padding: '15px 40px', border: '1px solid #fff', color: '#fff', textDecoration: 'none', fontWeight: 700, letterSpacing: '2px' }}>
+              READ FEATURED PERSPECTIVE
             </Link>
           </div>
         </section>
@@ -66,7 +67,7 @@ export default async function InsightsListingPage() {
         boxShadow: '0 -40px 100px rgba(0,0,0,0.8)'
       }}>
         <div style={{ marginBottom: '80px' }}>
-          <p className={styles.capLabel} style={{ letterSpacing: '4px', color: 'var(--primary)' }}>PERSPECTIVES</p>
+          <p className={styles.capLabel} style={{ letterSpacing: '4px', color: 'var(--primary)' }}>DEEP DIVES</p>
           <h2 style={{ fontSize: '3rem', fontWeight: 900, color: '#fff', letterSpacing: '-2px', marginTop: '10px' }}>
             Insights Archive
           </h2>
@@ -79,7 +80,7 @@ export default async function InsightsListingPage() {
           width: '100%'
         }}>
           {remainingInsights.map((insight: any) => (
-            <Link key={insight._id} href={`/insights/${insight._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link key={insight._id} href={`/insights/${createSlug(insight.title)}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <div style={{ 
                 backgroundColor: '#0a0a0a', 
                 border: '1px solid rgba(255,255,255,0.1)', 
@@ -93,7 +94,7 @@ export default async function InsightsListingPage() {
                 </div>
                 <div style={{ padding: '30px' }}>
                   <p style={{ color: 'var(--primary)', fontSize: '0.8rem', fontWeight: 800, marginBottom: '15px', letterSpacing: '2px' }}>
-                    STRATEGIC INSIGHT
+                    {new Date(insight.createdAt).toLocaleDateString('en-US', { month: 'long', year: 'numeric' }).toUpperCase()}
                   </p>
                   <h2 style={{ fontSize: '1.6rem', fontWeight: 800, color: '#fff', marginBottom: '20px', lineHeight: '1.2' }}>{insight.title}</h2>
                   <p style={{ fontSize: '1rem', color: 'rgba(255,255,255,0.7)', lineHeight: '1.6', textAlign: 'justify', margin: 0 }}>

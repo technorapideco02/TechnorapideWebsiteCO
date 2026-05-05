@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import styles from '../page.module.css';
+import { createSlug } from '../utils/slug';
 
 interface Industry {
   _id: string;
@@ -94,7 +95,7 @@ const IndustrySection = () => {
           `}} />
           {industries.map((industry) => (
             <Link 
-              href={`/industries/${industry._id}`} 
+              href={`/industries/${createSlug(industry.name)}`} 
               key={industry._id} 
               className={`${styles.insightCardWhite} industry-card-custom`}
             >

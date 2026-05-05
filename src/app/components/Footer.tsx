@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import { createSlug } from '../utils/slug';
 
 async function getData(url: string) {
   try {
@@ -61,7 +62,7 @@ export default async function Footer() {
             <ul className={styles.list}>
               {services.slice(0, 8).map((ser: any) => (
                 <li key={ser._id}>
-                  <Link href={`/services/${ser._id}`}>{ser.name}</Link>
+                  <Link href={`/services/${createSlug(ser.name)}`}>{ser.name}</Link>
                 </li>
               ))}
             </ul>
@@ -73,7 +74,7 @@ export default async function Footer() {
             <ul className={styles.list}>
               {industries.slice(0, 6).map((ind: any) => (
                 <li key={ind._id}>
-                  <Link href={`/industries/${ind._id}`}>{ind.name}</Link>
+                  <Link href={`/industries/${createSlug(ind.name)}`}>{ind.name}</Link>
                 </li>
               ))}
             </ul>
