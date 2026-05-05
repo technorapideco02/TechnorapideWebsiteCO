@@ -50,7 +50,11 @@ export default async function Footer() {
             <ul className={styles.list}>
               {categories.map((cat: any) => (
                 <li key={cat._id}>
-                  <Link href={`/services?category=${cat._id}`}>{cat.name}</Link>
+                  {cat.name === 'Software Development' ? (
+                    <span style={{ cursor: 'default', color: 'rgba(255,255,255,0.7)' }}>{cat.name}</span>
+                  ) : (
+                    <Link href={`/services?category=${cat._id}`}>{cat.name}</Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -62,7 +66,11 @@ export default async function Footer() {
             <ul className={styles.list}>
               {services.slice(0, 8).map((ser: any) => (
                 <li key={ser._id}>
-                  <Link href={`/services/${createSlug(ser.name)}`}>{ser.name}</Link>
+                  {ser.name === 'Software Development' ? (
+                    <span style={{ cursor: 'default', color: 'rgba(255,255,255,0.7)' }}>{ser.name}</span>
+                  ) : (
+                    <Link href={`/services/${createSlug(ser.name)}`}>{ser.name}</Link>
+                  )}
                 </li>
               ))}
             </ul>
