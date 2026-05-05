@@ -1,6 +1,5 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Navbar from '../components/Navbar';
 import styles from '../page.module.css';
 import heroStyles from '../components/Hero.module.css';
 import Link from 'next/link';
@@ -27,7 +26,6 @@ export default async function InsightsListingPage() {
 
   return (
     <div className={styles.main} style={{ backgroundColor: '#000', minHeight: '100vh' }}>
-      <Navbar />
       
       {/* FIXED FEATURED HERO */}
       {heroInsight && (

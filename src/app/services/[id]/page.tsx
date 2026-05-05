@@ -1,6 +1,5 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Navbar from '../../components/Navbar';
 import PricingSection from '../../components/PricingSection';
 import HtmlRenderer from '../../components/HtmlRenderer';
 import styles from '../../page.module.css';
@@ -45,7 +44,6 @@ export default async function ServiceDetails({ params }: { params: Promise<{ id:
   if (!service) {
     return (
       <div className={styles.main}>
-        <Navbar />
         <div className={styles.container} style={{ padding: '200px 20px', textAlign: 'center' }}>
           <h1 style={{ color: '#000' }}>Service not found</h1>
         </div>
@@ -55,7 +53,6 @@ export default async function ServiceDetails({ params }: { params: Promise<{ id:
 
   return (
     <div className={styles.main}>
-      <Navbar />
       
       {/* 1. FIXED HERO (RE-DESIGNED) */}
       <section className={heroStyles.hero}>

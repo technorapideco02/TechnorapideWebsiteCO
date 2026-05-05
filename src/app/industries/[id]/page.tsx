@@ -1,6 +1,5 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Navbar from '../../components/Navbar';
 import HtmlRenderer from '../../components/HtmlRenderer';
 import styles from '../../page.module.css';
 import heroStyles from '../../components/Hero.module.css';
@@ -43,7 +42,6 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
   if (!industry) {
     return (
       <div className={styles.main}>
-        <Navbar />
         <div className={styles.container} style={{ padding: '200px 20px', textAlign: 'center' }}>
           <h1 style={{ color: '#000' }}>Industry not found</h1>
         </div>
@@ -53,7 +51,6 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
 
   return (
     <div className={styles.main}>
-      <Navbar />
       
       {/* HERO SECTION */}
       <section className={heroStyles.hero}>
@@ -131,11 +128,6 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
           </section>
         )}
 
-        <footer className={styles.footer} style={{ backgroundColor: '#000', color: '#fff' }}>
-          <div className={styles.footerContent}>
-            <p>&copy; 2026 Technorapide. All rights reserved.</p>
-          </div>
-        </footer>
       </div>
     </div>
   );

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import Navbar from '../../components/Navbar';
 import styles from '../../page.module.css';
 
 async function getBlog(id: string | undefined) {
@@ -58,7 +57,6 @@ export default async function BlogDetails({ params }: { params: Promise<{ id: st
   if (!blog) {
     return (
       <div className={styles.main}>
-        <Navbar />
         <div className={styles.container} style={{ padding: '200px 20px', textAlign: 'center' }}>
           <h1>Blog not found</h1>
         </div>
@@ -68,7 +66,6 @@ export default async function BlogDetails({ params }: { params: Promise<{ id: st
 
   return (
     <div className={styles.main}>
-      <Navbar />
       
       {/* Blog Hero: Fixed Background */}
       <div className={styles.blogHero}>
@@ -141,9 +138,6 @@ export default async function BlogDetails({ params }: { params: Promise<{ id: st
           </div>
         </section>
 
-        <footer className={styles.footer}>
-          <p>&copy; 2026 Technorapide. All rights reserved.</p>
-        </footer>
       </div>
     </div>
   );

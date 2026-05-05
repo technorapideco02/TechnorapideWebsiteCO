@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../../components/Navbar';
 import CustomerStories from '../../components/CustomerStories';
 import styles from '../../page.module.css';
 
@@ -21,7 +20,6 @@ export default async function CustomerStoryDetail({ params }: { params: Promise<
   if (!story) {
     return (
       <div className={styles.main}>
-        <Navbar />
         <div className={styles.container} style={{ padding: '200px 20px', textAlign: 'center' }}>
           <h1>Story not found</h1>
         </div>
@@ -31,7 +29,6 @@ export default async function CustomerStoryDetail({ params }: { params: Promise<
 
   return (
     <div className={styles.main}>
-      <Navbar />
       
       {/* Customer Success Hero: Left Dark Fade */}
       <div className={styles.blogHero}>
