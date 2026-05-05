@@ -1,6 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+import PricingSection from '../../components/PricingSection';
+import HtmlRenderer from '../../components/HtmlRenderer';
 import styles from '../../page.module.css';
 import { createSlug, extractId } from '../../utils/slug';
 
@@ -86,7 +88,7 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
           <p className={styles.blogLabel}>Company Insights</p>
           <h1 className={styles.blogHeroTitle}>{insight.title}</h1>
           <p className={styles.blogHeroDate}>
-            Published on {new Date(insight.createdAt).toLocaleDateString()}
+            Published on {new Date(insight.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
           </p>
         </div>
       </div>
@@ -94,19 +96,25 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
       {/* Scrollable Content */}
       <div className={styles.blogScrollContent}>
         
-        {/* Black Section: Main Description & Extra Content */}
-        <section className={styles.blogBlackSection}>
-          <div className={styles.blogDetailsContainer}>
-            {/* Main Long Description */}
-            <div 
-              className={styles.blogContentArea}
-              dangerouslySetInnerHTML={{ __html: insight.longDescription }}
-            />
+        {/* LONG DESCRIPTION (HTML/CSS/JS RENDERING - FULL ISOLATION) */}
+        <section style={{ padding: '0', backgroundColor: '#fff' }}>
+          <div className={styles.fullWidthContainer} style={{ padding: 0 }}>
+            {insight.longDescription ? (
+              <HtmlRenderer html={insight.longDescription} />
+            ) : (
+              <div style={{ padding: '120px 20px', maxWidth: '1200px', margin: '0 auto' }}>
+                <div style={{ fontSize: '1.4rem', color: '#444', lineHeight: '1.8', whiteSpace: 'pre-wrap' }}>
+                  {insight.description}
+                </div>
+              </div>
+            )}
+          </div>
+        </section>
 
-            {/* Dynamic Content List */}
-            {/* ─── NEW CAPGEMINI-STYLE CONTENT LIST ─── */}
-            {insight.contentList && insight.contentList.length > 0 && (
-              <div className={styles.capgeminiContainer} style={{ marginTop: '80px', width: '100%', padding: '0 20px' }}>
+        {/* Dynamic Content List (Editorial Blocks) */}
+        {insight.contentList && insight.contentList.length > 0 && (
+          <section className={styles.blogBlackSection} style={{ padding: '80px 0' }}>
+            <div className={styles.capgeminiContainer}>
                 {/* Block 1: Wide Image + Overlapping Text (Top) */}
                 <div className={styles.capBlockOverlapTop}>
                   <div className={styles.capImageWrapperWide}>
@@ -194,10 +202,9 @@ export default async function InsightDetails({ params }: { params: Promise<{ id:
                     ))}
                   </div>
                 )}
-              </div>
-            )}
-          </div>
-        </section>
+            </div>
+          </section>
+        )}
 
         {/* Unified Bottom Section: More Insights (Matches Blogs Detail Page Style) */}
         <section className={styles.blogWhiteSection} style={{ backgroundColor: '#fff' }}>

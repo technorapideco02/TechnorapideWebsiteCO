@@ -993,14 +993,19 @@
 
 @media (max-width: 768px) {
   .blogHero {
-    padding: 0 15px;
+    padding: 0;
   }
   .blogHeroTitle {
     margin-bottom: 20px;
   }
   .blogHeroDate {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
   }
+
+  .blogDetailsContainer, .capgeminiContainer {
+    padding: 0 !important;
+  }
+
   .blogBlackSection {
     padding: 60px 0;
   }
@@ -1064,9 +1069,10 @@
 }
 
 .blogDetailsContainer {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 0 20px;
+  width: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .blogContentArea {
@@ -1421,8 +1427,9 @@
 /* BLOG SECTION (NEWS) REDESIGN */
 .capgeminiContainer {
   width: 100%;
-  max-width: 1300px;
-  margin: 0 auto;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 .capTitleLarge {

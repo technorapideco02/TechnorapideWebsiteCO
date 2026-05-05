@@ -84,7 +84,7 @@ export default async function BlogDetails({ params }: { params: Promise<{ id: st
         <div className={styles.blogHeroContent}>
           <h1 className={styles.blogHeroTitle}>{blog.title}</h1>
           <p className={styles.blogHeroDate}>
-            Published on {new Date(blog.createdAt).toLocaleDateString()}
+            Published on {new Date(blog.createdAt).toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })}
           </p>
         </div>
       </div>
