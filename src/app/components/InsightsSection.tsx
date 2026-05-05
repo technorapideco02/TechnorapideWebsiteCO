@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Link from 'next/link';
 import styles from '../page.module.css';
 
@@ -17,11 +17,36 @@ interface InsightsSectionProps {
 
 const InsightsSection: React.FC<InsightsSectionProps> = ({ insights }) => {
   const scrollRef = useRef<HTMLDivElement>(null);
+  const [greeting, setGreeting] = useState("Good Day");
+  const [currentIndex, setCurrentIndex] = useState(1);
+
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour >= 5 && hour < 12) {
+      setGreeting("Good Morning");
+    } else if (hour >= 12 && hour < 17) {
+      setGreeting("Good Afternoon");
+    } else {
+      setGreeting("Good Evening");
+    }
+  }, []);
+
+  const handleScroll = () => {
+    if (scrollRef.current) {
+      const { scrollLeft, offsetWidth } = scrollRef.current;
+      const index = Math.round(scrollLeft / offsetWidth) + 1;
+      if (index !== currentIndex && index > 0 && index <= insights.length) {
+        setCurrentIndex(index);
+      }
+    }
+  };
 
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = current.offsetWidth / 3 * 2;
+      const isMobile = window.innerWidth <= 1024;
+      const scrollAmount = isMobile ? current.offsetWidth : (current.offsetWidth / 3); 
+      
       if (direction === 'left') {
         current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
       } else {
@@ -33,7 +58,12 @@ const InsightsSection: React.FC<InsightsSectionProps> = ({ insights }) => {
   return (
     <section id="insights" className={styles.insightsSection}>
       <div className={styles.insightsHeader}>
-        <h2 className={styles.insightsMainTitle}>Cutting edge solutions to power up your business</h2>
+        <div className={styles.blogTitleContainer}>
+          <h2 className={styles.insightsMainTitle}>Cutting edge solutions to power up your business.</h2>
+          <div className={styles.blogPagination}>
+            {currentIndex.toString().padStart(2, '0')} — {insights.length.toString().padStart(2, '0')}
+          </div>
+        </div>
         <div className={styles.insightsNav}>
           <button onClick={() => scroll('left')} className={styles.navBtn} aria-label="Previous">
             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -50,9 +80,28 @@ const InsightsSection: React.FC<InsightsSectionProps> = ({ insights }) => {
         </div>
       </div>
       
-      <div className={styles.insightsGrid} ref={scrollRef}>
+      <div className={styles.insightsGrid} ref={scrollRef} onScroll={handleScroll}>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (min-width: 1024px) {
+            .insight-card-custom {
+              flex: 0 0 calc(33.333% - 20px) !important;
+              margin-right: 30px !important;
+              flex-shrink: 0 !important;
+            }
+            .insight-grid-custom {
+              justify-content: ${insights.length <= 3 ? 'center' : 'flex-start'} !important;
+            }
+          }
+          @media (max-width: 1023px) {
+            .insight-card-custom {
+              flex: 0 0 85vw !important;
+              margin-right: 15px !important;
+              flex-shrink: 0 !important;
+            }
+          }
+        `}} />
         {insights.map((insight) => (
-          <div key={insight._id} className={styles.insightCard}>
+          <div key={insight._id} className={`${styles.insightCard} insight-card-custom`}>
             <Link href={`/insights/${insight._id}`} className={styles.insightImageWrapper}>
               <img src={insight.image} alt={insight.title} className={styles.insightImage} />
             </Link>

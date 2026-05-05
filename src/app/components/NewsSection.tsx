@@ -55,7 +55,9 @@ const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
   const scroll = (direction: 'left' | 'right') => {
     if (scrollRef.current) {
       const { current } = scrollRef;
-      const scrollAmount = current.offsetWidth / 3 * 2; 
+      const isMobile = window.innerWidth <= 1024;
+      const scrollAmount = isMobile ? current.offsetWidth : (current.offsetWidth / 3); 
+      
       if (direction === 'left') {
         current.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
       } else {
@@ -91,8 +93,27 @@ const NewsSection: React.FC<NewsSectionProps> = ({ blogs }) => {
       </div>
       
       <div className={styles.blogGrid} ref={scrollRef} onScroll={handleScroll}>
+        <style dangerouslySetInnerHTML={{ __html: `
+          @media (min-width: 1024px) {
+            .blog-card-custom {
+              flex: 0 0 calc(33.333% - 20px) !important;
+              margin-right: 30px !important;
+              flex-shrink: 0 !important;
+            }
+            .blog-grid-custom {
+              justify-content: ${blogs.length <= 3 ? 'center' : 'flex-start'} !important;
+            }
+          }
+          @media (max-width: 1023px) {
+            .blog-card-custom {
+              flex: 0 0 85vw !important;
+              margin-right: 15px !important;
+              flex-shrink: 0 !important;
+            }
+          }
+        `}} />
         {blogs.map((blog) => (
-          <div key={blog._id} className={styles.blogCard}>
+          <div key={blog._id} className={`${styles.blogCard} blog-card-custom`}>
             <Link href={`/news/${slugify(blog.title)}--${blog._id}`} className={styles.blogImageWrapper}>
               <img src={blog.image} alt={blog.title} className={styles.blogImage} />
             </Link>

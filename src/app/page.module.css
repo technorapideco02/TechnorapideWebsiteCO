@@ -196,7 +196,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 0 20px;
+  padding: 0 5%;
   margin-bottom: 40px;
 }
 
@@ -215,11 +215,15 @@
   gap: 15px;
 }
 
+.insightsSection .blogPagination {
+  color: rgba(255, 255, 255, 0.7);
+}
+
 .insightsGrid {
   display: flex;
   gap: 0;
   overflow-x: auto;
-  padding: 0 20px;
+  padding: 0 5%;
   scroll-behavior: smooth;
   scrollbar-width: none;
   /* Hide scrollbar for Firefox */
@@ -385,8 +389,9 @@
   }
 
   .insightsGrid {
-    padding: 0 20px;
+    padding: 0 25px;
     gap: 15px;
+    scroll-snap-type: x mandatory;
   }
 
   .insightCard, .insightCardWhite {
@@ -1107,7 +1112,7 @@
   /* Tighten headers */
   .newsHeader,
   .insightsHeader {
-    padding: 0 10px !important;
+    padding: 0 25px !important;
     margin-bottom: 30px !important;
   }
 
@@ -1321,7 +1326,7 @@
     align-items: flex-end; /* Align title and nav better */
     text-align: left;
     margin-bottom: 30px;
-    padding: 0 20px; /* Match grid padding */
+    padding: 0 25px; /* Improved mobile margin */
   }
 
   .blogMainTitle {
@@ -1342,7 +1347,7 @@
   }
 
   .blogGrid {
-    padding: 0 20px;
+    padding: 0 25px;
     gap: 10px;
     /* Tighter gap */
     scroll-snap-type: x mandatory;
@@ -1377,5 +1382,37 @@
   .blogReadMore {
     padding: 10px 0;
     font-size: 0.85rem;
+  }
+}
+
+.mobileOnly {
+  display: block;
+}
+
+.desktopOnly {
+  display: flex;
+}
+
+.desktopCenter {
+  justify-content: center;
+}
+
+.desktopHidden {
+  display: flex;
+}
+
+@media (max-width: 1024px) {
+  .desktopOnly {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1025px) {
+  .mobileOnly {
+    display: none !important;
+  }
+  
+  .desktopHidden {
+    display: none !important;
   }
 }
