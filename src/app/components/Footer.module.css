@@ -40,7 +40,8 @@
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.8;
   margin-bottom: 40px;
-  text-align: justify;
+  text-align: left;
+  overflow-wrap: break-word;
 }
 
 .socials {
@@ -120,6 +121,7 @@
   letter-spacing: -1px;
   transition: color 0.3s ease;
   display: block;
+  word-break: break-all;
 }
 
 .contactNumber:hover {
@@ -158,18 +160,24 @@
 @media (max-width: 1024px) {
   .grid {
     grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 40px;
+  }
+  .container {
+    padding: 0 30px;
   }
 }
 
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
-    gap: 50px;
+    gap: 40px;
   }
   .bottom {
     flex-direction: column;
     gap: 20px;
     text-align: center;
+  }
+  .contactNumber {
+    font-size: 1.3rem;
   }
 }

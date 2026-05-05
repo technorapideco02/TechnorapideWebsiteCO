@@ -60,7 +60,7 @@ const CustomerStories = () => {
     >
       <div className={styles.fullWidthContainer}>
         {/* Header Section */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '0 5%', marginBottom: '40px' }}>
+        <div className={styles.storiesHeader} style={{ marginBottom: '40px' }}>
           <div>
             <h2 style={{ fontSize: 'clamp(1.8rem, 8vw, 3rem)', fontWeight: 500, color: '#fff', margin: '0 0 10px 0', fontFamily: "'Outfit', sans-serif" }}>Customer Stories</h2>
             {/* Pagination: Hidden on Desktop */}
@@ -71,11 +71,10 @@ const CustomerStories = () => {
           
           {/* Arrows: Shown on mobile if > 1, shown on desktop if > 3 */}
           <div 
-            className={stories.length <= 3 ? styles.desktopHidden : ''} 
+            className={`${stories.length <= 3 ? styles.desktopHidden : ''} ${styles.storiesNav}`}
             style={{ 
               display: stories.length > 1 ? 'flex' : 'none', 
-              gap: '15px', 
-              marginTop: '10px' 
+              gap: '15px'
             }}
           >
             <button onClick={() => scroll('left')} style={{ background: 'none', border: 'none', color: '#666', cursor: 'pointer', padding: '5px' }} aria-label="Previous">
