@@ -47,7 +47,7 @@ export default async function NewsListingPage() {
             <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px' }}>
               FEATURED STORY
             </p>
-            <h1 className={heroStyles.title} style={{ fontSize: '5rem', lineHeight: '1', letterSpacing: '-3px' }}>
+            <h1 className={heroStyles.title}>
               {heroBlog.title}
             </h1>
             <Link href={`/news/${createSlug(heroBlog.title)}`} style={{ marginTop: '40px', display: 'inline-block', padding: '15px 40px', border: '1px solid #fff', color: '#fff', textDecoration: 'none', fontWeight: 700, letterSpacing: '2px' }}>

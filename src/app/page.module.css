@@ -993,11 +993,10 @@
 
 @media (max-width: 768px) {
   .blogHero {
-    height: 70vh;
     padding: 0 15px;
   }
   .blogHeroTitle {
-    font-size: 2.2rem;
+    margin-bottom: 20px;
   }
   .blogHeroDate {
     font-size: 0.9rem;

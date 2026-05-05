@@ -47,7 +47,7 @@ export default async function InsightsListingPage() {
             <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px' }}>
               FEATURED PERSPECTIVE
             </p>
-            <h1 className={heroStyles.title} style={{ fontSize: '5rem', lineHeight: '1', letterSpacing: '-3px' }}>
+            <h1 className={heroStyles.title}>
               {heroInsight.title}
             </h1>
             <Link href={`/insights/${createSlug(heroInsight.title)}`} style={{ marginTop: '40px', display: 'inline-block', padding: '15px 40px', border: '1px solid #fff', color: '#fff', textDecoration: 'none', fontWeight: 700, letterSpacing: '2px' }}>
