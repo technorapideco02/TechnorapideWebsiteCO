@@ -4,26 +4,34 @@ import { createSlug } from './utils/slug';
 const BASE_URL = 'https://technorapide.com';
 
 async function getServices() {
-  const res = await fetch('https://apifinal.technorapide.com/api/services', { cache: 'no-store' });
-  return res.ok ? res.json() : [];
+  try {
+    const res = await fetch('https://apifinal.technorapide.com/api/services', { cache: 'no-store' });
+    return res.ok ? res.json() : [];
+  } catch (e) {
+    return [];
+  }
 }
 
-async function getIndustries() {
-  const res = await fetch('https://apifinal.technorapide.com/api/industries', { cache: 'no-store' });
-  return res.ok ? res.json() : [];
+async function getCareers() {
+  try {
+    const res = await fetch('https://apifinal.technorapide.com/api/careers', { cache: 'no-store' });
+    return res.ok ? res.json() : [];
+  } catch (e) {
+    return [];
+  }
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // 1. Static Routes (Cleaned to remove news, blogs, insights)
+  // 1. Static Routes (Home, Who We Are, What We Do, Legal, Contact)
   const staticRoutes = [
-    '',
-    '/services',
-    '/career-options',
-    '/request-services',
-    '/careers',
-    '/team',
-    '/contact-us',
-    '/about-us',
+    '',               // Home
+    '/services',      // What We Do / Services Index
+    '/about-us',      // Who We Are
+    '/team',          // Who We Are - Team
+    '/clients',       // Who We Are - Clients
+    '/terms',         // Terms
+    '/privacy',       // Privacy
+    '/contact-us',    // Contact Us
   ].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date(),
@@ -31,10 +39,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  // 2. Dynamic Routes (Services and Industries only)
-  const [services, industries] = await Promise.all([
+  // 2. Dynamic Routes (Services and Careers)
+  const [services, careers] = await Promise.all([
     getServices(),
-    getIndustries(),
+    getCareers(),
   ]);
 
   const serviceRoutes = services.map((s: any) => ({
@@ -44,16 +52,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const industryRoutes = industries.map((i: any) => ({
-    url: `${BASE_URL}/industries/${createSlug(i.name)}`,
-    lastModified: new Date(i.updatedAt || new Date()),
+  const careerRoutes = careers.map((c: any) => ({
+    url: `${BASE_URL}/career-options/${createSlug(c.title)}`,
+    lastModified: new Date(c.updatedAt || new Date()),
     changeFrequency: 'weekly' as const,
-    priority: 0.7,
+    priority: 0.6,
   }));
 
   return [
     ...staticRoutes,
     ...serviceRoutes,
-    ...industryRoutes,
+    ...careerRoutes,
   ];
 }
