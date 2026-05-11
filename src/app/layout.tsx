@@ -5,18 +5,31 @@ import Footer from "./components/Footer";
 import ScrollObserver from "./components/ScrollObserver";
 import NextTopLoader from 'nextjs-toploader';
 import ContactWidget from "./components/ContactWidget";
+import JsonLd from "./components/JsonLd";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://technorapide.com'),
   title: {
-    default: "Technorapide | Digital Innovation & Solutions",
-    template: "%s | Technorapide"
+    default: "Best Website Development Company in Barasat, Kolkata & India | Technorapide",
+    template: "%s | Technorapide - Best Web Dev Company"
   },
-  description: "Technorapide provides cutting-edge digital solutions for startups and enterprises globally. Specialized in AI, Cloud, and Custom Software.",
-  keywords: ["Digital Innovation", "Software Solutions", "AI Automation", "Enterprise Architecture", "Technorapide"],
+  description: "Technorapide is the Best Website Development Company in Barasat, Kolkata, and India. We provide top-tier AI, Cloud, and Custom Software solutions for global enterprises.",
+  keywords: [
+    "Best Website Development Company in Barasat",
+    "Best Website Development Company in Kolkata",
+    "Best Website Development Company in India",
+    "Best web dev Company in Barasat",
+    "Best web dev Company in Kolkata",
+    "Best web dev Company in India",
+    "Digital Innovation",
+    "Software Solutions",
+    "AI Automation",
+    "Enterprise Architecture",
+    "Technorapide"
+  ],
   openGraph: {
-    title: "Technorapide | Digital Innovation & Solutions",
-    description: "Empowering startups and enterprises with cutting-edge technology.",
+    title: "Best Website Development Company in Barasat, Kolkata & India | Technorapide",
+    description: "Empowering startups and enterprises with cutting-edge technology. Ranked as the Best Web Development Company in Barasat and Kolkata.",
     url: 'https://technorapide.com',
     siteName: 'Technorapide',
     images: [
@@ -31,8 +44,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Technorapide | Digital Innovation & Solutions',
-    description: 'Empowering startups and enterprises with cutting-edge technology.',
+    title: 'Best Website Development Company in Barasat & Kolkata | Technorapide',
+    description: 'Looking for the best web dev company? Technorapide offers world-class solutions in Barasat, Kolkata, and across India.',
     images: ['/og-image.png'],
   },
   icons: {
@@ -88,6 +101,7 @@ export default function RootLayout({
         />
         <ScrollObserver />
         <Navbar />
+        <JsonLd />
         {children}
         <Footer />
         <ContactWidget />

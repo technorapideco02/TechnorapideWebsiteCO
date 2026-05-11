@@ -13,28 +13,17 @@ async function getIndustries() {
   return res.ok ? res.json() : [];
 }
 
-async function getBlogs() {
-  const res = await fetch('https://apifinal.technorapide.com/api/blogs', { cache: 'no-store' });
-  return res.ok ? res.json() : [];
-}
-
-async function getInsights() {
-  const res = await fetch('https://apifinal.technorapide.com/api/insights', { cache: 'no-store' });
-  return res.ok ? res.json() : [];
-}
-
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // 1. Static Routes
+  // 1. Static Routes (Cleaned to remove news, blogs, insights)
   const staticRoutes = [
     '',
-    '/news',
-    '/insights',
     '/services',
     '/career-options',
     '/request-services',
     '/careers',
     '/team',
     '/contact-us',
+    '/about-us',
   ].map((route) => ({
     url: `${BASE_URL}${route}`,
     lastModified: new Date(),
@@ -42,12 +31,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === '' ? 1 : 0.8,
   }));
 
-  // 2. Dynamic Routes
-  const [services, industries, blogs, insights] = await Promise.all([
+  // 2. Dynamic Routes (Services and Industries only)
+  const [services, industries] = await Promise.all([
     getServices(),
     getIndustries(),
-    getBlogs(),
-    getInsights(),
   ]);
 
   const serviceRoutes = services.map((s: any) => ({
@@ -64,25 +51,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  const newsRoutes = blogs.map((b: any) => ({
-    url: `${BASE_URL}/news/${createSlug(b.title)}`,
-    lastModified: new Date(b.updatedAt || new Date()),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }));
-
-  const insightRoutes = insights.map((i: any) => ({
-    url: `${BASE_URL}/insights/${createSlug(i.title)}`,
-    lastModified: new Date(i.updatedAt || new Date()),
-    changeFrequency: 'weekly' as const,
-    priority: 0.6,
-  }));
-
   return [
     ...staticRoutes,
     ...serviceRoutes,
     ...industryRoutes,
-    ...newsRoutes,
-    ...insightRoutes,
   ];
 }

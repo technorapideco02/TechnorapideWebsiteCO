@@ -42,9 +42,13 @@ const Hero = async () => {
 
       <div className={styles.content}>
         <div className={styles.textWrapper}>
-          {heroData?.heading && (
+          {heroData?.heading ? (
             <h1 className={styles.title}>
               {heroData.heading}
+            </h1>
+          ) : (
+            <h1 className={styles.title}>
+              Best Website Development Company in Barasat, Kolkata & India
             </h1>
           )}
           {heroData?.title && (

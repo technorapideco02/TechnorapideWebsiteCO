@@ -33,7 +33,7 @@ export default async function Footer() {
           <div className={styles.col}>
             <div className={styles.logo}>Technorapide</div>
             <p className={styles.description}>
-              Technorapide is a global technical powerhouse delivering high-density digital solutions. We specialize in adaptive enterprise architectures, custom technical blueprints, and immersive digital transformations that scale with absolute precision.
+              Technorapide is the <strong>Best Website Development Company in Barasat, Kolkata, and India</strong>. We deliver high-density digital solutions, specialized enterprise architectures, and immersive digital transformations that scale with absolute precision.
             </p>
             <div className={styles.socials}>
               {socialMedia.map((social: any) => (
