@@ -76,6 +76,36 @@ export default async function Home() {
       {/* Content that scrolls over the fixed hero */}
       <div className={styles.scrollContent}>
         
+        {/* SEO Keywords Section */}
+        <section className={styles.seoKeywordsSection} id="best-web-dev-company">
+          <div className={styles.capContainer}>
+            <div className={styles.seoGrid}>
+              <div className={styles.seoContent}>
+                <h2 className={styles.seoTitle}>
+                  Best Website Development Company in Barasat & Kolkata
+                </h2>
+                <p className={styles.seoDescription}>
+                  Technorapide is recognized as the <strong>Best Website Development Company in Barasat</strong> and the <strong>Best Website Development Company in Kolkata</strong>. We specialize in delivering high-performance, SEO-optimized, and visually stunning websites that help businesses dominate the digital landscape across India.
+                </p>
+                <div className={styles.seoHighlights}>
+                  <div className={styles.seoItem}>
+                    <h3>Best Web Dev Company in Barasat</h3>
+                    <p>Tailored solutions for local businesses in Barasat to grow online.</p>
+                  </div>
+                  <div className={styles.seoItem}>
+                    <h3>Best Web Dev Company in Kolkata</h3>
+                    <p>Innovative digital strategies for enterprises in the City of Joy.</p>
+                  </div>
+                  <div className={styles.seoItem}>
+                    <h3>Best Website Development Company in India</h3>
+                    <p>World-class engineering serving clients globally from India.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <NewsSection blogs={blogs} />
 
         {/* Polished Capgemini-Inspired Editorial Section (Blue & White) */}
