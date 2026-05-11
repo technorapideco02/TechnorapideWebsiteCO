@@ -22,29 +22,47 @@ async function getCareers() {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  // 1. Static Routes (Home, Who We Are, What We Do, Legal, Contact)
-  const staticRoutes = [
-    '',               // Home
-    '/services',      // What We Do / Services Index
-    '/about-us',      // Who We Are
-    '/team',          // Who We Are - Team
-    '/clients',       // Who We Are - Clients
-    '/terms',         // Terms
-    '/privacy',       // Privacy
-    '/contact-us',    // Contact Us
-  ].map((route) => ({
-    url: `${BASE_URL}${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'daily' as const,
-    priority: route === '' ? 1 : 0.8,
-  }));
-
-  // 2. Dynamic Routes (Services and Careers)
+  // Fetch dynamic data
   const [services, careers] = await Promise.all([
     getServices(),
     getCareers(),
   ]);
 
+  // 1. Home
+  const homeRoute = {
+    url: `${BASE_URL}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 1.0,
+  };
+
+  // 2. Who We Are
+  const whoWeAreRoutes = [
+    '/about-us',
+  ].map((route) => ({
+    url: `${BASE_URL}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.8,
+  }));
+
+  // 3. What We Do (Services Index)
+  const whatWeDoRoute = {
+    url: `${BASE_URL}/services`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.8,
+  };
+
+  // 4. Contact Us
+  const contactRoute = {
+    url: `${BASE_URL}/contact-us`,
+    lastModified: new Date(),
+    changeFrequency: 'daily' as const,
+    priority: 0.8,
+  };
+
+  // 5. Individual Services
   const serviceRoutes = services.map((s: any) => ({
     url: `${BASE_URL}/services/${createSlug(s.name || s.title)}`,
     lastModified: new Date(s.updatedAt || new Date()),
@@ -52,6 +70,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
+  // 6. Individual Careers
   const careerRoutes = careers.map((c: any) => ({
     url: `${BASE_URL}/career-options/${createSlug(c.title)}`,
     lastModified: new Date(c.updatedAt || new Date()),
@@ -59,9 +78,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   }));
 
+  // 7. Terms & Privacy
+  const legalRoutes = [
+    '/terms',
+    '/privacy',
+  ].map((route) => ({
+    url: `${BASE_URL}${route}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.3,
+  }));
+
+  // Return in the specific order requested
   return [
-    ...staticRoutes,
+    homeRoute,
+    ...whoWeAreRoutes,
+    whatWeDoRoute,
+    contactRoute,
     ...serviceRoutes,
     ...careerRoutes,
+    ...legalRoutes,
   ];
 }
