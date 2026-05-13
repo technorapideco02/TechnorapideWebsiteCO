@@ -11,28 +11,35 @@ import JsonLd from "./components/JsonLd";
 export const metadata: Metadata = {
   metadataBase: new URL('https://technorapide.com'),
   title: {
-    default: "Best Website Development Company in Barasat | Kolkata | India | Technorapide : Starting From 4999/- Only",
+    default: "Best Website Development Company in Barasat | Kolkata | India | Technorapide",
     template: "%s | Technorapide - Best Web Dev Company"
   },
-  description: "Technorapide is the Best Website Development Company in Barasat, Kolkata, and India. We provide top-tier AI, Cloud, and Custom Software solutions for global enterprises.",
+  description: "Technorapide is the Best Website Development Company in Barasat, Kolkata, and India. We provide expert web development, software solutions, and IT apps for businesses worldwide.",
   keywords: [
     "Best Website Development Company in Barasat",
     "Best Website Development Company in Kolkata",
     "Best Website Development Company in India",
-    "Best web dev Company in Barasat",
-    "Best web dev Company in Kolkata",
-    "Best web dev Company in India",
-    "Digital Innovation",
+    "Web Development",
+    "Software Development",
+    "Dev",
+    "Technique",
+    "Tech",
+    "IT App",
+    "Web",
+    "Business",
+    "Company",
+    "LSI Keywords",
     "Software Solutions",
+    "Digital Innovation",
     "AI Automation",
     "Enterprise Architecture",
     "Technorapide"
   ],
   openGraph: {
-    title: "Best Website Development Company in Barasat, Kolkata & India | Technorapide",
-    description: "Empowering startups and enterprises with cutting-edge technology. Ranked as the Best Web Development Company in Barasat and Kolkata.",
+    title: "Best Website Development Company in Barasat | Kolkata | India | Technorapide",
+    description: "Looking for the best web development company? Technorapide offers world-class software, web, and IT app solutions in Barasat, Kolkata, and India.",
     url: 'https://technorapide.com',
-    siteName: 'Best Website Development Company in Barasat, Kolkata & India | Technorapide',
+    siteName: 'Best Website Development Company in Barasat | Kolkata | India | Technorapide',
     images: [
       {
         url: '/og-image.png',
@@ -45,8 +52,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Best Website Development Company in Barasat & Kolkata | Technorapide',
-    description: 'Looking for the best web dev company? Technorapide offers world-class solutions in Barasat, Kolkata, and across India.',
+    title: 'Best Website Development Company in Barasat | Kolkata | India | Technorapide',
+    description: 'Expert web development, software, and IT app solutions. Top-rated company in Barasat, Kolkata, and India.',
     images: ['/og-image.png'],
   },
   icons: {

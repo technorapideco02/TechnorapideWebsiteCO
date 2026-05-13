@@ -46,7 +46,7 @@ const JsonLd = () => {
       "ratingValue": "4.9",
       "reviewCount": "120"
     },
-    "description": "Technorapide is the Best Website Development Company in Barasat, Kolkata, and India. Expert in AI, Cloud, and Software solutions."
+    "description": "Technorapide is the Best Website Development Company in Barasat, Kolkata, and India. Expert in web development, software solutions, and IT apps."
   };
 
   const organizationSchema = {
@@ -109,7 +109,7 @@ const JsonLd = () => {
           "@type": "Offer",
           "itemOffered": {
             "@type": "Service",
-            "name": "Best web dev Company in India"
+            "name": "Best Website Development Company in India"
           }
         }
       ]

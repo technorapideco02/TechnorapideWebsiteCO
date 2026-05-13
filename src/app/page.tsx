@@ -84,7 +84,7 @@ export default async function Home() {
             <div className={styles.seoGrid}>
               <div className={styles.seoContent}>
                 <h2 className={styles.seoTitle}>
-                  Best Website Development Company in Barasat & Kolkata
+                  Best Website Development Company in Barasat | Kolkata | India
                 </h2>
                 <p className={styles.seoDescription}>
                   Technorapide is recognized as the <strong>Best Website Development Company in Barasat</strong> and the <strong>Best Website Development Company in Kolkata</strong>. We specialize in delivering high-performance, SEO-optimized, and visually stunning websites that help businesses dominate the digital landscape across India.

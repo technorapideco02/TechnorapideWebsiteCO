@@ -48,7 +48,7 @@ const Hero = async () => {
             </h1>
           ) : (
             <h1 className={styles.title}>
-              Best Website Development Company in Barasat, Kolkata & India
+              Best Website Development Company in Barasat | Kolkata | India | Technorapide
             </h1>
           )}
           {heroData?.title && (
