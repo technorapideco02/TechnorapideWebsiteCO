@@ -162,7 +162,7 @@ const CustomerStories = () => {
               <div style={{ position: 'absolute', inset: 0, zIndex: 1 }}>
                 <img 
                   src={story.imageLink} 
-                  alt={story.name} 
+                  alt={`Success story from ${story.name} - ${story.role}`} 
                   style={{ width: '100%', height: '100%', objectFit: 'cover' }} 
                 />
                 {/* Gradient Overlay */}

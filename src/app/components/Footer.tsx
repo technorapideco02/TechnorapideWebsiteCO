@@ -38,7 +38,7 @@ export default async function Footer() {
             <div className={styles.socials}>
               {socialMedia.map((social: any) => (
                 <a key={social._id} href={social.link} target="_blank" rel="noopener noreferrer" className={styles.socialIcon}>
-                  <img src={social.iconLink} alt={social.name} />
+                  <img src={social.iconLink} alt={`Technorapide on ${social.name}`} />
                 </a>
               ))}
             </div>

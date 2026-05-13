@@ -51,9 +51,13 @@ const Hero = async () => {
               Best Website Development Company in Barasat | Kolkata | India | Technorapide
             </h1>
           )}
-          {heroData?.title && (
+          {heroData?.title ? (
             <p className={styles.subtitle}>
               {heroData.title}
+            </p>
+          ) : (
+            <p className={styles.subtitle}>
+              Empowering businesses with custom software, mobile apps, and high-converting websites. Scale your digital presence with Barasat's top tech experts.
             </p>
           )}
         </div>

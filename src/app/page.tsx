@@ -87,20 +87,20 @@ export default async function Home() {
                   Best Website Development Company in Barasat | Kolkata | India
                 </h2>
                 <p className={styles.seoDescription}>
-                  Technorapide is recognized as the <strong>Best Website Development Company in Barasat</strong> and the <strong>Best Website Development Company in Kolkata</strong>. We specialize in delivering high-performance, SEO-optimized, and visually stunning websites that help businesses dominate the digital landscape across India.
+                  Technorapide is recognized as the <strong>Best Website Development Company in Barasat</strong> and the <strong>Best Website Development Company in Kolkata</strong>. We specialize in delivering high-performance, SEO-optimized, and visually stunning websites. From custom software development to mobile apps, we help businesses dominate the digital landscape with cutting-edge technology and strategic marketing.
                 </p>
                 <div className={styles.seoHighlights}>
                   <div className={styles.seoItem}>
-                    <h3>Best Web Dev Company in Barasat</h3>
-                    <p>Tailored solutions for local businesses in Barasat to grow online.</p>
+                    <h3>Top Web Dev Agency Barasat</h3>
+                    <p>Building high-converting websites for businesses in Barasat and North 24 Parganas.</p>
                   </div>
                   <div className={styles.seoItem}>
-                    <h3>Best Web Dev Company in Kolkata</h3>
-                    <p>Innovative digital strategies for enterprises in the City of Joy.</p>
+                    <h3>Expert Software Dev Kolkata</h3>
+                    <p>Premium software and app development services in Kolkata for modern enterprises.</p>
                   </div>
                   <div className={styles.seoItem}>
-                    <h3>Best Website Development Company in India</h3>
-                    <p>World-class engineering serving clients globally from India.</p>
+                    <h3>Global IT Solutions India</h3>
+                    <p>World-class engineering and digital transformation services delivered globally from India.</p>
                   </div>
                 </div>
               </div>
@@ -120,7 +120,7 @@ export default async function Home() {
               <div className={styles.capImageWrapperWide}>
                 <img 
                   src={researchImage1 || "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200"} 
-                  alt="Research Visual" 
+                  alt="Technorapide Research and Innovation" 
                   className={styles.capImage} 
                 />
               </div>
@@ -141,7 +141,7 @@ export default async function Home() {
               <div className={styles.capImageWrapperMobile}>
                 <img 
                   src={researchMobileImage || "https://images.unsplash.com/photo-1550745113-f85264388795?auto=format&fit=crop&q=80&w=800"} 
-                  alt="Mobile Research Visual" 
+                  alt="Technorapide Mobile Web Development Solutions" 
                   className={styles.capImage} 
                 />
               </div>
@@ -173,7 +173,7 @@ export default async function Home() {
               <div className={styles.capImageWrapperOverlap}>
                 <img 
                   src={researchImage2 || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"} 
-                  alt="Growth Visual" 
+                  alt="Technorapide Global Growth and Scale" 
                   className={styles.capImage} 
                 />
               </div>

@@ -55,7 +55,7 @@ export default function ContactWidget() {
             <path d="M8 11h8"/>
           </svg>
         </div>
-        <span className={styles.labelText}>Contact</span>
+        <span className={styles.labelText}>Get a Free Quote</span>
       </div>
     </div>
   );

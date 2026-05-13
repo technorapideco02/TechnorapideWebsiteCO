@@ -98,11 +98,12 @@ const IndustrySection = () => {
               href={`/industries/${createSlug(industry.name)}`} 
               key={industry._id} 
               className={`${styles.insightCardWhite} industry-card-custom`}
+              aria-label={`Learn more about our ${industry.name} industry solutions`}
             >
               <div className={styles.insightImageWrapper}>
                 <img 
                   src={industry.image} 
-                  alt={industry.name} 
+                  alt={`${industry.name} solutions by Technorapide`} 
                   className={styles.insightImage} 
                 />
               </div>
