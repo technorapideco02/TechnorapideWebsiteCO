@@ -7,6 +7,8 @@ import GoogleMapsBadge from "./components/GoogleMapsBadge";
 import Counter from "./components/Counter";
 import styles from "./page.module.css";
 
+export const dynamic = "force-dynamic";
+
 async function getBlogs() {
   try {
     const res = await fetch('https://apifinal.technorapide.com/api/blogs', { cache: 'no-store' });

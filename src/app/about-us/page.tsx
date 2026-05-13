@@ -21,6 +21,9 @@ export const metadata: Metadata = {
   description: 'Learn about Technorapide, our mission, and how we shape the digital landscape.',
 };
 
+export const dynamic = 'force-dynamic';
+
+
 export default async function AboutUsPage() {
   const data = await getAboutData();
 

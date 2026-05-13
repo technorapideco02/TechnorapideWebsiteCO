@@ -5,6 +5,8 @@ import styles from '../page.module.css';
 import heroStyles from '../components/Hero.module.css';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 export const metadata: Metadata = {
   title: 'Company Insights & Strategic Thinking | Technorapide',
   description: 'Explore deep-dives into digital strategy, technical innovation, and company perspectives from the Technorapide team.',

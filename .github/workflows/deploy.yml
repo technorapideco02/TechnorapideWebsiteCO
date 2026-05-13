@@ -24,14 +24,20 @@ jobs:
             git fetch --all
             git reset --hard origin/main
 
+            # Remove old build
+            rm -rf .next
+
             # Install dependencies
             npm install
+
+            # Delete old PM2 process (ignore error if it doesn't exist)
+            pm2 delete nextjs-app || true
 
             # Build Next.js app
             npm run build
 
-            # Restart existing PM2 app (nextjs-app)
-            pm2 restart nextjs-app || pm2 start npm --name "nextjs-app" -- start
+            # Start the new PM2 process
+            pm2 start npm --name "nextjs-app" -- start
 
             # Save PM2 process
             pm2 save

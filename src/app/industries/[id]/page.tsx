@@ -1,5 +1,8 @@
 import React from 'react';
 import { Metadata } from 'next';
+
+export const dynamic = 'force-dynamic';
+
 import Navbar from '../../components/Navbar';
 import HtmlRenderer from '../../components/HtmlRenderer';
 import styles from '../../page.module.css';

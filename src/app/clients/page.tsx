@@ -23,6 +23,9 @@ export const metadata: Metadata = {
   description: 'Trusted by innovation leaders worldwide. Explore the ecosystem of partners and enterprises we empower.',
 };
 
+export const dynamic = 'force-dynamic';
+
+
 export default async function ClientsPage() {
   const data = await getClientData();
 

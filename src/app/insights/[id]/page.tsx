@@ -1,6 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
 import Link from 'next/link';
+
+export const dynamic = 'force-dynamic';
+
 import Navbar from '../../components/Navbar';
 import styles from '../../page.module.css';
 

@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './team.module.css';
 import Link from 'next/link';
 
+export const dynamic = 'force-dynamic';
+
 async function getTeamData() {
   try {
     const res = await fetch('https://apifinal.technorapide.com/api/team', { cache: 'no-store' });
