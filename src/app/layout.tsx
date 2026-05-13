@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import ScrollObserver from "./components/ScrollObserver";
 import NextTopLoader from 'nextjs-toploader';
 import ContactWidget from "./components/ContactWidget";
+import JsonLd from "./components/JsonLd";
 
 
 export const metadata: Metadata = {
@@ -81,7 +82,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         {/* Google tag (gtag.js) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L9JHESCTX"></script>
@@ -116,6 +117,7 @@ export default function RootLayout({
         />
         <ScrollObserver />
         <Navbar />
+        <JsonLd />
         {children}
         <Footer />
         <ContactWidget />

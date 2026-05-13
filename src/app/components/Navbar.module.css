@@ -14,7 +14,7 @@
 
 .container {
   width: 100%;
-  max-width: 100vw;
+  max-width: 100%;
   padding: 0 20px;
   display: flex;
   align-items: center;
@@ -107,7 +107,7 @@
   position: fixed;
   top: var(--navbar-height);
   left: 0;
-  width: 100vw;
+  width: 100%;
   background-color: #111;
   opacity: 0;
   visibility: hidden;
@@ -130,7 +130,7 @@
   display: grid;
   grid-template-columns: 1fr 1.5fr;
   gap: 80px;
-  padding: 0 5%;
+  padding: 0 20px;
 }
 
 .megaMenuTitle {

@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import styles from './Navbar.module.css';
 import GoogleTranslate from './GoogleTranslate';
 import ContactOverlay from './ContactOverlay';
+import { createSlug } from '../utils/slug';
 
 interface Category {
   _id: string;
@@ -43,6 +44,7 @@ const Navbar = () => {
   const [view, setView] = useState<'categories' | 'services'>('categories');
   const [newsroomView, setNewsroomView] = useState<'news' | 'insights'>('news');
   const [hasTeam, setHasTeam] = useState(false);
+  const [hasClients, setHasClients] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [isWhoWeAreDropdownOpen, setIsWhoWeAreDropdownOpen] = useState(false);
@@ -64,6 +66,7 @@ const Navbar = () => {
     fetchNewsAndInsights();
     fetchContactNumber();
     fetchTeamStatus();
+    fetchClientsStatus();
     
     const handleClickOutside = (event: MouseEvent) => {
       if (megaMenuRef.current && !megaMenuRef.current.contains(event.target as Node)) {
@@ -172,6 +175,18 @@ const Navbar = () => {
     }
   };
 
+  const fetchClientsStatus = async () => {
+    try {
+      const res = await fetch('https://apifinal.technorapide.com/api/clients');
+      if (res.ok) {
+        const data = await res.json();
+        setHasClients(data && data.length > 0);
+      }
+    } catch (e) {
+      setHasClients(false);
+    }
+  };
+
   const handleCategoryClick = async (e: React.MouseEvent, categoryId: string) => {
     e.preventDefault();
     e.stopPropagation();
@@ -275,6 +290,50 @@ const Navbar = () => {
               </a>
             </li>
 
+            <li className={styles.dropdown} ref={whoWeAreDropdownRef}>
+              <a href="#" onClick={toggleWhoWeAreDropdown} className={`${isAboutPage ? styles.active : ''} ${isWhoWeAreDropdownOpen ? styles.menuOpen : ''}`}>
+                Who We Are <span className={`${styles.arrow} ${isWhoWeAreDropdownOpen ? styles.arrowUp : ''}`}></span>
+              </a>
+              
+              <div className={`${styles.megaMenu} ${isWhoWeAreDropdownOpen ? styles.megaMenuVisible : ''}`}>
+                <div className={styles.megaMenuContent}>
+                  <div className={styles.megaMenuLeft}>
+                    <h2 className={styles.megaMenuTitle}>Discover Technorapide</h2>
+                    <p className={styles.megaMenuDesc}>
+                      Learn about our mission, meet our talented team, and see the clients we empower.
+                    </p>
+                  </div>
+
+                  <div className={styles.megaMenuRight}>
+                    <ul className={styles.megaMenuList}>
+                      <li className={styles.megaMenuItem}>
+                        <Link href="/about-us" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                          Who We Are?
+                        </Link>
+                        <span className={styles.itemArrow}>→</span>
+                      </li>
+                      {hasTeam && (
+                        <li className={styles.megaMenuItem}>
+                          <Link href="/team" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                            Our Team
+                          </Link>
+                          <span className={styles.itemArrow}>→</span>
+                        </li>
+                      )}
+                      {hasClients && (
+                        <li className={styles.megaMenuItem}>
+                          <Link href="/clients" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                            Our Clients
+                          </Link>
+                          <span className={styles.itemArrow}>→</span>
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </li>
+
             <li className={styles.dropdown} ref={megaMenuRef}>
               <a href="#" onClick={toggleMegaMenu} className={`${isMegaMenuOpen ? styles.menuOpen : ''}`}>
                 What We Do <span className={`${styles.arrow} ${isMegaMenuOpen ? styles.arrowUp : ''}`}></span>
@@ -309,7 +368,7 @@ const Navbar = () => {
                         <ul className={styles.megaMenuList}>
                           {activeServices.map((service) => (
                             <li key={service._id} className={styles.megaMenuItem}>
-                              <Link href={`/services/${service._id}`} onClick={() => {setIsMegaMenuOpen(false); setIsMobileMenuOpen(false);}}>
+                              <Link href={`/services/${createSlug(service.name)}`} onClick={() => {setIsMegaMenuOpen(false); setIsMobileMenuOpen(false);}}>
                                 {service.name}
                               </Link>
                               <span className={styles.itemArrow}>→</span>
@@ -318,48 +377,6 @@ const Navbar = () => {
                         </ul>
                       </>
                     )}
-                  </div>
-                </div>
-              </div>
-            </li>
-
-            <li className={styles.dropdown} ref={whoWeAreDropdownRef}>
-              <a href="#" onClick={toggleWhoWeAreDropdown} className={`${isAboutPage ? styles.active : ''} ${isWhoWeAreDropdownOpen ? styles.menuOpen : ''}`}>
-                Who We Are <span className={`${styles.arrow} ${isWhoWeAreDropdownOpen ? styles.arrowUp : ''}`}></span>
-              </a>
-              
-              <div className={`${styles.megaMenu} ${isWhoWeAreDropdownOpen ? styles.megaMenuVisible : ''}`}>
-                <div className={styles.megaMenuContent}>
-                  <div className={styles.megaMenuLeft}>
-                    <h2 className={styles.megaMenuTitle}>Discover Technorapide</h2>
-                    <p className={styles.megaMenuDesc}>
-                      Learn about our mission, meet our talented team, and see the clients we empower.
-                    </p>
-                  </div>
-
-                  <div className={styles.megaMenuRight}>
-                    <ul className={styles.megaMenuList}>
-                      <li className={styles.megaMenuItem}>
-                        <Link href="/about-us" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
-                          Who We Are?
-                        </Link>
-                        <span className={styles.itemArrow}>→</span>
-                      </li>
-                      {hasTeam && (
-                        <li className={styles.megaMenuItem}>
-                          <Link href="/team" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
-                            Our Team
-                          </Link>
-                          <span className={styles.itemArrow}>→</span>
-                        </li>
-                      )}
-                      <li className={styles.megaMenuItem}>
-                        <Link href="/clients" onClick={() => {setIsWhoWeAreDropdownOpen(false); setIsMobileMenuOpen(false);}}>
-                          Our Clients
-                        </Link>
-                        <span className={styles.itemArrow}>→</span>
-                      </li>
-                    </ul>
                   </div>
                 </div>
               </div>
@@ -383,7 +400,7 @@ const Navbar = () => {
                     <ul className={styles.megaMenuList} style={{ maxHeight: '60vh', overflowY: 'auto' }}>
                       {allServices.map((service) => (
                         <li key={service._id} className={styles.megaMenuItem}>
-                          <Link href={`/services/${service._id}`} onClick={() => {setIsServicesDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                          <Link href={`/services/${createSlug(service.name)}`} onClick={() => {setIsServicesDropdownOpen(false); setIsMobileMenuOpen(false);}}>
                             {service.name}
                           </Link>
                           <span className={styles.itemArrow}>→</span>
@@ -415,7 +432,7 @@ const Navbar = () => {
                     <ul className={styles.megaMenuList} style={{ maxHeight: '60vh', overflowY: 'auto' }}>
                       {careers.map((career) => (
                         <li key={career._id} className={styles.megaMenuItem}>
-                          <Link href={`/career-options/${career._id}`} onClick={() => {setIsCareersDropdownOpen(false); setIsMobileMenuOpen(false);}}>
+                          <Link href={`/career-options/${createSlug(career.title)}`} onClick={() => {setIsCareersDropdownOpen(false); setIsMobileMenuOpen(false);}}>
                             {career.title}
                           </Link>
                           <span className={styles.itemArrow}>→</span>

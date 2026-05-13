@@ -13,11 +13,17 @@
   padding: 0 50px;
 }
 
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
 .grid {
   display: grid;
   grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 80px;
-  margin-bottom: 80px;
+  gap: 40px;
+  margin-bottom: 60px;
 }
 
 .logo {
@@ -34,7 +40,8 @@
   color: rgba(255, 255, 255, 0.6);
   line-height: 1.8;
   margin-bottom: 40px;
-  text-align: justify;
+  text-align: left;
+  overflow-wrap: break-word;
 }
 
 .socials {
@@ -114,6 +121,7 @@
   letter-spacing: -1px;
   transition: color 0.3s ease;
   display: block;
+  word-break: break-all;
 }
 
 .contactNumber:hover {
@@ -149,21 +157,69 @@
   color: #fff;
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1200px) {
   .grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    gap: 30px;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-bottom: 50px;
+  }
+  .container {
+    padding: 0 30px;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer {
+    padding: 60px 0 30px 0;
+  }
   .grid {
     grid-template-columns: 1fr;
-    gap: 50px;
+    gap: 40px;
+    margin-bottom: 40px;
+  }
+  .colTitle {
+    margin-bottom: 20px;
   }
   .bottom {
     flex-direction: column;
     gap: 20px;
     text-align: center;
+    padding-top: 30px;
+  }
+  .bottomLinks {
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+  }
+  .contactNumber {
+    font-size: 1.3rem;
+  }
+  .socialIcon {
+    width: 32px;
+    height: 32px;
+  }
+  .socials {
+    gap: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 20px;
+  }
+  .logo {
+    font-size: 1.3rem;
+  }
+  .description {
+    font-size: 0.9rem;
+  }
+  .bottom p {
+    font-size: 0.8rem;
   }
 }

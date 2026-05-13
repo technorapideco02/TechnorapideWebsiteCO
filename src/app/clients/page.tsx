@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import pageStyles from '../page.module.css';
 import styles from './Clients.module.css';
 import { Metadata } from 'next';
@@ -32,7 +31,6 @@ export default async function ClientsPage() {
   if (!data) {
     return (
       <div className={styles.main}>
-        <Navbar />
         <div style={{ padding: '200px 20px', textAlign: 'center', color: '#fff' }}>
           <h1>Information not available at this moment.</h1>
         </div>
@@ -42,7 +40,6 @@ export default async function ClientsPage() {
 
   return (
     <div className={styles.main}>
-      <Navbar />
 
       {/* Hero Section (Parallax) */}
       <div className={pageStyles.blogHero}>

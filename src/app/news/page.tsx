@@ -1,9 +1,9 @@
 import React from 'react';
 import { Metadata } from 'next';
-import Navbar from '../components/Navbar';
 import styles from '../page.module.css';
 import heroStyles from '../components/Hero.module.css';
 import Link from 'next/link';
+import { createSlug } from '../utils/slug';
 
 export const dynamic = 'force-dynamic';
 
@@ -29,7 +29,6 @@ export default async function NewsListingPage() {
 
   return (
     <div className={styles.main} style={{ backgroundColor: '#000', minHeight: '100vh' }}>
-      <Navbar />
       
       {/* FIXED FEATURED HERO */}
       {heroBlog && (
@@ -50,10 +49,10 @@ export default async function NewsListingPage() {
             <p className={styles.capLabel} style={{ color: 'var(--primary)', letterSpacing: '4px', marginBottom: '20px' }}>
               FEATURED STORY
             </p>
-            <h1 className={heroStyles.title} style={{ fontSize: '5rem', lineHeight: '1', letterSpacing: '-3px' }}>
+            <h1 className={heroStyles.title}>
               {heroBlog.title}
             </h1>
-            <Link href={`/news/${heroBlog._id}`} style={{ marginTop: '40px', display: 'inline-block', padding: '15px 40px', border: '1px solid #fff', color: '#fff', textDecoration: 'none', fontWeight: 700, letterSpacing: '2px' }}>
+            <Link href={`/news/${createSlug(heroBlog.title)}`} style={{ marginTop: '40px', display: 'inline-block', padding: '15px 40px', border: '1px solid #fff', color: '#fff', textDecoration: 'none', fontWeight: 700, letterSpacing: '2px' }}>
               READ FEATURED STORY
             </Link>
           </div>
@@ -83,7 +82,7 @@ export default async function NewsListingPage() {
           width: '100%'
         }}>
           {remainingBlogs.map((blog: any) => (
-            <Link key={blog._id} href={`/news/${blog._id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
+            <Link key={blog._id} href={`/news/${createSlug(blog.title)}`} style={{ textDecoration: 'none', color: 'inherit' }}>
               <div style={{ 
                 backgroundColor: '#0a0a0a', 
                 border: '1px solid rgba(255,255,255,0.1)', 

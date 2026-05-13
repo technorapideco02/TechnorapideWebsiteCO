@@ -3,6 +3,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import Link from 'next/link';
 import styles from '../page.module.css';
+import { createSlug } from '../utils/slug';
 
 interface CustomerStory {
   _id: string;
@@ -49,26 +50,41 @@ const CustomerStories = () => {
   if (stories.length === 0) return null;
 
   return (
-    <section className={styles.customerStoriesSection} style={{ backgroundColor: '#000', padding: '80px 0 100px 0', color: '#fff', overflow: 'hidden' }}>
+    <section 
+      className={styles.customerStoriesSection} 
+      style={{ 
+        backgroundColor: '#000', 
+        padding: stories.length > 0 ? '120px 0 100px 0' : '0', 
+        color: '#fff', 
+        overflow: 'hidden' 
+      }}
+    >
       <div className={styles.fullWidthContainer}>
         {/* Header Section */}
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', padding: '0 5%', marginBottom: '40px' }}>
+        <div className={styles.storiesHeader} style={{ marginBottom: '40px' }}>
           <div>
-            <h2 style={{ fontSize: 'clamp(2.2rem, 5vw, 3.5rem)', fontWeight: 500, color: '#fff', margin: '0 0 10px 0', fontFamily: "'Outfit', sans-serif" }}>Customer Stories</h2>
+            <h2 style={{ fontSize: 'clamp(1.8rem, 8vw, 3rem)', fontWeight: 500, color: '#fff', margin: '0 0 10px 0', fontFamily: "'Outfit', sans-serif" }}>Customer Stories</h2>
             {/* Pagination: Hidden on Desktop */}
-            <div className={styles.mobileOnly} style={{ fontSize: '1.1rem', fontWeight: 600, color: '#333', letterSpacing: '2px', fontFamily: "'Figtree', sans-serif" }}>
+            <div className={styles.mobileOnly} style={{ fontSize: '1rem', fontWeight: 600, color: '#fff', letterSpacing: '2px', fontFamily: "'Figtree', sans-serif" }}>
               <span style={{ color: '#0070ad' }}>{currentIndex.toString().padStart(2, '0')}</span> — {stories.length.toString().padStart(2, '0')}
             </div>
           </div>
           
-          <div style={{ display: 'flex', gap: '20px', marginTop: '10px' }}>
-            <button onClick={() => scroll('left')} style={{ background: 'none', border: 'none', color: '#666', cursor: 'pointer', fontSize: '1.5rem' }} aria-label="Previous">
+          {/* Arrows: Shown on mobile if > 1, shown on desktop if > 3 */}
+          <div 
+            className={`${stories.length <= 3 ? styles.desktopHidden : ''} ${styles.storiesNav}`}
+            style={{ 
+              display: stories.length > 1 ? 'flex' : 'none', 
+              gap: '15px'
+            }}
+          >
+            <button onClick={() => scroll('left')} style={{ background: 'none', border: 'none', color: '#666', cursor: 'pointer', padding: '5px' }} aria-label="Previous">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
               </svg>
             </button>
-            <button onClick={() => scroll('right')} style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', fontSize: '1.5rem' }} aria-label="Next">
+            <button onClick={() => scroll('right')} style={{ background: 'none', border: 'none', color: '#fff', cursor: 'pointer', padding: '5px' }} aria-label="Next">
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <line x1="5" y1="12" x2="19" y2="12"></line>
                 <polyline points="12 5 19 12 12 19"></polyline>
@@ -79,18 +95,19 @@ const CustomerStories = () => {
 
         {/* Stories Grid */}
         <div 
-          className={styles.insightsGrid} 
+          className={`${styles.insightsGrid} ${stories.length <= 3 ? styles.desktopCenter : ''}`} 
           ref={scrollRef}
           onScroll={handleScroll}
           style={{ 
-            gap: '30px', 
+            gap: '20px', 
             overflowX: 'auto', 
             padding: '0 5% 50px 5%',
             scrollSnapType: 'x mandatory',
             WebkitOverflowScrolling: 'touch',
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
-            display: 'flex'
+            display: 'flex',
+            justifyContent: 'flex-start'
           }}
         >
           <style dangerouslySetInnerHTML={{ __html: `
@@ -98,15 +115,31 @@ const CustomerStories = () => {
               .desktop-card {
                 flex: 0 0 calc(33.333% - 20px) !important;
                 height: 600px !important;
+                flex-shrink: 0 !important;
               }
-              .${styles.mobileOnly} {
+              .${styles.desktopHidden} {
                 display: none !important;
+              }
+              .${styles.desktopCenter} {
+                justify-content: center !important;
               }
             }
             @media (max-width: 1023px) {
               .desktop-card {
-                flex: 0 0 calc(100% - 40px) !important;
-                height: 550px !important;
+                flex: 0 0 85vw !important;
+                height: 520px !important;
+                margin-right: 15px !important;
+                flex-shrink: 0 !important;
+              }
+              .card-content {
+                padding: 25px 20px !important;
+              }
+              .card-title {
+                font-size: 1.4rem !important;
+              }
+              .card-message {
+                font-size: 0.95rem !important;
+                -webkit-line-clamp: 5 !important;
               }
             }
           `}} />
@@ -117,7 +150,7 @@ const CustomerStories = () => {
               className="desktop-card"
               style={{ 
                 position: 'relative',
-                borderRadius: '8px',
+                borderRadius: '12px',
                 border: 'none',
                 overflow: 'hidden',
                 scrollSnapAlign: 'center',
@@ -141,41 +174,54 @@ const CustomerStories = () => {
               </div>
 
               {/* Content Overlay */}
-              <div style={{ 
-                position: 'absolute', 
-                bottom: 0, 
-                left: 0, 
-                width: '100%', 
-                padding: '40px 30px', 
-                zIndex: 2,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '15px'
-              }}>
-                <h3 style={{ fontSize: '1.8rem', fontWeight: 600, margin: 0, color: '#fff', lineHeight: 1.2 }}>
+              <div 
+                className="card-content"
+                style={{ 
+                  position: 'absolute', 
+                  bottom: 0, 
+                  left: 0, 
+                  width: '100%', 
+                  padding: '40px 30px', 
+                  zIndex: 2,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '12px'
+                }}
+              >
+                <h3 
+                  className="card-title"
+                  style={{ fontSize: '1.8rem', fontWeight: 600, margin: 0, color: '#fff', lineHeight: 1.2 }}
+                >
                   {story.role.split(',')[1]?.trim() || story.name}
                 </h3>
-                <p style={{ 
-                  fontSize: '1.1rem', 
-                  color: 'rgba(255,255,255,0.9)', 
-                  lineHeight: '1.6', 
-                  margin: 0,
-                  maxWidth: '95%'
-                }}>
+                <p 
+                  className="card-message"
+                  style={{ 
+                    fontSize: '1.1rem', 
+                    color: 'rgba(255,255,255,0.9)', 
+                    lineHeight: '1.5', 
+                    margin: 0,
+                    maxWidth: '100%',
+                    display: '-webkit-box',
+                    WebkitLineClamp: 6,
+                    WebkitBoxOrient: 'vertical',
+                    overflow: 'hidden'
+                  }}
+                >
                   {story.message}
                 </p>
                 <Link 
-                  href={`/customer-stories/${story._id}`} 
-                  style={{ marginTop: '15px', display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}
+                  href={`/customer-stories/${createSlug(story.name)}`} 
+                  style={{ marginTop: '10px', display: 'flex', alignItems: 'center', gap: '10px', textDecoration: 'none', color: '#fff' }}
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                     <polyline points="14 2 14 8 20 8"></polyline>
                     <line x1="16" y1="13" x2="8" y2="13"></line>
                     <line x1="16" y1="17" x2="8" y2="17"></line>
                     <polyline points="10 9 9 9 8 9"></polyline>
                   </svg>
-                  <span style={{ fontSize: '1rem', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' }}>READ MORE</span>
+                  <span style={{ fontSize: '0.9rem', fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' }}>READ MORE</span>
                 </Link>
               </div>
             </div>

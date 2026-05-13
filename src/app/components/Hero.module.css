@@ -52,6 +52,17 @@
   max-width: 800px;
   padding: 0 20px;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.textWrapper {
+  min-height: 180px; /* Maintains position even if empty */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .title {

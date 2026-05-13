@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'next/navigation';
 import NProgress from 'nprogress';
 import styles from '../CareerOptions.module.css';
+import { extractId, createSlug } from '../../utils/slug';
 
 interface Career {
   _id: string;
@@ -13,7 +14,7 @@ interface Career {
 }
 
 export default function CareerDetailPage() {
-  const { id } = useParams();
+  const { id } = useParams(); // 'id' will be the slug
   const [career, setCareer] = useState<Career | null>(null);
   const [loading, setLoading] = useState(true);
 
@@ -21,10 +22,23 @@ export default function CareerDetailPage() {
     if (!id) return;
     
     NProgress.start();
-    fetch(`https://apifinal.technorapide.com/api/careers/${id}`)
+    // Fetch all careers to find the one matching the slug
+    fetch(`https://apifinal.technorapide.com/api/careers`)
       .then(r => r.json())
       .then(data => {
-        setCareer(data);
+        const matched = data.find((c: Career) => createSlug(c.title) === id);
+        if (matched) {
+          setCareer(matched);
+        } else {
+          // Fallback: try fetching by ID directly if no slug match
+          const cleanId = extractId(id as string);
+          return fetch(`https://apifinal.technorapide.com/api/careers/${cleanId}`).then(r => r.json());
+        }
+      })
+      .then(fallbackData => {
+        if (fallbackData && !career) {
+          setCareer(fallbackData);
+        }
         setLoading(false);
         NProgress.done();
       })
@@ -33,7 +47,7 @@ export default function CareerDetailPage() {
         setLoading(false);
         NProgress.done();
       });
-  }, [id]);
+  }, [id, career]);
 
   if (loading && !career) {
     return <div className={styles.container} />; 

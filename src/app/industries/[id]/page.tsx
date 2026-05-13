@@ -3,23 +3,32 @@ import { Metadata } from 'next';
 
 export const dynamic = 'force-dynamic';
 
-import Navbar from '../../components/Navbar';
 import HtmlRenderer from '../../components/HtmlRenderer';
 import styles from '../../page.module.css';
 import heroStyles from '../../components/Hero.module.css';
+import { extractId, createSlug } from '../../utils/slug';
 
-async function getIndustry(id: string | undefined) {
-  if (!id) return null;
-  const actualId = id.split('--').pop() || id;
-  const cleanId = actualId.trim();
+async function getIndustry(slug: string | undefined) {
+  if (!slug) return null;
+  
   try {
+    // 1. Try matching by slug from all industries
+    const allRes = await fetch('https://apifinal.technorapide.com/api/industries', { cache: 'no-store' });
+    if (allRes.ok) {
+      const allIndustries = await allRes.json();
+      const matched = allIndustries.find((ind: any) => createSlug(ind.name) === slug);
+      if (matched) return matched;
+    }
+
+    // 2. Fallback: match by ID
+    const cleanId = extractId(slug);
     const res = await fetch(`https://apifinal.technorapide.com/api/industries/${cleanId}`, { cache: 'no-store' });
     if (res.ok) {
       return res.json();
     }
     return null;
   } catch (e) {
-    console.error(`Error fetching industry ${id}:`, e);
+    console.error(`Error fetching industry ${slug}:`, e);
     return null;
   }
 }
@@ -46,7 +55,6 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
   if (!industry) {
     return (
       <div className={styles.main}>
-        <Navbar />
         <div className={styles.container} style={{ padding: '200px 20px', textAlign: 'center' }}>
           <h1 style={{ color: '#000' }}>Industry not found</h1>
         </div>
@@ -56,7 +64,6 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
 
   return (
     <div className={styles.main}>
-      <Navbar />
       
       {/* HERO SECTION */}
       <section className={heroStyles.hero}>
@@ -83,18 +90,10 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
       <div className={styles.scrollContent}>
         
         {/* DESCRIPTION (WHITE BG) */}
-        <section style={{ padding: '100px 0 0 0', backgroundColor: '#fff', color: '#1b1b1b' }}>
+        <section className={styles.industryDetailSection}>
           <div className={styles.container}>
-            <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
-              <div style={{ 
-                fontSize: '1.6rem', 
-                fontWeight: 600,
-                color: '#000', 
-                lineHeight: '1.6', 
-                marginBottom: '50px',
-                textAlign: 'justify',
-                textJustify: 'inter-word'
-              }}>
+            <div className={styles.industryDetailContainer}>
+              <div className={styles.industryMainDesc}>
                 {industry.description}
               </div>
             </div>
@@ -110,14 +109,14 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
 
         {/* CONTENT LIST (CARDS SECTION - WHITE BG) */}
         {industry.contentList && industry.contentList.length > 0 && (
-          <section style={{ padding: '100px 0', backgroundColor: '#f9f9f9', borderTop: '1px solid #eee' }}>
+          <section className={styles.industryFeaturesSection}>
             <div className={styles.container}>
-              <div style={{ textAlign: 'center', marginBottom: '70px' }}>
+              <div style={{ textAlign: 'center', marginBottom: '70px' }} className={styles.industryFeaturesHeader}>
                 <p className={styles.capLabel} style={{ justifyContent: 'center' }}>KEY FEATURES</p>
-                <h2 style={{ fontSize: '3rem', fontWeight: 800, color: '#000' }}>Domain Expertise</h2>
+                <h2 className={styles.industryFeaturesTitle}>Domain Expertise</h2>
               </div>
 
-              <div className={styles.insightsGrid} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', display: 'grid', gap: '30px' }}>
+              <div className={styles.insightsGrid} style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', display: 'grid', gap: '30px' }}>
                 {industry.contentList.map((item: any) => (
                   <div key={item._id} className={styles.insightCard} style={{ backgroundColor: '#fff', border: '1px solid #eee', borderRadius: '0' }}>
                     <div className={styles.insightImageWrapper} style={{ height: '250px' }}>
@@ -134,11 +133,6 @@ export default async function IndustryDetails({ params }: { params: Promise<{ id
           </section>
         )}
 
-        <footer className={styles.footer} style={{ backgroundColor: '#000', color: '#fff' }}>
-          <div className={styles.footerContent}>
-            <p>&copy; 2026 Technorapide. All rights reserved.</p>
-          </div>
-        </footer>
       </div>
     </div>
   );

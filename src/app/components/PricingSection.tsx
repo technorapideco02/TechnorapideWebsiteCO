@@ -32,7 +32,7 @@ const PricingSection: React.FC<PricingSectionProps> = ({ priceChart }) => {
   };
 
   return (
-    <section id="pricing" className={styles.newsSectionWhite} style={{ backgroundColor: '#fff', padding: '120px 0' }}>
+    <section id="pricing" className={styles.newsSectionWhite} style={{ backgroundColor: '#fff', padding: '60px 0 100px' }}>
       <div className={styles.fullWidthContainer}>
         <div className={styles.insightsHeader}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
@@ -57,7 +57,17 @@ const PricingSection: React.FC<PricingSectionProps> = ({ priceChart }) => {
         
         <div className={styles.insightsGrid} ref={scrollRef}>
           {priceChart.map((tier) => (
-            <div key={tier._id} className={styles.insightCard} style={{ flex: '0 0 380px', backgroundColor: '#0b0e14', border: '1px solid rgba(255,255,255,0.1)' }}>
+            <div 
+              key={tier._id} 
+              className={styles.insightCard} 
+              style={{ 
+                flex: '0 0 calc(100% - 40px)', 
+                minWidth: '280px',
+                backgroundColor: '#0b0e14', 
+                border: '1px solid rgba(255,255,255,0.1)',
+                scrollSnapAlign: 'center'
+              }}
+            >
               <div className={styles.insightImageWrapper} style={{ borderRadius: 0 }}>
                 <img src={tier.imageLink} alt={tier.name} className={styles.insightImage} style={{ borderRadius: 0 }} />
               </div>

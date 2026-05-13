@@ -1,6 +1,7 @@
 import React from 'react';
 import Link from 'next/link';
 import styles from './Footer.module.css';
+import { createSlug } from '../utils/slug';
 
 async function getData(url: string) {
   try {
@@ -32,7 +33,7 @@ export default async function Footer() {
           <div className={styles.col}>
             <div className={styles.logo}>Technorapide</div>
             <p className={styles.description}>
-              Technorapide is a global technical powerhouse delivering high-density digital solutions. We specialize in adaptive enterprise architectures, custom technical blueprints, and immersive digital transformations that scale with absolute precision.
+              Technorapide is the <strong>Best Website Development Company in Barasat, Kolkata, and India</strong>. We deliver high-density digital solutions, specialized enterprise architectures, and immersive digital transformations that scale with absolute precision.
             </p>
             <div className={styles.socials}>
               {socialMedia.map((social: any) => (
@@ -49,7 +50,11 @@ export default async function Footer() {
             <ul className={styles.list}>
               {categories.map((cat: any) => (
                 <li key={cat._id}>
-                  <Link href={`/services?category=${cat._id}`}>{cat.name}</Link>
+                  {cat.name === 'Software Development' ? (
+                    <span style={{ cursor: 'default', color: 'rgba(255,255,255,0.7)' }}>{cat.name}</span>
+                  ) : (
+                    <Link href={`/services?category=${cat._id}`}>{cat.name}</Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -61,7 +66,11 @@ export default async function Footer() {
             <ul className={styles.list}>
               {services.slice(0, 8).map((ser: any) => (
                 <li key={ser._id}>
-                  <Link href={`/services/${ser._id}`}>{ser.name}</Link>
+                  {ser.name === 'Software Development' ? (
+                    <span style={{ cursor: 'default', color: 'rgba(255,255,255,0.7)' }}>{ser.name}</span>
+                  ) : (
+                    <Link href={`/services/${createSlug(ser.name)}`}>{ser.name}</Link>
+                  )}
                 </li>
               ))}
             </ul>
@@ -73,7 +82,7 @@ export default async function Footer() {
             <ul className={styles.list}>
               {industries.slice(0, 6).map((ind: any) => (
                 <li key={ind._id}>
-                  <Link href={`/industries/${ind._id}`}>{ind.name}</Link>
+                  <Link href={`/industries/${createSlug(ind.name)}`}>{ind.name}</Link>
                 </li>
               ))}
             </ul>

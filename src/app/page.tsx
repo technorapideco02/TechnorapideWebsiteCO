@@ -3,7 +3,7 @@ import NewsSection from "./components/NewsSection";
 import InsightsSection from "./components/InsightsSection";
 import IndustrySection from "./components/IndustrySection";
 import CustomerStories from "./components/CustomerStories";
-import GoogleMapsBadge from "./components/GoogleMapsBadge";
+
 import Counter from "./components/Counter";
 import styles from "./page.module.css";
 
@@ -192,7 +192,7 @@ export default async function Home() {
         <CustomerStories />
 
         {/* Google Business Verification Badge */}
-        <GoogleMapsBadge />
+
       </div>
     </main>
   );

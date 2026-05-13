@@ -45,11 +45,8 @@ const HtmlRenderer: React.FC<HtmlRendererProps> = ({ html, color }) => {
             const body = doc?.body;
             const htmlEl = doc?.documentElement;
             
-            if (body && htmlEl) {
-              const newHeight = Math.max(
-                body.scrollHeight, body.offsetHeight,
-                htmlEl.clientHeight, htmlEl.scrollHeight, htmlEl.offsetHeight
-              );
+            if (body) {
+              const newHeight = body.getBoundingClientRect().height;
               if (newHeight > 0) {
                 setHeight(`${newHeight}px`);
               }

@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 import pageStyles from '../page.module.css';
 import styles from './AboutUs.module.css';
 import { Metadata } from 'next';
@@ -30,7 +29,6 @@ export default async function AboutUsPage() {
   if (!data) {
     return (
       <div className={styles.main}>
-        <Navbar />
         <div style={{ padding: '200px 20px', textAlign: 'center', color: '#fff' }}>
           <h1>Information not available at this moment.</h1>
         </div>
@@ -40,7 +38,6 @@ export default async function AboutUsPage() {
 
   return (
     <div className={styles.main}>
-      <Navbar />
 
       {/* Hero Section (Parallax) */}
       <div className={pageStyles.blogHero}>
