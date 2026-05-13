@@ -5,7 +5,6 @@ import Footer from "./components/Footer";
 import ScrollObserver from "./components/ScrollObserver";
 import NextTopLoader from 'nextjs-toploader';
 import ContactWidget from "./components/ContactWidget";
-import Script from "next/script";
 
 
 export const metadata: Metadata = {
@@ -84,23 +83,24 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google tag (gtag.js) */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4L9JHESCTX"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+
+              gtag('config', 'G-4L9JHESCTX');
+            `,
+          }}
+        />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Figtree:ital,wght@0,300..900;1,300..900&family=Outfit:wght@100..900&family=Playwrite+BR:wght@100..400&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-4L9JHESCTX"
-          strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-          {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            gtag('config', 'G-4L9JHESCTX');
-          `}
-        </Script>
       </head>
+
 
       <body>
         <NextTopLoader
